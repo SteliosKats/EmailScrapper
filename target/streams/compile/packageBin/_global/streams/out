@@ -1,0 +1,39 @@
+[debug] Packaging /home/stelios/workspace/GmailScraper/target/scala-2.13/gmailscraper_2.13-0.1.jar ...
+[debug] Input file mappings:
+[debug] 	
+[debug] 	  /home/stelios/workspace/GmailScraper/target/scala-2.13/classes
+[debug] 	com
+[debug] 	  /home/stelios/workspace/GmailScraper/target/scala-2.13/classes/com
+[debug] 	com/example
+[debug] 	  /home/stelios/workspace/GmailScraper/target/scala-2.13/classes/com/example
+[debug] 	com/example/Spreadsheets.class
+[debug] 	  /home/stelios/workspace/GmailScraper/target/scala-2.13/classes/com/example/Spreadsheets.class
+[debug] 	com/example/Spreadsheet.class
+[debug] 	  /home/stelios/workspace/GmailScraper/target/scala-2.13/classes/com/example/Spreadsheet.class
+[debug] 	com/example/Spreadsheets$.class
+[debug] 	  /home/stelios/workspace/GmailScraper/target/scala-2.13/classes/com/example/Spreadsheets$.class
+[debug] 	credentials.json
+[debug] 	  /home/stelios/workspace/GmailScraper/target/scala-2.13/classes/credentials.json
+[debug] 	scalamail
+[debug] 	  /home/stelios/workspace/GmailScraper/target/scala-2.13/classes/scalamail
+[debug] 	scalamail/Contents.class
+[debug] 	  /home/stelios/workspace/GmailScraper/target/scala-2.13/classes/scalamail/Contents.class
+[debug] 	scalamail/Contents$.class
+[debug] 	  /home/stelios/workspace/GmailScraper/target/scala-2.13/classes/scalamail/Contents$.class
+[debug] 	scalamail/ScalaImapSsl$.class
+[debug] 	  /home/stelios/workspace/GmailScraper/target/scala-2.13/classes/scalamail/ScalaImapSsl$.class
+[debug] 	scalamail/SubHeader.class
+[debug] 	  /home/stelios/workspace/GmailScraper/target/scala-2.13/classes/scalamail/SubHeader.class
+[debug] 	scalamail/Header.class
+[debug] 	  /home/stelios/workspace/GmailScraper/target/scala-2.13/classes/scalamail/Header.class
+[debug] 	scalamail/Header$.class
+[debug] 	  /home/stelios/workspace/GmailScraper/target/scala-2.13/classes/scalamail/Header$.class
+[debug] 	scalamail/Email.class
+[debug] 	  /home/stelios/workspace/GmailScraper/target/scala-2.13/classes/scalamail/Email.class
+[debug] 	scalamail/SubHeader$.class
+[debug] 	  /home/stelios/workspace/GmailScraper/target/scala-2.13/classes/scalamail/SubHeader$.class
+[debug] 	scalamail/ScalaImapSsl.class
+[debug] 	  /home/stelios/workspace/GmailScraper/target/scala-2.13/classes/scalamail/ScalaImapSsl.class
+[debug] 	scalamail/TypeClass.class
+[debug] 	  /home/stelios/workspace/GmailScraper/target/scala-2.13/classes/scalamail/TypeClass.class
+[debug] Done packaging.

@@ -1,0 +1,18 @@
+[0m[[0m[0mdebug[0m] [0m[0m[watch] [gmailscraper / Compile / compile] Found inputs: /home/stelios/workspace/GmailScraper/*.{java,scala},/home/stelios/workspace/GmailScraper/src/main/java/**/*.{java,scala},/home/stelios/workspace/GmailScraper/src/main/resources/**/*,/home/stelios/workspace/GmailScraper/src/main/scala/**/*.{java,scala},/home/stelios/workspace/GmailScraper/src/main/scala-2.13/**/*.{java,scala}[0m
+[0m[[0m[0minfo[0m] [0m[0m1. Monitoring source files for gmailscraper/compile...[0m
+[0m[[0m[0minfo[0m] [0m[0m   Press <enter> to interrupt or '?' for more options.[0m
+[0m[[0m[0mdebug[0m] [0m[0mgmailscraper / Compile / compile - Accepted event for /home/stelios/workspace/GmailScraper/src/main/scala/com/ScalaScraper/ScalaImapSsl.scala[0m
+[0m[[0m[0mdebug[0m] [0m[0mReceived Update(/home/stelios/workspace/GmailScraper/src/main/scala/com/ScalaScraper/ScalaImapSsl.scala,FileAttributes(isDirectory = false, isOther = false,isRegularFile = true, isSymbolicLink = false),FileAttributes(isDirectory = false, isOther = false,isRegularFile = true, isSymbolicLink = false))[0m
+[0m[[0m[0mdebug[0m] [0m[0mgmailscraper / Compile / compile - Accepted event for /home/stelios/workspace/GmailScraper/src/main/scala/com/ScalaScraper/ScalaImapSsl.scala[0m
+[0m[[0m[0mdebug[0m] [0m[0mReceived Update(/home/stelios/workspace/GmailScraper/src/main/scala/com/ScalaScraper/ScalaImapSsl.scala,FileAttributes(isDirectory = false, isOther = false,isRegularFile = true, isSymbolicLink = false),FileAttributes(isDirectory = false, isOther = false,isRegularFile = true, isSymbolicLink = false))[0m
+[0m[[0m[0mdebug[0m] [0m[0mReceived event for path /home/stelios/workspace/GmailScraper/src/main/scala/com/ScalaScraper/ScalaImapSsl.scala[0m
+[0m[[0m[0mdebug[0m] [0m[0mReceived event for path /home/stelios/workspace/GmailScraper/src/main/scala/com/ScalaScraper/ScalaImapSsl.scala[0m
+[0m[[0m[0mdebug[0m] [0m[0mCreating update event for modified /home/stelios/workspace/GmailScraper/src/main/scala/com/ScalaScraper/ScalaImapSsl.scala (previous stamp: Hash(91c89dfb20d43bfe5ef6717a3855c962554677f8), current stamp: Hash(a8317fbafd44ccb2d5a2b108bc2d1c0f9bae87a7))[0m
+[0m[[0m[0mdebug[0m] [0m[0mReceived file event actions: /home/stelios/workspace/GmailScraper/src/main/scala/com/ScalaScraper/ScalaImapSsl.scala -> Trigger. Returning: (Update(/home/stelios/workspace/GmailScraper/src/main/scala/com/ScalaScraper/ScalaImapSsl.scala, 2019-Oct-13 10:58:49.762 EET),Trigger)[0m
+[0m[[0m[0minfo[0m] [0m[0mBuild triggered by /home/stelios/workspace/GmailScraper/src/main/scala/com/ScalaScraper/ScalaImapSsl.scala. Running 'compile'.[0m
+[0m[[0m[0mdebug[0m] [0m[0m[watch] [debug] Received file event Trigger for Update(/home/stelios/workspace/GmailScraper/src/main/scala/com/ScalaScraper/ScalaImapSsl.scala, 2019-Oct-13 10:58:49.762 EET).[0m
+[0m[[0m[0minfo[0m] [0m[0m2. Monitoring source files for gmailscraper/compile...[0m
+[0m[[0m[0minfo[0m] [0m[0m   Press <enter> to interrupt or '?' for more options.[0m
+[0m[[0m[0mdebug[0m] [0m[0mDiscarding entry for recently updated path /home/stelios/workspace/GmailScraper/src/main/scala/com/ScalaScraper/ScalaImapSsl.scala. This event occurred 11 ms since the last event for this path.[0m
+[0m[[0m[0mdebug[0m] [0m[0m[watch] [debug] Received input event: Run().[0m
+[0m[[0m[0mdebug[0m] [0m[0m[watch] [debug] Received input event: Run().[0m
