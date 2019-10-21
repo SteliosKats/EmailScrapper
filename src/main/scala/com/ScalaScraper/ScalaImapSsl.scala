@@ -24,28 +24,33 @@ object ScalaImapSsl {
       try {
         // use imap.gmail.com for gmail
         store.connect("imap.gmail.com",
-                      "<insert_email_here>",
-                      "<insert_password_here>")
+                      "stelios.katsiadramis@gmail.com",
+                      "vdbxbdywtswnocon")
         val inbox = store.getFolder("Inbox")
         inbox.open(Folder.READ_ONLY)
 
         val messages: Array[Message] = inbox.getMessages()
         var count: Int = 0
         val georgeAddr: InternetAddress = new InternetAddress(
-          "<retrievable_email>")
-        val typer = new TypeClass()
-        //println(typer.manOf(georgeAddr))
-
-        for (message <- messages) {
-          //message.getReplyTo.foreach(println)
-          //println(message.getReplyTo)
+          "George Karabelas <gk@venturefriends.vc>")
+        var counter =0
+        for (message:Message <- messages) {
+          counter +=1
           val emailStr: String =
             listIterator(message.getReplyTo.toList, georgeAddr)
-          val resultMulti = if (!emailStr.equals(" ") && message.isMimeType("multipart/*")) {
-            val resultMulti = getTextFromMimeMultipart(message.getContent.asInstanceOf[MimeMultipart])
-            println("resultMulti =" + resultMulti)
-          } else if (!emailStr.equals(" ")) message.getContent.toString
+          val resultMulti:String =
+            if (!emailStr.equals("") && message.isMimeType("multipart/*")){
+              val result = getTextFromMimeMultipart(message.getContent.asInstanceOf[MimeMultipart],counter)
+              if(!result.indexOf("Massive Fundings ").equals(-1) && !result.indexOf("Big-But-Not-Crazy-Big Fundings ").equals(-1)) {
+                println(
+      result.substring(result.indexOf("Massive Fundings "),
+                       result.indexOf("Big-But-Not-Crazy-Big Fundings ") - 1))
+              }
+              ""
+            }else message.getContent.toString
 
+
+            //println(resultMulti.toString)
           //message.getReplyTo().foreach(println) //get Sender of Email
           //message.getAllRecipients().foreach(println) //Get All Recipients
           //message.getReplyTo.foreach(addr => println(addr.toString))
@@ -63,18 +68,17 @@ object ScalaImapSsl {
       }
     }
 
-  private[this] def listIterator(list: List[Address],
-                                   georgeAddr: Address): String = list match {
+  private[this] def listIterator(list: List[Address],georgeAddr: Address): String = list match {
       case List()                                     => ""
       case (head :: Nil) if (head.equals(georgeAddr)) => georgeAddr.toString
       case head :: rest                               => listIterator(rest, georgeAddr)
     }
 
-  private[this] def getTextFromMimeMultipart(mimeMultipart: MimeMultipart):String = {
+  private[this] def getTextFromMimeMultipart(mimeMultipart: MimeMultipart,counter: Int):String = {
+
     val count:Int = mimeMultipart.getCount()
-    val result2 =yieldContentResult("",mimeMultipart).apply(count-1)
-    println(result2)
-    result2
+    yieldContentResult("",mimeMultipart).apply(count-1)
+    //println(result2)
   }
 
   private[this] def yieldContentResult(result:String,mimeMultipart:MimeMultipart):(Int => String) = {
@@ -85,14 +89,15 @@ object ScalaImapSsl {
         yieldContentResult(result + "\n" + bodypart.getContent(),mimeMultipart)(x-1)
       }else if(bodypart.isMimeType("text/html")){
         val html = bodypart.getContent.asInstanceOf[String]
-        //println(result + "\n" + org.jsoup.Jsoup.parse(html).text())
+        val emailAsString = org.jsoup.Jsoup.parse(html).text()
+        //println("Elements:"+emailAsString.substring(emailAsString.indexOf("Massive Fundings "),emailAsString.indexOf("Big-But-Not-Crazy-Big Fundings ")-1))
         yieldContentResult(result + "\n" + org.jsoup.Jsoup.parse(html).text(),mimeMultipart)(x-1)
       }
       else if (bodypart.getContent.isInstanceOf[MimeMultipart]){
         //println("Ok :"+result)
         yieldContentResult(result,bodypart.getContent.asInstanceOf[MimeMultipart])(x-1)
-      }
-      result
+      }else
+        result
     //println("Ok2 :"+result)
     //yieldContentResult(result,mimeMultipart)(x-1)
     case _ => result
