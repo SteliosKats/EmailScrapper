@@ -20,110 +20,133 @@ object ScalaImapSsl {
   case class Body(name :String, age:String,based:String,value_proposition :String,investment_amount:String,
                   investment_round:String,lead_VCs:String,rest_VCs:String,link:String) extends Email
 
-  private[this] final val headerNames :List[Header] = List(Header("Massive Fundings "),Header("Big-But-Not-Crazy-Big Fundings ")
+  private[this] final val headerNames: List[Header] = List(Header("Massive Fundings "),Header("Big-But-Not-Crazy-Big Fundings ")
     ,Header("Smaller Fundings "),Header("Not-Saying-How-Much Fundings "),Header("New Funds"))
 
+  private[this] final val outputFile = new BufferedWriter(new FileWriter("/home/stelios/Downloads/output.csv"))
+  private[this] final val csvWriter = new CSVWriter(outputFile)
+
+  private[this] final val georgeAddr: InternetAddress = new InternetAddress(
+    "George Karabelas <gk@venturefriends.vc>")
+
   def main(args: Array[String]) {
-      val props: Properties = System.getProperties()
-      props.setProperty("mail.store.protocol", "imaps")
-      val session: Session = Session.getDefaultInstance(props, null)
-      val store = session.getStore("imaps")
-      try {
+    val props: Properties = System.getProperties()
+    props.setProperty("mail.store.protocol", "imaps")
+    val session: Session = Session.getDefaultInstance(props, null)
+    val store = session.getStore("imaps")
+    try {
 
-        store.connect("imap.gmail.com",
-                      "stelios.katsiadramis@gmail.com",
-                      "vdbxbdywtswnocon")
-        val inbox = store.getFolder("Inbox")
-        inbox.open(Folder.READ_ONLY)
+      store.connect("imap.gmail.com",
+        "stelios.katsiadramis@gmail.com",
+        "vdbxbdywtswnocon")
+      val inbox = store.getFolder("Inbox")
+      inbox.open(Folder.READ_ONLY)
 
-        val messages: Array[Message] = inbox.getMessages()
-        var count: Int = 0
-        val georgeAddr: InternetAddress = new InternetAddress(
-          "George Karabelas <gk@venturefriends.vc>")
+      val messages: Array[Message] = inbox.getMessages()
 
-        val outputFile = new BufferedWriter(new FileWriter("/home/stelios/Downloads/output.csv"))
-        val csvWriter = new CSVWriter(outputFile)
-        csvWriter.writeAll(List(List("a", "b", "c"), List("d", "e", "f")))
+      var counter =0
+      for (message:Message <- messages) {
+        counter +=1
+        val emailStr: String =
+          listIterator(message.getReplyTo.toList, georgeAddr)
+          if (!emailStr.equals("") && message.isMimeType("multipart/*")){
+            val result = getTextFromMimeMultipart(message.getContent.asInstanceOf[MimeMultipart],counter)
+            bodyMessageFilteringToCSVRow(result)
+          }//else message.getContent.toString
 
-
-        var counter =0
-        for (message:Message <- messages) {
-          counter +=1
-          val emailStr: String =
-            listIterator(message.getReplyTo.toList, georgeAddr)
-          val resultMulti:String =
-            if (!emailStr.equals("") && message.isMimeType("multipart/*")){
-              val result = getTextFromMimeMultipart(message.getContent.asInstanceOf[MimeMultipart],counter)
-              csvWriter.writeRow(bodyMessageFilteringToCSVRow(result))
-              /*if(!result.indexOf("Massive Fundings ").equals(-1) && !result.indexOf("Big-But-Not-Crazy-Big Fundings ").equals(-1)) {
-                println(
-      result.substring(result.indexOf("Massive Fundings "),
-                       result.indexOf("Big-But-Not-Crazy-Big Fundings ") - 1))
-              }
-              ""*/
-            }else message.getContent.toString
-
-            csvWriter.close()
-
-        }
-        inbox.close(true)
-      } catch {
-        case e: NoSuchProviderException =>
-          e.printStackTrace()
-          System.exit(1)
-        case me: MessagingException =>
-          me.printStackTrace()
-          System.exit(2)
-      } finally {
-        store.close()
+        csvWriter.close()
       }
+      inbox.close(true)
+    } catch {
+      case e: NoSuchProviderException =>
+        e.printStackTrace()
+        System.exit(1)
+      case me: MessagingException =>
+        me.printStackTrace()
+        System.exit(2)
+    } finally {
+      store.close()
     }
-
-  private[this] def listIterator(list: List[Address],georgeAddr: Address): String = list match {
-      case List()                                     => ""
-      case (head :: Nil) if (head.equals(georgeAddr)) => georgeAddr.toString
-      case head :: rest                               => listIterator(rest, georgeAddr)
-    }
-
-  private[this] def getTextFromMimeMultipart(mimeMultipart: MimeMultipart,counter: Int):String = {
-
-    val count:Int = mimeMultipart.getCount()
-    yieldContentResult("",mimeMultipart).apply(count-1)
-    //println(result2)
   }
 
-  private[this] def yieldContentResult(result:String,mimeMultipart:MimeMultipart):(Int => String) = {
+  private[this] def listIterator(list: List[Address],georgeAddr: Address): String = list match {
+    case List()                                     => ""
+    case (head :: Nil) if (head.equals(georgeAddr)) => georgeAddr.toString
+    case head :: rest                               => listIterator(rest, georgeAddr)
+  }
+
+  private[this] def getTextFromMimeMultipart(mimeMultipart: MimeMultipart,counter: Int):String = {
+    val count:Int = mimeMultipart.getCount()
+    yieldContentResult("",mimeMultipart).apply(count-1)
+
+  }
+
+  private[this] def yieldContentResult(result: String,mimeMultipart: MimeMultipart):(Int => String) = {
     case x if(x>= 0) =>
       val bodypart = mimeMultipart.getBodyPart(x)
-      if(bodypart.isMimeType("text/plain")){
-        //println(result + "\n" + bodypart.getContent())
+      if(bodypart.isMimeType("text/plain"))
         yieldContentResult(result + "\n" + bodypart.getContent(),mimeMultipart)(x-1)
-      }else if(bodypart.isMimeType("text/html")){
-        val html = bodypart.getContent.asInstanceOf[String]
-        val emailAsString = org.jsoup.Jsoup.parse(html).text()
-        //println("Elements:"+emailAsString.substring(emailAsString.indexOf("Massive Fundings "),emailAsString.indexOf("Big-But-Not-Crazy-Big Fundings ")-1))
-        yieldContentResult(result + "\n" + org.jsoup.Jsoup.parse(html).text(),mimeMultipart)(x-1)
-      }
-      else if (bodypart.getContent.isInstanceOf[MimeMultipart]){
-        //println("Ok :"+result)
+      else if(bodypart.isMimeType("text/html"))
+        yieldContentResult(result + "\n" + org.jsoup.Jsoup.parse(bodypart.getContent.asInstanceOf[String]).text(),mimeMultipart)(x-1)
+      else if (bodypart.getContent.isInstanceOf[MimeMultipart])
         yieldContentResult(result,bodypart.getContent.asInstanceOf[MimeMultipart])(x-1)
-      }else
+      else
         result
-    //println("Ok2 :"+result)
-    //yieldContentResult(result,mimeMultipart)(x-1)
     case _ => result
   }
 
-  private[this] def bodyMessageFilteringToCSVRow(bodyMessage :String):List[String] = {
-    headerNames.foreach(header => bodyMessage.headerContentFilter(header))
-    return Nil
-  }
+  private[this] def bodyMessageFilteringToCSVRow(bodyMessage: String):Unit = headerNamesIterator(bodyMessage,headerNames)
 
-  private[this] def headerContentFilter(headerBody :String): Unit =
-    headerNames match {
-      case  x :: xs =>
-      case body:: Nil =>  body.name.substring(body.name.indexOf(body.name.length -1),
-        body.name.indexOf(body.name.length))
-      case _ =>
+  private[this] def headerNamesIterator(bodyMessage: String, remainingNames: List[Header]):List[String] =
+    remainingNames match {
+
+      case body :: Nil =>  headerContentFilter(bodyMessage.slice(bodyMessage.indexOf(body.name)+body.name.size,bodyMessage.length),body.name) :: List[String]()
+
+      case  x :: xs => {
+        if(bodyMessage.indexOf(x.name).!=(-1) && bodyMessage.indexOf(xs.head.name).!=(-1)){
+          //println(bodyMessage.slice(bodyMessage.indexOf(x.name)+x.name.size,bodyMessage.indexOf(xs.head.name)))
+          headerContentFilter(bodyMessage.slice(bodyMessage.indexOf(x.name)+x.name.size,bodyMessage.indexOf(xs.head.name)),x.name) :: headerNamesIterator(bodyMessage,xs)
+        }else{
+          List[String]()
+        }
+      }
+      case Nil => List[String]()
     }
+
+  private[this] def headerContentFilter(headerContent: String, headerName: String): Unit = {
+    var lastIndex = headerContent
+    if (lastIndex.indexOf(",") != -1) {
+      val name = lastIndex.slice(0, lastIndex.indexOf(","))
+      lastIndex = lastIndex.slice(lastIndex.indexOf(",")+1,lastIndex.size)
+      //csvWriter.writeRow()
+      println("Name:"+name)
+    }
+    if(lastIndex.contains("year-old")){
+      val age = lastIndex.slice(3, lastIndex.indexOf(",")+1)
+      lastIndex = lastIndex.slice(lastIndex.indexOf(",")+1,lastIndex.size)
+      println("Age:"+age)
+    }
+
+    val investmentKeywords :List[String] =List("has raised","raised","has closed","closed")
+    val result = investmentKeywords.filter(value => lastIndex.contains(value)).headOption.getOrElse("not_found")
+
+    if(lastIndex.contains("-based")){
+      val based = lastIndex.slice(1, lastIndex.indexOf("-based")+7)
+      lastIndex = lastIndex.slice(lastIndex.indexOf("-based")+7,lastIndex.size)
+      println("Based:"+based)
+      val valueProposition = lastIndex.slice(0, lastIndex.indexOf(","))
+      lastIndex = lastIndex.slice(lastIndex.indexOf(",")+1,lastIndex.size)
+      println("valueProposition:"+valueProposition)
+    }
+
+    if(result != "not_found"){
+      val investmentAmount = lastIndex.slice(0, lastIndex.indexOf("in Series")+1)
+      lastIndex = lastIndex.slice(lastIndex.indexOf("in Series"),lastIndex.size)
+      println("investmentAmount:"+investmentAmount)
+      val investmentRound = lastIndex.slice(3, lastIndex.indexOf("funding"))
+      lastIndex = lastIndex.slice(lastIndex.indexOf("funding")+7,lastIndex.size)
+      println("investmentRound:"+investmentRound)
+    }
+
+  }
 }
