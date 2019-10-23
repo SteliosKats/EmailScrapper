@@ -14,9 +14,47 @@
       <change afterPath="$PROJECT_DIR$/../ShyAppOrigina/app/Utils/ErrorPrediction.scala" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../ShyAppOrigina/app/VirtualCompassAlogrithms/SpacialPlacement.scala" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../ShyAppOrigina/test/XDistanceCoordCalcItest.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules/GmailScraper.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/GmailScraper.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.metals/metals.h2.db" beforeDir="false" afterPath="$PROJECT_DIR$/.metals/metals.h2.db" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.metals/metals.log" beforeDir="false" afterPath="$PROJECT_DIR$/.metals/metals.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.sbt" beforeDir="false" afterPath="$PROJECT_DIR$/build.sbt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/target/config-classes/$80496371ab7a8255fd0b$.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/target/config-classes/$80496371ab7a8255fd0b.cache" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/target/config-classes/$80496371ab7a8255fd0b.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/scala/com/ScalaScraper/ScalaImapSsl.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/com/ScalaScraper/ScalaImapSsl.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/.history" beforeDir="false" afterPath="$PROJECT_DIR$/target/.history" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/scala-2.13/classes/scalamail/Contents$.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/scala-2.13/classes/scalamail/Contents$.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/scala-2.13/classes/scalamail/Contents.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/scala-2.13/classes/scalamail/Contents.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/scala-2.13/classes/scalamail/Header$.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/scala-2.13/classes/scalamail/Header$.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/scala-2.13/classes/scalamail/Header.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/scala-2.13/classes/scalamail/Header.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/scala-2.13/classes/scalamail/ScalaImapSsl$.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/scala-2.13/classes/scalamail/ScalaImapSsl$.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/scala-2.13/classes/scalamail/SubHeader$.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/scala-2.13/classes/scalamail/SubHeader$.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/scala-2.13/classes/scalamail/SubHeader.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/scala-2.13/classes/scalamail/SubHeader.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/scala-2.13/classes/scalamail/TypeClass.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/scala-2.13/classes/scalamail/TypeClass.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/scala-2.13/gmailscraper_2.13-0.1.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/scala-2.13/gmailscraper_2.13-0.1.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/streams/_global/_global/checkBuildSources/_global/inputFileStamps/previous" beforeDir="false" afterPath="$PROJECT_DIR$/target/streams/_global/_global/checkBuildSources/_global/inputFileStamps/previous" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/streams/_global/coursierResolutions/_global/streams/out" beforeDir="false" afterPath="$PROJECT_DIR$/target/streams/_global/coursierResolutions/_global/streams/out" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/streams/compile/_global/_global/compileBinaryFileInputs/previous" beforeDir="false" afterPath="$PROJECT_DIR$/target/streams/compile/_global/_global/compileBinaryFileInputs/previous" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/streams/compile/_global/_global/compileSourceFileInputs/previous" beforeDir="false" afterPath="$PROJECT_DIR$/target/streams/compile/_global/_global/compileSourceFileInputs/previous" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/streams/compile/_global/_global/dependencyClasspathFiles/previous" beforeDir="false" afterPath="$PROJECT_DIR$/target/streams/compile/_global/_global/dependencyClasspathFiles/previous" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/streams/compile/compile/_global/streams/out" beforeDir="false" afterPath="$PROJECT_DIR$/target/streams/compile/compile/_global/streams/out" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/streams/compile/compileIncSetup/_global/streams/inc_compile_2.13.zip" beforeDir="false" afterPath="$PROJECT_DIR$/target/streams/compile/compileIncSetup/_global/streams/inc_compile_2.13.zip" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/streams/compile/compileIncremental/_global/streams/export" beforeDir="false" afterPath="$PROJECT_DIR$/target/streams/compile/compileIncremental/_global/streams/export" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/streams/compile/compileIncremental/_global/streams/out" beforeDir="false" afterPath="$PROJECT_DIR$/target/streams/compile/compileIncremental/_global/streams/out" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/streams/compile/copyResources/_global/streams/out" beforeDir="false" afterPath="$PROJECT_DIR$/target/streams/compile/copyResources/_global/streams/out" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/streams/compile/dependencyClasspath/_global/streams/export" beforeDir="false" afterPath="$PROJECT_DIR$/target/streams/compile/dependencyClasspath/_global/streams/export" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/streams/compile/externalDependencyClasspath/_global/streams/export" beforeDir="false" afterPath="$PROJECT_DIR$/target/streams/compile/externalDependencyClasspath/_global/streams/export" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/streams/compile/managedClasspath/_global/streams/export" beforeDir="false" afterPath="$PROJECT_DIR$/target/streams/compile/managedClasspath/_global/streams/export" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/streams/compile/packageBin/_global/streams/inputs" beforeDir="false" afterPath="$PROJECT_DIR$/target/streams/compile/packageBin/_global/streams/inputs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/streams/compile/packageBin/_global/streams/out" beforeDir="false" afterPath="$PROJECT_DIR$/target/streams/compile/packageBin/_global/streams/out" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/streams/runtime/dependencyClasspathAsJars/_global/streams/export" beforeDir="false" afterPath="$PROJECT_DIR$/target/streams/runtime/dependencyClasspathAsJars/_global/streams/export" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/streams/runtime/externalDependencyClasspath/_global/streams/export" beforeDir="false" afterPath="$PROJECT_DIR$/target/streams/runtime/externalDependencyClasspath/_global/streams/export" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/streams/runtime/fullClasspathAsJars/_global/streams/export" beforeDir="false" afterPath="$PROJECT_DIR$/target/streams/runtime/fullClasspathAsJars/_global/streams/export" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/streams/runtime/managedClasspath/_global/streams/export" beforeDir="false" afterPath="$PROJECT_DIR$/target/streams/runtime/managedClasspath/_global/streams/export" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/streams/test/_global/_global/compileBinaryFileInputs/previous" beforeDir="false" afterPath="$PROJECT_DIR$/target/streams/test/_global/_global/compileBinaryFileInputs/previous" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/streams/test/externalDependencyClasspath/_global/streams/export" beforeDir="false" afterPath="$PROJECT_DIR$/target/streams/test/externalDependencyClasspath/_global/streams/export" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/streams/test/managedClasspath/_global/streams/export" beforeDir="false" afterPath="$PROJECT_DIR$/target/streams/test/managedClasspath/_global/streams/export" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Lambda-Arch-Spark" beforeDir="false" afterPath="$PROJECT_DIR$/../Lambda-Arch-Spark" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../TwitterAnalytics" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../TwitterStreaming/production/TwitterAnalytics/.gitignore" beforeDir="false" />
@@ -85,7 +123,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="jar://$USER_HOME$/.cache/coursier/v1/https/repo1.maven.org/maven2/org/jsoup/jsoup/1.11.3/jsoup-1.11.3-sources.jar!/org/jsoup/Jsoup.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="182">
+            <state relative-caret-position="765">
               <caret line="57" selection-start-line="57" selection-end-line="57" />
               <folding>
                 <element signature="e#1880#1881#0" expanded="true" />
@@ -97,7 +135,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="jar://$USER_HOME$/.cache/coursier/v1/https/repo1.maven.org/maven2/org/jsoup/jsoup/1.11.3/jsoup-1.11.3-sources.jar!/org/jsoup/parser/Parser.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="182">
+            <state relative-caret-position="1547">
               <caret line="105" selection-start-line="105" selection-end-line="105" />
             </state>
           </provider>
@@ -119,10 +157,10 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/scala/com/ScalaScraper/ScalaImapSsl.scala">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="113">
-              <caret line="38" column="21" selection-start-line="44" selection-end-line="44" selection-end-column="24" />
+            <state relative-caret-position="196">
+              <caret line="110" column="14" lean-forward="true" selection-start-line="110" selection-start-column="14" selection-end-line="110" selection-end-column="14" />
               <folding>
-                <element signature="e#19#46#0" expanded="true" />
+                <element signature="e#19#62#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -131,7 +169,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="jar://$USER_HOME$/.cache/coursier/v1/https/repo1.maven.org/maven2/org/jsoup/jsoup/1.11.3/jsoup-1.11.3-sources.jar!/org/jsoup/nodes/Element.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="174">
+            <state relative-caret-position="16099">
               <caret line="1024" selection-start-line="1024" selection-end-line="1024" />
             </state>
           </provider>
@@ -180,6 +218,11 @@
             <path>
               <item name="GmailScraper" type="b2602c69:ProjectViewProjectNode" />
               <item name="GmailScraper" type="462c0819:PsiDirectoryNode" />
+              <item name="project" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="GmailScraper" type="b2602c69:ProjectViewProjectNode" />
+              <item name="GmailScraper" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -187,6 +230,13 @@
               <item name="GmailScraper" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="GmailScraper" type="b2602c69:ProjectViewProjectNode" />
+              <item name="GmailScraper" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="GmailScraper" type="b2602c69:ProjectViewProjectNode" />
@@ -210,10 +260,11 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
+    <property name="ToolWindowEvent Log.ShowToolbar" value="false" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="android.sdk.path" value="$USER_HOME$/Android/Sdk" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1571694938059" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1571790176598" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="/usr/bin/node" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
@@ -278,14 +329,12 @@
     </option>
     <option name="modificationStamps">
       <map>
-        <entry key="$PROJECT_DIR$" value="3140950086000" />
-        <entry key="$PROJECT_DIR$/build.sbt" value="432183894" />
+        <entry key="$PROJECT_DIR$/build.sbt" value="313225390" />
         <entry key="$PROJECT_DIR$/project/build.properties" value="2014896044" />
       </map>
     </option>
     <option name="projectSyncType">
       <map>
-        <entry key="$PROJECT_DIR$" value="RE_IMPORT" />
         <entry key="$PROJECT_DIR$/../Lambda-Arch-Spark" value="PREVIEW" />
         <entry key="$PROJECT_DIR$/../ShyAppAndroid" value="PREVIEW" />
       </map>
@@ -302,12 +351,13 @@
       <option name="presentableId" value="Default" />
       <updated>1570472319006</updated>
       <workItem from="1570472322950" duration="588000" />
-      <workItem from="1571588698686" duration="22964000" />
+      <workItem from="1571588698686" duration="24056000" />
+      <workItem from="1571766135337" duration="6598000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="23552000" />
+    <option name="totallyTimeSpent" value="31242000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -322,7 +372,7 @@
     <frame x="-3" y="33" width="1926" height="1050" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.25239617" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2550586" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -331,17 +381,17 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.66560173" visible="true" weight="0.32900432" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.66560173" weight="0.32900432" />
       <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.49254525" weight="0.37878788" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" sideWeight="0.49946752" weight="0.32900432" />
       <window_info anchor="bottom" id="Build" order="7" sideWeight="0.7055378" weight="0.3300866" />
       <window_info anchor="bottom" id="SBT Console" order="8" sideWeight="0.4978701" weight="0.32900432" />
-      <window_info anchor="bottom" id="sbt-shell-toolwindow" order="9" sideWeight="0.54366344" weight="0.32900432" />
-      <window_info anchor="bottom" id="Terminal" order="10" />
+      <window_info anchor="bottom" id="sbt-shell-toolwindow" order="9" sideWeight="0.5425985" weight="0.32900432" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="10" sideWeight="0.75026625" visible="true" weight="0.32900432" />
       <window_info anchor="bottom" id="Docker" order="11" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Event Log" order="12" sideWeight="0.3343983" side_tool="true" visible="true" weight="0.32900432" />
+      <window_info anchor="bottom" id="Event Log" order="12" sideWeight="0.24973376" side_tool="true" visible="true" weight="0.32900432" />
       <window_info anchor="bottom" id="Messages" order="13" sideWeight="0.4680511" weight="0.32900432" />
       <window_info anchor="bottom" id="Database Changes" order="14" />
       <window_info anchor="bottom" id="Version Control" order="15" />
@@ -366,7 +416,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="scala-line">
           <url>file://$PROJECT_DIR$/src/main/scala/com/ScalaScraper/ScalaImapSsl.scala</url>
-          <line>89</line>
+          <line>100</line>
           <properties />
           <option name="timeStamp" value="19" />
         </line-breakpoint>
@@ -436,24 +486,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="jar://$USER_HOME$/.cache/coursier/v1/https/repo1.maven.org/maven2/org/jsoup/jsoup/1.11.3/jsoup-1.11.3-sources.jar!/org/jsoup/parser/HtmlTreeBuilder.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="24" selection-start-line="24" selection-end-line="24" />
-          <folding>
-            <element signature="e#3138#3139#0" expanded="true" />
-            <element signature="e#3186#3187#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/.cache/coursier/v1/https/repo1.maven.org/maven2/org/jsoup/jsoup/1.11.3/jsoup-1.11.3-sources.jar!/org/jsoup/parser/Parser.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="182">
-          <caret line="105" selection-start-line="105" selection-end-line="105" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$USER_HOME$/.cache/coursier/v1/https/repo1.maven.org/maven2/org/scala-lang/scala-library/2.13.1/scala-library-2.13.1-sources.jar!/scala/collection/ArrayOps.scala">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="198">
@@ -470,7 +502,7 @@
     </entry>
     <entry file="jar://$USER_HOME$/.cache/coursier/v1/https/repo1.maven.org/maven2/org/jsoup/jsoup/1.11.3/jsoup-1.11.3-sources.jar!/org/jsoup/Jsoup.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="182">
+        <state relative-caret-position="765">
           <caret line="57" selection-start-line="57" selection-end-line="57" />
           <folding>
             <element signature="e#1880#1881#0" expanded="true" />
@@ -478,19 +510,43 @@
         </state>
       </provider>
     </entry>
+    <entry file="jar://$USER_HOME$/.cache/coursier/v1/https/repo1.maven.org/maven2/org/jsoup/jsoup/1.11.3/jsoup-1.11.3-sources.jar!/org/jsoup/parser/Parser.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1547">
+          <caret line="105" selection-start-line="105" selection-end-line="105" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.cache/coursier/v1/https/repo1.maven.org/maven2/org/jsoup/jsoup/1.11.3/jsoup-1.11.3-sources.jar!/org/jsoup/parser/HtmlTreeBuilder.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="24" selection-start-line="24" selection-end-line="24" />
+          <folding>
+            <element signature="e#3138#3139#0" expanded="true" />
+            <element signature="e#3186#3187#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="jar://$USER_HOME$/.cache/coursier/v1/https/repo1.maven.org/maven2/org/jsoup/jsoup/1.11.3/jsoup-1.11.3-sources.jar!/org/jsoup/nodes/Element.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="174">
+        <state relative-caret-position="16099">
           <caret line="1024" selection-start-line="1024" selection-end-line="1024" />
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/.scalafmt.conf">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gmailScrapper">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/scala/com/ScalaScraper/ScalaImapSsl.scala">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="113">
-          <caret line="38" column="21" selection-start-line="44" selection-end-line="44" selection-end-column="24" />
+        <state relative-caret-position="196">
+          <caret line="110" column="14" lean-forward="true" selection-start-line="110" selection-start-column="14" selection-end-line="110" selection-end-column="14" />
           <folding>
-            <element signature="e#19#46#0" expanded="true" />
+            <element signature="e#19#62#0" expanded="true" />
           </folding>
         </state>
       </provider>

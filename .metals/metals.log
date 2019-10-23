@@ -2711,3 +2711,43 @@ Oct 20, 2019 7:15:15 PM org.eclipse.lsp4j.jsonrpc.services.GenericEndpoint notif
 INFO: Unsupported notification method: $/setTraceNotification
 INFO  no build target: using presentation compiler with only scala-library
 INFO  shutting down Metals
+INFO  time: initialize in 0.98s
+INFO  skipping build import with status 'Failed'
+WARN  no build target: /home/stelios/workspace/GmailScraper/src/main/scala/com/ScalaScraper/ScalaImapSsl.scala
+WARN  no build target: /home/stelios/workspace/github/gmail-api-scala-client/build.sbt
+WARN  no build target: /home/stelios/workspace/GmailScraper/build.sbt
+WARN  no build target: /home/stelios/workspace/GmailScraper/build.sbt
+WARN  no build target: 
+INFO  running '/usr/lib/jvm/java-8-oracle/bin/java -Djline.terminal=jline.UnsupportedTerminal -Dsbt.log.noformat=true -Dfile.encoding=UTF-8 -jar /tmp/metals2356978417425474398/sbt-launch.jar metalsEnable bloopInstall'
+INFO  [info] Loading global plugins from /home/stelios/.sbt/1.0/plugins/project
+INFO  [info] Loading settings for project global-plugins from idea.sbt,metals.sbt,plugins.sbt ...
+INFO  [info] Loading global plugins from /home/stelios/.sbt/1.0/plugins
+INFO  [warn] There may be incompatibilities among your library dependencies; run 'evicted' to see detailed eviction warnings.
+INFO  [info] Loading project definition from /home/stelios/workspace/GmailScraper/project
+INFO  [success] Generated .bloop/gmailscraper-build.json
+INFO  [success] Total time: 4 s, completed Oct 22, 2019 8:32:59 PM
+INFO  [info] Loading settings for project gmailscraper from build.sbt ...
+INFO  [info] Set current project to GmailScraper (in build file:/home/stelios/workspace/GmailScraper/)
+INFO  [error] Expected ';'
+INFO  [error] Not a valid command: metalsEnable
+INFO  [error] Not a valid project ID: metalsEnable
+INFO  [error] Expected ':'
+INFO  [error] Not a valid key: metalsEnable
+INFO  [error] metalsEnable
+INFO  [error]             ^
+INFO  build tool exit: 1
+INFO  time: ran 'sbt bloopInstall' in 43s
+ERROR sbt command failed: /usr/lib/jvm/java-8-oracle/bin/java -Djline.terminal=jline.UnsupportedTerminal -Dsbt.log.noformat=true -Dfile.encoding=UTF-8 -jar /tmp/metals2356978417425474398/sbt-launch.jar metalsEnable bloopInstall
+WARN  no build target: /home/stelios/workspace/GmailScraper/src/main/scala/com/ScalaScraper/ScalaImapSsl.scala
+INFO  no build target: using presentation compiler with only scala-library
+WARN  code navigation does not work for the file '/home/stelios/workspace/GmailScraper/src/main/scala/com/ScalaScraper/ScalaImapSsl.scala' because it doesn't belong to a build target.
+WARN  code navigation does not work for the file '/home/stelios/workspace/GmailScraper/src/main/scala/com/ScalaScraper/ScalaImapSsl.scala' because it doesn't belong to a build target.
+Oct 22, 2019 8:39:50 PM scala.meta.internal.pc.CompilerAccess handleError
+SEVERE: null
+java.lang.NullPointerException
+	at scala.meta.internal.pc.HoverProvider.seenFromType(HoverProvider.scala:106)
+	at scala.meta.internal.pc.HoverProvider.hover(HoverProvider.scala:42)
+
+WARN  code navigation does not work for the file '/home/stelios/workspace/GmailScraper/src/main/scala/com/ScalaScraper/ScalaImapSsl.scala' because it doesn't belong to a build target.
+WARN  code navigation does not work for the file '/home/stelios/workspace/GmailScraper/src/main/scala/com/ScalaScraper/ScalaImapSsl.scala' because it doesn't belong to a build target.
+INFO  shutting down Metals

@@ -1,14 +1,11 @@
 package scalamail
 
+import java.io.{BufferedWriter, FileWriter}
 import java.util.Properties
 
+import com.github.tototoshi.csv._
 import javax.mail._
 import javax.mail.internet._
-
-trait Email
-case class Header(name :String) extends Email
-case class SubHeader(name :String) extends Email
-case class Contents(body :String) extends Email
 
 class TypeClass {
   def manOf[T: Manifest](t: T): Manifest[T] = manifest[T]
@@ -16,13 +13,23 @@ class TypeClass {
 
 object ScalaImapSsl {
 
+  trait Email
+  case class Header(name :String) extends Email
+  case class SubHeader(name :String) extends Email
+  case class Contents(body :Body) extends Email
+  case class Body(name :String, age:String,based:String,value_proposition :String,investment_amount:String,
+                  investment_round:String,lead_VCs:String,rest_VCs:String,link:String) extends Email
+
+  private[this] final val headerNames :List[Header] = List(Header("Massive Fundings "),Header("Big-But-Not-Crazy-Big Fundings ")
+    ,Header("Smaller Fundings "),Header("Not-Saying-How-Much Fundings "),Header("New Funds"))
+
   def main(args: Array[String]) {
       val props: Properties = System.getProperties()
       props.setProperty("mail.store.protocol", "imaps")
       val session: Session = Session.getDefaultInstance(props, null)
       val store = session.getStore("imaps")
       try {
-        // use imap.gmail.com for gmail
+
         store.connect("imap.gmail.com",
                       "stelios.katsiadramis@gmail.com",
                       "vdbxbdywtswnocon")
@@ -33,6 +40,12 @@ object ScalaImapSsl {
         var count: Int = 0
         val georgeAddr: InternetAddress = new InternetAddress(
           "George Karabelas <gk@venturefriends.vc>")
+
+        val outputFile = new BufferedWriter(new FileWriter("/home/stelios/Downloads/output.csv"))
+        val csvWriter = new CSVWriter(outputFile)
+        csvWriter.writeAll(List(List("a", "b", "c"), List("d", "e", "f")))
+
+
         var counter =0
         for (message:Message <- messages) {
           counter +=1
@@ -41,19 +54,17 @@ object ScalaImapSsl {
           val resultMulti:String =
             if (!emailStr.equals("") && message.isMimeType("multipart/*")){
               val result = getTextFromMimeMultipart(message.getContent.asInstanceOf[MimeMultipart],counter)
-              if(!result.indexOf("Massive Fundings ").equals(-1) && !result.indexOf("Big-But-Not-Crazy-Big Fundings ").equals(-1)) {
+              csvWriter.writeRow(bodyMessageFilteringToCSVRow(result))
+              /*if(!result.indexOf("Massive Fundings ").equals(-1) && !result.indexOf("Big-But-Not-Crazy-Big Fundings ").equals(-1)) {
                 println(
       result.substring(result.indexOf("Massive Fundings "),
                        result.indexOf("Big-But-Not-Crazy-Big Fundings ") - 1))
               }
-              ""
+              ""*/
             }else message.getContent.toString
 
+            csvWriter.close()
 
-            //println(resultMulti.toString)
-          //message.getReplyTo().foreach(println) //get Sender of Email
-          //message.getAllRecipients().foreach(println) //Get All Recipients
-          //message.getReplyTo.foreach(addr => println(addr.toString))
         }
         inbox.close(true)
       } catch {
@@ -102,4 +113,17 @@ object ScalaImapSsl {
     //yieldContentResult(result,mimeMultipart)(x-1)
     case _ => result
   }
+
+  private[this] def bodyMessageFilteringToCSVRow(bodyMessage :String):List[String] = {
+    headerNames.foreach(header => bodyMessage.headerContentFilter(header))
+    return Nil
+  }
+
+  private[this] def headerContentFilter(headerBody :String): Unit =
+    headerNames match {
+      case  x :: xs =>
+      case body:: Nil =>  body.name.substring(body.name.indexOf(body.name.length -1),
+        body.name.indexOf(body.name.length))
+      case _ =>
+    }
 }

@@ -10,5 +10,6 @@ libraryDependencies ++= Seq(
   "net.ruippeixotog" %% "scala-scraper" % "2.2.0",
   "com.google.apis" % "google-api-services-gmail" % "v1-rev72-1.23.0",
   "com.google.apis" % "google-api-services-plus" % "v1-rev210-1.19.1",
+  "com.github.tototoshi" %% "scala-csv" % "1.3.6",
   "com.google.gdata" % "core" % "1.47.1"
 )
