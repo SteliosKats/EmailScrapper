@@ -1,36 +1,106 @@
 package com.example
 
-import java.net.URL
-import scala.collection.JavaConverters._
-import com.google.api.client.auth.oauth2.Credential
-import com.google.gdata.client.spreadsheet.SpreadsheetService
-import com.google.gdata.data.spreadsheet.SpreadsheetFeed
-import com.google.gdata.data.spreadsheet.SpreadsheetEntry
+
+object Spreadsheet {
 
 
-object Spreadsheets {
-  
-  val SpreadsheetFeedUrl = new URL("https://spreadsheets.google.com/feeds/spreadsheets/private/full")
-  
-  def refreshCredential(credential:Credential)={
-    service.setOAuth2Credentials(credential)
-    this
+  trait Email
+  case class Header(name :String) extends Email
+  case class SubHeader(name :String) extends Email
+  case class Contents(body :Body) extends Email
+  case class Body(name :String, age:String,based:String,value_proposition :String,investment_amount:String,
+                  investment_round:String,lead_VCs:String,rest_VCs:String,link:String) extends Email
+
+  private[this] final val headerNames: List[Header] = List(Header("Massive Fundings "),Header("Big-But-Not-Crazy-Big Fundings ")
+    ,Header("Smaller Fundings "),Header("Not-Saying-How-Much Fundings "),Header("New Funds"))
+
+  def main(args: Array[String]) {
+    val code :String  = """Massive Fundings
+     Menlo Security, a six-year-old, Palo Alto, Ca.-based startup that says it isolates and executes all web content in the cloud, so users can safely interact with websites, links and documents online without compromising their security, has closed on $75 million in Series D funding. JP Morgan Asset Management led the round (using its clients' money), with earlier investors also jumping in, including General Catalyst, Sutter Hill Ventures, Osage University Partners, American Express Ventures, HSBC, JP Morgan Chase and Engineering Capital. More here.
+     Tsign, a 17-year-old, Hangzhou, China-based e-signature service company, has raised nearly  $100 million in Series C funding led by Ant Financial. China Money Network has more here (though a subscription is required).
+     Big-But-Not-Crazy-Big Fundings
+     Mogrify, a four-year-old, U.K.-based cell therapy startup focused on arthritis, has raised $16 million in Series A funding led by Ahren, with participation from Parkwalk, 24Haymarket, and the University of Bristol Enterprise Fund. The Times has more here.
+     Radius Networks, an eight-year-old, Washington, D.C.-based technology company that uses its machine learning location platform to help businesses conduct location-based transactions with their customers, has raised $15 million in Series A funding, Backers include new and earlier investors, including Contour Venture Partnersand Core Capital Partners. CityBizList has more here.
+     Smaller Fundings
+     Redesign Science, a platform technology company hoping to advance new small molecule therapeutics, has raised $2 million in seed funding led by Notation, with participation from Morningside Venture Capital, Third Kind Venture Capital, Refactor Capital, and angel investor Thomas Weingarten. More here.
+     Latent AI, an 11-month-old,  Menlo Park, Ca.- based AI processing company that spun out of SRI International late last year, has raised $3.5 million in seed funding led by Steve Jurvetson's Future Ventures. More here.
+     Not-Saying-How-Much Fundings
+     VIPKid, the six-year-old, Beijing, China-based online education platform, says it has closed on an undisclosed amount of Series E funding led by Tencent Holdings. According to previous media reports, VIPKid was looking to raise as much as $500 million in the round at a valuation of $4.5 billion, up from $3.5 billion valuation it was assigned by investors last year. DealStreetAsia has more here.
+     New Funds
+     Three self-professed gamers and veteran entrepreneurs have come together to form a brand new VC firm called Hiro Capital that's focused on games, e-sports, and digital sports in Europe and the UK. It's looking to raise up to €100 million, it will be based in London and Luxembourg, and the founding team consists of Ian Livingstone CBE, co-founder of Games Workshop; Luke Alvarez, co-founder of Inspired Entertainment; and Cherry Freeman, co-founder of LoveCrafts. Tech.eu has the story here."""
+
+    bodyMessageFilteringToCSVRow(code)
   }
-  
-  def all={
-    feed.getEntries.asScala.map( new Spreadsheet(_))
+
+
+  private[this] def bodyMessageFilteringToCSVRow(bodyMessage: String):Unit = headerNamesIterator(bodyMessage,headerNames)
+
+  private[this] def headerNamesIterator(bodyMessage: String, remainingNames: List[Header]):List[String] =
+    remainingNames match {
+
+      case body :: Nil =>  headerContentFilter(bodyMessage.slice(bodyMessage.indexOf(body.name)+body.name.size,bodyMessage.length),body.name) :: List[String]()
+
+      case  x :: xs => {
+        if(bodyMessage.indexOf(x.name).!=(-1) && bodyMessage.indexOf(xs.head.name).!=(-1)){
+          //println(bodyMessage.slice(bodyMessage.indexOf(x.name)+x.name.size,bodyMessage.indexOf(xs.head.name)))
+          headerContentFilter(bodyMessage.slice(bodyMessage.indexOf(x.name)+x.name.size,bodyMessage.indexOf(xs.head.name)),x.name) :: headerNamesIterator(bodyMessage,xs)
+        }else{
+          List[String]()
+        }
+      }
+      case Nil => List[String]()
+    }
+
+
+  private[this] def headerContentFilter(headerContent: String, headerName: String): String = {
+    var lastIndex = headerContent
+    if (lastIndex.indexOf(",") != -1) {
+      val name = lastIndex.slice(0, lastIndex.indexOf(","))
+      lastIndex = lastIndex.slice(lastIndex.indexOf(",")+1,lastIndex.size)
+      //csvWriter.writeRow()
+      println("Name:"+name)
+    }
+    if(lastIndex.contains("year-old")){
+      val age = lastIndex.slice(3, lastIndex.indexOf(","))
+      lastIndex = lastIndex.slice(lastIndex.indexOf(",")+1,lastIndex.size)
+      println("Age:"+age)
+    }
+
+    val investmentKeywords :List[String] =List("has\\ raised","raised","has\\ closed on","has\\ closed","closed")
+
+    val firstOccurence =investmentKeywords.map(x => lastIndex.indexOf(x).asInstanceOf[Int]).headOption.getOrElse(-1)
+
+    val result = investmentKeywords.filter(value => lastIndex.contains(value)).headOption.getOrElse("not_found")
+
+    if(lastIndex.contains("-based")){
+      val based = lastIndex.slice(1, lastIndex.indexOf("-based")+7)
+      lastIndex = lastIndex.slice(lastIndex.indexOf("-based")+7,lastIndex.size)
+      println("Based:"+based)
+      if(result != "not_found" && !firstOccurence.equals(-1) ){
+        val valueProposition = lastIndex.slice(0, firstOccurence)
+        lastIndex = lastIndex.slice(lastIndex.indexOf(",")+1,lastIndex.size)
+        println("valueProposition:"+valueProposition)
+      }else {
+        val valueProposition = lastIndex.slice(0, lastIndex.indexOf(","))
+        lastIndex = lastIndex.slice(lastIndex.indexOf(",")+1,lastIndex.size)
+        println("valueProposition:"+valueProposition)
+      }
+    }else if(!lastIndex.contains("-based")){
+      val valueProposition = lastIndex.slice(0, lastIndex.indexOf(","))
+      lastIndex = lastIndex.slice(lastIndex.indexOf(",")+1,lastIndex.size)
+      println("valueProposition:"+valueProposition)
+    }
+
+    val investmentKeywords2 :List[String] =List("in Series","in seed","has closed on","has closed","closed")
+    val result2 = investmentKeywords.filter(value => lastIndex.contains(value)).headOption.getOrElse("not_found")
+    if(result != "not_found"){
+      val investmentAmount = lastIndex.slice(0+lastIndex.indexOf(result)+result.size, lastIndex.indexOf("in Series"))
+      lastIndex = lastIndex.slice(lastIndex.indexOf("in Series"),lastIndex.size)
+      println("investmentAmount:"+investmentAmount)
+      val investmentRound = lastIndex.slice(3, lastIndex.indexOf("funding"))
+      lastIndex = lastIndex.slice(lastIndex.indexOf("funding")+7,lastIndex.size)
+      println("investmentRound:"+investmentRound)
+    }
+    ""
   }
-  
-  lazy val feed = service.getFeed(SpreadsheetFeedUrl,classOf[SpreadsheetFeed])
-  
-  lazy val service:SpreadsheetService=new SpreadsheetService("SpreadsheetIntegration")
-  
 }
-
-
-
-class Spreadsheet(entry:SpreadsheetEntry) {
-  
-  lazy val worksheets = entry.getWorksheets()
-
-} 
