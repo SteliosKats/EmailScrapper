@@ -130,6 +130,18 @@ object ScalaImapSsl {
 
     val investmentKeywords :List[String] =List("has raised","just raised","raised","has closed on","has closed","closed")
 
+    //println("has :"+ lastIndex.indexOf("has")+"  raised :"+lastIndex.indexOf("raised")+" has+raised :"+lastIndex.indexOf("has")+lastIndex.indexOf("raised"))
+
+    val array1:List[Int] = investmentKeywords.map(word => word.split("\\W").head.size)
+    val functionalResult =investmentKeywords.map(word => word.split("\\W") match {
+      case x if x.size >=2 => Array(x.head,x.last).foldLeft("0".toInt)((acc,wrd) => lastIndex.indexOf(wrd)-acc)
+      case z if z.size < 2 =>  lastIndex.indexOf(z)
+    }).map(element => element match {
+      case x if(array1.indexWhere(y => y.equals(x)).equals(x) ) => //.equals(Some(x)) == true =>
+    })
+
+
+
     val result = investmentKeywords.filter(value => lastIndex.contains(value)).headOption.getOrElse("not_found")
 
     if(lastIndex.contains("-based")){
@@ -167,4 +179,11 @@ object ScalaImapSsl {
     }
     ""
   }
+
+
+  def compareListsOneByOne[A,B](list1: List[A], list2: List[B]): List[Boolean] = {
+     list1.indexWhere(y => y.equals(a))
+  }
+
+
 }
