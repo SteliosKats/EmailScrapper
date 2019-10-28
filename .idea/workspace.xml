@@ -2,17 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a043ed54-5e4d-4bc3-95d3-6ba2d2b8cb7a" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.attach_pid2501" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/scala-2.13/classes/com/example/Spreadsheet$.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/scala-2.13/classes/com/example/Spreadsheet$Body$.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/scala-2.13/classes/com/example/Spreadsheet$Body.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/scala-2.13/classes/com/example/Spreadsheet$Contents$.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/scala-2.13/classes/com/example/Spreadsheet$Contents.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/scala-2.13/classes/com/example/Spreadsheet$Email.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/scala-2.13/classes/com/example/Spreadsheet$Header$.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/scala-2.13/classes/com/example/Spreadsheet$Header.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/scala-2.13/classes/com/example/Spreadsheet$SubHeader$.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/scala-2.13/classes/com/example/Spreadsheet$SubHeader.class" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../ShyAppJava/.idea/assetWizardSettings.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../ShyAppJava/app/src/main/ic_launcher-web.png" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../ShyAppJava/app/src/main/java/shyapp/stkat/com/shyappjava/Utils/EmptyViewFieldChecker.java" afterDir="false" />
@@ -25,7 +14,35 @@
       <change afterPath="$PROJECT_DIR$/../ShyAppOrigina/app/Utils/ErrorPrediction.scala" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../ShyAppOrigina/app/VirtualCompassAlogrithms/SpacialPlacement.scala" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../ShyAppOrigina/test/XDistanceCoordCalcItest.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sbt.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sbt.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/target/streams/compile/compileIncremental/_global/streams/out" beforeDir="false" afterPath="$PROJECT_DIR$/project/target/streams/compile/compileIncremental/_global/streams/out" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/target/streams/compile/copyResources/_global/streams/out" beforeDir="false" afterPath="$PROJECT_DIR$/project/target/streams/compile/copyResources/_global/streams/out" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/scala/com/ScalaScraper/ScalaImapSsl.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/com/ScalaScraper/ScalaImapSsl.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/com/ScalaScraper/SpreadSheet.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/com/ScalaScraper/SpreadSheet.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/.history" beforeDir="false" afterPath="$PROJECT_DIR$/target/.history" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/scala-2.13/classes/com/example/Spreadsheet$.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/scala-2.13/classes/com/example/Spreadsheet$Body$.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/scala-2.13/classes/com/example/Spreadsheet$Body.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/scala-2.13/classes/com/example/Spreadsheet$Contents$.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/scala-2.13/classes/com/example/Spreadsheet$Contents.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/scala-2.13/classes/com/example/Spreadsheet$Email.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/scala-2.13/classes/com/example/Spreadsheet$Header$.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/scala-2.13/classes/com/example/Spreadsheet$Header.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/scala-2.13/classes/com/example/Spreadsheet$SubHeader$.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/scala-2.13/classes/com/example/Spreadsheet$SubHeader.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/scala-2.13/classes/com/example/Spreadsheet.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/scala-2.13/classes/scalamail/ScalaImapSsl$.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/scala-2.13/classes/scalamail/ScalaImapSsl$.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/scala-2.13/classes/scalamail/ScalaImapSsl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/scala-2.13/classes/scalamail/ScalaImapSsl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/scala-2.13/classes/scalamail/TypeClass.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/scala-2.13/classes/scalamail/TypeClass.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/scala-2.13/gmailscraper_2.13-0.1.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/scala-2.13/gmailscraper_2.13-0.1.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/streams/compile/_global/_global/compileOutputs/previous" beforeDir="false" afterPath="$PROJECT_DIR$/target/streams/compile/_global/_global/compileOutputs/previous" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/streams/compile/_global/_global/compileSourceFileInputs/previous" beforeDir="false" afterPath="$PROJECT_DIR$/target/streams/compile/_global/_global/compileSourceFileInputs/previous" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/streams/compile/_global/_global/discoveredMainClasses/data" beforeDir="false" afterPath="$PROJECT_DIR$/target/streams/compile/_global/_global/discoveredMainClasses/data" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/streams/compile/compileIncSetup/_global/streams/inc_compile_2.13.zip" beforeDir="false" afterPath="$PROJECT_DIR$/target/streams/compile/compileIncSetup/_global/streams/inc_compile_2.13.zip" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/streams/compile/compileIncremental/_global/streams/out" beforeDir="false" afterPath="$PROJECT_DIR$/target/streams/compile/compileIncremental/_global/streams/out" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/streams/compile/packageBin/_global/streams/inputs" beforeDir="false" afterPath="$PROJECT_DIR$/target/streams/compile/packageBin/_global/streams/inputs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/streams/compile/packageBin/_global/streams/out" beforeDir="false" afterPath="$PROJECT_DIR$/target/streams/compile/packageBin/_global/streams/out" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Lambda-Arch-Spark" beforeDir="false" afterPath="$PROJECT_DIR$/../Lambda-Arch-Spark" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../TwitterAnalytics" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../TwitterStreaming/production/TwitterAnalytics/.gitignore" beforeDir="false" />
@@ -94,11 +111,20 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/scala/com/ScalaScraper/ScalaImapSsl.scala">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="393">
-              <caret line="150" column="6" lean-forward="true" selection-start-line="150" selection-start-column="6" selection-end-line="150" selection-end-column="6" />
+            <state relative-caret-position="417">
+              <caret line="190" column="2" selection-start-line="190" selection-end-line="195" selection-end-column="9" />
               <folding>
                 <element signature="e#19#62#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/scala/com/ScalaScraper/SpreadSheet.scala">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="935">
+              <caret line="55" column="13" selection-start-line="55" selection-end-line="122" selection-end-column="3" />
             </state>
           </provider>
         </entry>
@@ -137,8 +163,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -188,6 +212,8 @@
           <select />
         </subPane>
       </pane>
+      <pane id="PackagesPane" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -196,10 +222,11 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="android.sdk.path" value="$USER_HOME$/Android/Sdk" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1571953610598" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1572201036184" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="/usr/bin/node" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+    <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors.Scala" />
   </component>
   <component name="RunDashboard">
@@ -300,11 +327,13 @@
       <workItem from="1571588698686" duration="24056000" />
       <workItem from="1571766135337" duration="6797000" />
       <workItem from="1571852154890" duration="27472000" />
+      <workItem from="1572109634854" duration="22086000" />
+      <workItem from="1572258341116" duration="5257000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="58913000" />
+    <option name="totallyTimeSpent" value="86256000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -319,7 +348,7 @@
     <frame x="-3" y="33" width="1926" height="1050" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.25772098" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2630458" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -476,20 +505,27 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/scala/com/ScalaScraper/SpreadSheet.scala">
+    <entry file="jar://$USER_HOME$/.cache/coursier/v1/https/repo1.maven.org/maven2/org/scala-lang/scala-library/2.13.1/scala-library-2.13.1-sources.jar!/scala/collection/LinearSeq.scala">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-442">
-          <caret line="40" column="29" selection-start-line="40" selection-start-column="29" selection-end-line="40" selection-end-column="29" />
+        <state relative-caret-position="198">
+          <caret line="114" selection-start-line="114" selection-end-line="114" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/scala/com/ScalaScraper/ScalaImapSsl.scala">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="393">
-          <caret line="150" column="6" lean-forward="true" selection-start-line="150" selection-start-column="6" selection-end-line="150" selection-end-column="6" />
+        <state relative-caret-position="417">
+          <caret line="190" column="2" selection-start-line="190" selection-end-line="195" selection-end-column="9" />
           <folding>
             <element signature="e#19#62#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/scala/com/ScalaScraper/SpreadSheet.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="935">
+          <caret line="55" column="13" selection-start-line="55" selection-end-line="122" selection-end-column="3" />
         </state>
       </provider>
     </entry>

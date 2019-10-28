@@ -1,7 +1,7 @@
 package com.example
 
 
-object Spreadsheet {
+object Spreadsheets {
 
 
   trait Email
@@ -29,7 +29,7 @@ object Spreadsheet {
      New Funds
      Three self-professed gamers and veteran entrepreneurs have come together to form a brand new VC firm called Hiro Capital that's focused on games, e-sports, and digital sports in Europe and the UK. It's looking to raise up to €100 million, it will be based in London and Luxembourg, and the founding team consists of Ian Livingstone CBE, co-founder of Games Workshop; Luke Alvarez, co-founder of Inspired Entertainment; and Cherry Freeman, co-founder of LoveCrafts. Tech.eu has the story here."""
 
-    bodyMessageFilteringToCSVRow(code)
+    println(bodyMessageFilteringToCSVRow(code))
   }
 
 
@@ -52,55 +52,74 @@ object Spreadsheet {
     }
 
 
-  private[this] def headerContentFilter(headerContent: String, headerName: String): String = {
-    var lastIndex = headerContent
-    if (lastIndex.indexOf(",") != -1) {
-      val name = lastIndex.slice(0, lastIndex.indexOf(","))
-      lastIndex = lastIndex.slice(lastIndex.indexOf(",")+1,lastIndex.size)
-      //csvWriter.writeRow()
-      println("Name:"+name)
-    }
-    if(lastIndex.contains("year-old")){
-      val age = lastIndex.slice(3, lastIndex.indexOf(","))
-      lastIndex = lastIndex.slice(lastIndex.indexOf(",")+1,lastIndex.size)
-      println("Age:"+age)
-    }
-
-    val investmentKeywords :List[String] =List("has\\ raised","raised","has\\ closed on","has\\ closed","closed")
-
-    val firstOccurence =investmentKeywords.map(x => lastIndex.indexOf(x).asInstanceOf[Int]).headOption.getOrElse(-1)
-
-    val result = investmentKeywords.filter(value => lastIndex.contains(value)).headOption.getOrElse("not_found")
-
-    if(lastIndex.contains("-based")){
-      val based = lastIndex.slice(1, lastIndex.indexOf("-based")+7)
-      lastIndex = lastIndex.slice(lastIndex.indexOf("-based")+7,lastIndex.size)
-      println("Based:"+based)
-      if(result != "not_found" && !firstOccurence.equals(-1) ){
-        val valueProposition = lastIndex.slice(0, firstOccurence)
+  private[this] def headerContentFilter(headerContents: String, headerName: String): String = {
+    //TODO filter by \n
+    headerContents.split("\\n").foreach({ headerContent =>
+      var lastIndex = headerContent
+      var name =""
+      if (lastIndex.indexOf(",") != -1) {
+        name = lastIndex.slice(0, lastIndex.indexOf(","))
         lastIndex = lastIndex.slice(lastIndex.indexOf(",")+1,lastIndex.size)
-        println("valueProposition:"+valueProposition)
-      }else {
+        //csvWriter.writeRow()
+        println("Name:"+name)
+      }
+      if(lastIndex.contains("year-old")){
+        val age = lastIndex.slice(3, lastIndex.indexOf(","))
+        lastIndex = lastIndex.slice(lastIndex.indexOf(",")+1,lastIndex.size)
+        println("Age:"+age)
+      }
+
+      val investmentKeywords :List[String] =List("has raised","just raised","raised","has closed on","has closed","closed")
+
+      //println("has :"+ lastIndex.indexOf("has")+"  raised :"+lastIndex.indexOf("raised")+" has+raised :"+lastIndex.indexOf("has")+lastIndex.indexOf("raised"))
+
+      val array1:List[Int] = investmentKeywords.map(word => word.split("\\W").head.size)
+      val functionalResult = investmentKeywords.map(word => word.split("\\W") match {
+        case x if x.size >=2 =>  Array(x.head,x.last).foldLeft("0".toInt)((acc,wrd) => lastIndex.indexOf(wrd)-acc) -(x.size -1)  // -word.split("\\W").size
+        case z if z.size < 2 =>  lastIndex.indexOf(z)
+      })
+
+      //println("Functional result :"+investmentKeywords.map(word =>lastIndex.indexOf(word)))
+      //println(investmentKeywords.zipWithIndex)
+      //println(investmentKeywords.zipWithIndex.min._2)
+      //println(lastIndex.indexOf("has closed in"))
+      //val minIndexOfKeyword:Option[Int] =(array1.zip(functionalResult)).map{case (x,y) => if(x.equals(y)) x}.zipWithIndex.filter{case (x,y) => !x.toString.equals("()")}.map{case (x,y) => y}.minByOption(empty => empty)
+
+      if(lastIndex.contains("-based")){
+        val based = lastIndex.slice(1, lastIndex.indexOf("-based")+7)
+        lastIndex = lastIndex.slice(lastIndex.indexOf("-based")+7,lastIndex.size)
+        println("Based:"+based)
+        val result = investmentKeywords.filter(value => lastIndex.indexOf(value)!= -1).minByOption(empty => empty).getOrElse("not_found")
+        println(investmentKeywords.filter(value => lastIndex.indexOf(value)!= -1).map(value => lastIndex.indexOf(value)) )
+        if(!result.equals("not_found")){
+          println("result:"+result)
+          val valueProposition = lastIndex.slice(0, lastIndex.indexOf(result)-1)
+          lastIndex = lastIndex.slice(lastIndex.indexOf(result)+1,lastIndex.size)
+          println("valueProposition:"+valueProposition)
+        }else {
+          val valueProposition = lastIndex.slice(0, lastIndex.indexOf(",")-1)
+          lastIndex = lastIndex.slice(lastIndex.indexOf(",")+1,lastIndex.size)
+          println("valueProposition:"+valueProposition)
+        }
+      }else if(!lastIndex.contains("-based")){
         val valueProposition = lastIndex.slice(0, lastIndex.indexOf(","))
         lastIndex = lastIndex.slice(lastIndex.indexOf(",")+1,lastIndex.size)
         println("valueProposition:"+valueProposition)
       }
-    }else if(!lastIndex.contains("-based")){
-      val valueProposition = lastIndex.slice(0, lastIndex.indexOf(","))
-      lastIndex = lastIndex.slice(lastIndex.indexOf(",")+1,lastIndex.size)
-      println("valueProposition:"+valueProposition)
-    }
 
-    val investmentKeywords2 :List[String] =List("in Series","in seed","has closed on","has closed","closed")
-    val result2 = investmentKeywords.filter(value => lastIndex.contains(value)).headOption.getOrElse("not_found")
-    if(result != "not_found"){
-      val investmentAmount = lastIndex.slice(0+lastIndex.indexOf(result)+result.size, lastIndex.indexOf("in Series"))
-      lastIndex = lastIndex.slice(lastIndex.indexOf("in Series"),lastIndex.size)
-      println("investmentAmount:"+investmentAmount)
-      val investmentRound = lastIndex.slice(3, lastIndex.indexOf("funding"))
-      lastIndex = lastIndex.slice(lastIndex.indexOf("funding")+7,lastIndex.size)
-      println("investmentRound:"+investmentRound)
-    }
+      val investmentKeywords2 :List[String] =List("in Series","in seed","has closed on","has closed","closed","has raised")
+      val result2 = investmentKeywords.filter(value => lastIndex.contains(value)).headOption.getOrElse("not_found")
+
+      if(result2 != "not_found"){
+        val investmentAmount = lastIndex.slice(0+lastIndex.indexOf(result2)+result2.size, lastIndex.indexOf(result2))
+        lastIndex = lastIndex.slice(lastIndex.indexOf(result2),lastIndex.size)
+        println("investmentAmount:"+investmentAmount)
+        val investmentRound = lastIndex.slice(3, lastIndex.indexOf("funding"))
+        lastIndex = lastIndex.slice(lastIndex.indexOf("funding")+7,lastIndex.size)
+        println("investmentRound:"+investmentRound)
+      }
+    })
     ""
   }
+
 }

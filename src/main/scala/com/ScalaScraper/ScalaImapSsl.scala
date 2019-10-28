@@ -7,7 +7,7 @@ import com.github.tototoshi.csv._
 import javax.mail._
 import javax.mail.internet._
 
-class TypeClass {
+object TypeClass {
   def manOf[T: Manifest](t: T): Manifest[T] = manifest[T]
 }
 
@@ -86,8 +86,10 @@ object ScalaImapSsl {
       val bodypart = mimeMultipart.getBodyPart(x)
       if(bodypart.isMimeType("text/plain"))
         yieldContentResult(result + "\n" + bodypart.getContent(),mimeMultipart)(x-1)
-      else if(bodypart.isMimeType("text/html"))
+      else if(bodypart.isMimeType("text/html")){
+        println(result)
         yieldContentResult(result + "\n" + org.jsoup.Jsoup.parse(bodypart.getContent.asInstanceOf[String]).text(),mimeMultipart)(x-1)
+        }
       else if (bodypart.getContent.isInstanceOf[MimeMultipart])
         yieldContentResult(result,bodypart.getContent.asInstanceOf[MimeMultipart])(x-1)
       else
@@ -113,76 +115,106 @@ object ScalaImapSsl {
       case Nil => List[String]()
     }
 
-  private[this] def headerContentFilter(headerContent: String, headerName: String): String = {
-    var lastIndex = headerContent
-    var name =""
-    if (lastIndex.indexOf(",") != -1) {
-       name = lastIndex.slice(0, lastIndex.indexOf(","))
-      lastIndex = lastIndex.slice(lastIndex.indexOf(",")+1,lastIndex.size)
-      //csvWriter.writeRow()
-      println("Name:"+name)
-    }
-    if(lastIndex.contains("year-old")){
-      val age = lastIndex.slice(3, lastIndex.indexOf(","))
-      lastIndex = lastIndex.slice(lastIndex.indexOf(",")+1,lastIndex.size)
-      println("Age:"+age)
-    }
-
-    val investmentKeywords :List[String] =List("has raised","just raised","raised","has closed on","has closed","closed")
-
-    //println("has :"+ lastIndex.indexOf("has")+"  raised :"+lastIndex.indexOf("raised")+" has+raised :"+lastIndex.indexOf("has")+lastIndex.indexOf("raised"))
-
-    val array1:List[Int] = investmentKeywords.map(word => word.split("\\W").head.size)
-    val functionalResult =investmentKeywords.map(word => word.split("\\W") match {
-      case x if x.size >=2 => Array(x.head,x.last).foldLeft("0".toInt)((acc,wrd) => lastIndex.indexOf(wrd)-acc)
-      case z if z.size < 2 =>  lastIndex.indexOf(z)
-    }).map(element => element match {
-      case x if(array1.indexWhere(y => y.equals(x)).equals(x) ) => //.equals(Some(x)) == true =>
-    })
-
-
-
-    val result = investmentKeywords.filter(value => lastIndex.contains(value)).headOption.getOrElse("not_found")
-
-    if(lastIndex.contains("-based")){
-      val based = lastIndex.slice(1, lastIndex.indexOf("-based")+7)
-      lastIndex = lastIndex.slice(lastIndex.indexOf("-based")+7,lastIndex.size)
-      val firstOccurence =investmentKeywords.map(x => lastIndex.indexOf(x)).headOption.getOrElse(-1)
-      println("Based:"+based)
-      println("First Occurence :"+investmentKeywords.filter(value => lastIndex.contains(value)))
-      if(result != "not_found" && !firstOccurence.equals(-1)){
-        println("result :"+result)
-        val valueProposition = lastIndex.slice(0, firstOccurence-1)
+  private[this] def headerContentFilter(headerContents: String, headerName: String): String = {
+    //TODO filter by \n
+    headerContents.split("\\n").foreach({ headerContent =>
+      var lastIndex = headerContent
+      var name =""
+      if (lastIndex.indexOf(",") != -1) {
+        name = lastIndex.slice(0, lastIndex.indexOf(","))
         lastIndex = lastIndex.slice(lastIndex.indexOf(",")+1,lastIndex.size)
-        println("valueProposition:"+valueProposition)
-      }else {
-        val valueProposition = lastIndex.slice(0, lastIndex.indexOf(",")-1)
+        //csvWriter.writeRow()
+        println("Name:"+name)
+      }
+
+
+      if(lastIndex.contains("year-old") || lastIndex.contains("months-old")){
+        val age = lastIndex.slice(3, lastIndex.indexOf(","))
+        lastIndex = lastIndex.slice(lastIndex.indexOf(",")+1,lastIndex.size)
+        println("Age:"+age)
+      }
+
+      val preInvestmentAmountKeywords :List[String] =List("has raised","just raised","raised","has closed on","has closed","closed")
+
+      val result = preInvestmentAmountKeywords.filter(value => lastIndex.indexOf(value)!= -1).minByOption(empty => empty).getOrElse("not_found")
+      val minIndexOfinvestmentKeywords = preInvestmentAmountKeywords.zipWithIndex.filter{case (value,index) => lastIndex.indexOf(value)!= -1}.foldLeft(("not_found".asInstanceOf[String],-1.asInstanceOf[Int]))((acc, value) => if(acc._1 =="not_found") (value._1,value._2) else if(acc._1 !="not_found" && (lastIndex.indexOf(value._1) < lastIndex.indexOf(acc._1))) (value._1,value._2) else (acc._1,acc._2) ).asInstanceOf[Tuple2[String,Int]]._2
+      val indexFound = preInvestmentAmountKeywords(minIndexOfinvestmentKeywords)
+
+      if(lastIndex.contains("-based")){
+        val based = lastIndex.slice(1, lastIndex.indexOf("-based")+7)
+        lastIndex = lastIndex.slice(lastIndex.indexOf("-based")+7,lastIndex.size)
+        println("Based:"+based)
+
+        if(!indexFound.equals("not_found")){
+          val valueProposition = lastIndex.slice(0, lastIndex.indexOf(indexFound)-1)
+          lastIndex = lastIndex.slice(lastIndex.indexOf(indexFound),lastIndex.size)
+          println("valueProposition:"+valueProposition)
+        }else {
+          val valueProposition = lastIndex.slice(0, lastIndex.indexOf(",")-1)
+          lastIndex = lastIndex.slice(lastIndex.indexOf(",")+1,lastIndex.size)
+          println("valueProposition:"+valueProposition)
+        }
+      }else if(!lastIndex.contains("-based")){
+        val valueProposition = lastIndex.slice(0, lastIndex.indexOf(","))
         lastIndex = lastIndex.slice(lastIndex.indexOf(",")+1,lastIndex.size)
         println("valueProposition:"+valueProposition)
       }
-    }else if(!lastIndex.contains("-based")){
-      val valueProposition = lastIndex.slice(0, lastIndex.indexOf(","))
-      lastIndex = lastIndex.slice(lastIndex.indexOf(",")+1,lastIndex.size)
-      println("valueProposition:"+valueProposition)
-    }
 
-    val investmentKeywords2 :List[String] =List("in Series","in seed","has closed on","has closed","closed","has raised")
-    val result2 = investmentKeywords.filter(value => lastIndex.contains(value)).headOption.getOrElse("not_found")
+      val preInvestmentRoundKeywords :List[String] =List("in pre-Series","in Series","in seed")
+      val result2 = preInvestmentRoundKeywords.filter(value => lastIndex.indexOf(value)!= -1).minByOption(empty => empty).getOrElse("not_found")
+      val minIndexOfinvestmentKeywords2 = preInvestmentRoundKeywords.zipWithIndex.filter{case (value,index) => lastIndex.indexOf(value)!= -1}.foldLeft(("not_found".asInstanceOf[String],-1.asInstanceOf[Int]))((acc, value) => if(acc._1 =="not_found") (value._1,value._2) else if(acc._1 !="not_found" && (lastIndex.indexOf(value._1) < lastIndex.indexOf(acc._1))) (value._1,value._2) else (acc._1,acc._2) ).asInstanceOf[Tuple2[String,Int]]._2
+      val indexFound2 = preInvestmentRoundKeywords(minIndexOfinvestmentKeywords2)
 
-    if(result != "not_found"){
-      val investmentAmount = lastIndex.slice(0+lastIndex.indexOf(result)+result.size, lastIndex.indexOf("in Series"))
-      lastIndex = lastIndex.slice(lastIndex.indexOf("in Series"),lastIndex.size)
-      println("investmentAmount:"+investmentAmount)
-      val investmentRound = lastIndex.slice(3, lastIndex.indexOf("funding"))
-      lastIndex = lastIndex.slice(lastIndex.indexOf("funding")+7,lastIndex.size)
-      println("investmentRound:"+investmentRound)
-    }
+
+
+      //InvestedAmount
+      if(result2 != "not_found"){
+        val investmentAmount = lastIndex.slice(0+lastIndex.indexOf(indexFound)+indexFound.size, lastIndex.indexOf(indexFound2))
+        lastIndex = lastIndex.slice(lastIndex.indexOf(result2),lastIndex.size)
+        println("investmentAmount:"+investmentAmount)
+        //println("lastIndex : "+lastIndex)
+        val investmentRound = lastIndex.slice(0, lastIndex.indexOf("funding"))
+        lastIndex = lastIndex.slice(lastIndex.indexOf("funding")+7,lastIndex.size)
+        println("investmentRound:"+investmentRound)
+      }else if(result2 == "not found"  && (lastIndex.indexOf("valuation") != -1 ) ) {
+        val investmentAmount = lastIndex.slice(0, lastIndex.indexOf("valuation"))
+        lastIndex = lastIndex.slice(lastIndex.indexOf(result2),lastIndex.size)
+        println("investmentAmount:"+investmentAmount)
+        //println("lastIndex : "+lastIndex)
+        val investmentRound = lastIndex.slice(0, lastIndex.indexOf("funding"))
+        lastIndex = lastIndex.slice(lastIndex.indexOf("funding")+7,lastIndex.size)
+        println("investmentRound:"+investmentRound)
+      }
+
+
+
+/*      //investmentRound
+      if(result2 != "not_found"){
+        val investmentRound = lastIndex.slice(0, lastIndex.indexOf("funding"))
+        lastIndex = lastIndex.slice(lastIndex.indexOf("funding")+7,lastIndex.size)
+        println("investmentRound:"+investmentRound)
+      }*/
+
+
+      val preInvestorsKeywords :List[String] =List("led by","co-led by","from","include")  //".",
+      val result3 = preInvestorsKeywords.filter(value => lastIndex.indexOf(value)!= -1).minByOption(empty => empty).getOrElse("not_found")
+      val minIndexOfinvestmentKeywords3 = preInvestorsKeywords.zipWithIndex.filter{case (value,index) => lastIndex.indexOf(value)!= -1}.foldLeft(("not_found".asInstanceOf[String],-1.asInstanceOf[Int]))((acc, value) => if(acc._1 =="not_found") (value._1,value._2) else if(acc._1 !="not_found" && (lastIndex.indexOf(value._1) < lastIndex.indexOf(acc._1))) (value._1,value._2) else (acc._1,acc._2) ).asInstanceOf[Tuple2[String,Int]]._2
+      val indexFound3 = preInvestorsKeywords(minIndexOfinvestmentKeywords3)
+
+
+      if(result3 != "not_found") {
+        val investors = lastIndex.slice(0+lastIndex.indexOf(indexFound3)+indexFound3.size+1, lastIndex.indexOf("."))
+        println("lastIndex : "+lastIndex.slice(0+lastIndex.indexOf(indexFound3)+indexFound3.size+1, lastIndex.indexOf(".")))
+        lastIndex = lastIndex.slice(lastIndex.indexOf("."), lastIndex.size)
+        println("investors:" + investors)
+        val link = lastIndex.slice(0, lastIndex.indexOf("more here.")+10)
+        lastIndex = lastIndex.slice(0,lastIndex.indexOf(".")).appended("\n").slice(0,lastIndex.size).toString
+        println("link:" + link)
+        //lastIndex = lastIndex.slice(lastIndex.indexOf("funding") + 7, lastIndex.size)
+      }
+
+    })
     ""
-  }
-
-
-  def compareListsOneByOne[A,B](list1: List[A], list2: List[B]): List[Boolean] = {
-     list1.indexWhere(y => y.equals(a))
   }
 
 
