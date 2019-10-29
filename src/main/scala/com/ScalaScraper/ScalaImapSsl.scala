@@ -49,10 +49,10 @@ object ScalaImapSsl {
         counter +=1
         val emailStr: String =
           listIterator(message.getReplyTo.toList, georgeAddr)
-          if (!emailStr.equals("") && message.isMimeType("multipart/*")){
-            val result = getTextFromMimeMultipart(message.getContent.asInstanceOf[MimeMultipart],counter)
-            bodyMessageFilteringToCSVRow(result)
-          }//else message.getContent.toString
+        if (!emailStr.equals("") && message.isMimeType("multipart/*")){
+          val result = getTextFromMimeMultipart(message.getContent.asInstanceOf[MimeMultipart],counter)
+          bodyMessageFilteringToCSVRow(result)
+        }//else message.getContent.toString
 
         csvWriter.close()
       }
@@ -89,7 +89,7 @@ object ScalaImapSsl {
       else if(bodypart.isMimeType("text/html")){
         println(result)
         yieldContentResult(result + "\n" + org.jsoup.Jsoup.parse(bodypart.getContent.asInstanceOf[String]).text(),mimeMultipart)(x-1)
-        }
+      }
       else if (bodypart.getContent.isInstanceOf[MimeMultipart])
         yieldContentResult(result,bodypart.getContent.asInstanceOf[MimeMultipart])(x-1)
       else
@@ -136,7 +136,7 @@ object ScalaImapSsl {
         println("Age:"+age)
       }
 
-      val preInvestmentAmountKeywords :List[String] =List("has raised","just raised","raised","has closed on","has closed","closed")
+      val preInvestmentAmountKeywords :List[String] =List("has raised","just raised","raised","raising","has closed on","has closed","closed")
       val indexFound = calculateMinIndex(preInvestmentAmountKeywords,lastIndex)
 
       if(lastIndex.contains("-based")){
@@ -165,12 +165,12 @@ object ScalaImapSsl {
       val afterInvestmentRoundKeywords :List[String] =List("funding","in financing","financing","valuation")
       val indexFound3 = calculateMinIndex(afterInvestmentRoundKeywords,lastIndex)
 
-      val prelinkKeywords :List[String] =List("has more here.","has much more here.","More here.","here.")  //".",
+      val prelinkKeywords :List[String] =List("has more here","has much more here","More here","here")  //".",
       val indexFound5 = calculateMinIndex(prelinkKeywords,lastIndex)
 
-      //println("indexFound2: "+indexFound2+" and lastIndex.indexOf(indexFound2) "+lastIndex.indexOf(indexFound2) +" must be < indexFound3 :"+indexFound3+" which is lastIndex.indexOf(indexFound3)"+lastIndex.indexOf(indexFound3))
+      //println("indexFound: "+indexFound+" and indexFound2: "+indexFound2+" and lastIndex.indexOf(indexFound2) "+lastIndex.indexOf(indexFound2) +" must be < indexFound3 :"+indexFound3+" which is lastIndex.indexOf(indexFound3)"+lastIndex.indexOf(indexFound3))
       //InvestedAmount
-      if(indexFound2 != "not_found"  && (lastIndex.indexOf(indexFound2) < lastIndex.indexOf(indexFound5) && lastIndex.indexOf(indexFound2) < lastIndex.indexOf(indexFound3) )){
+      if(indexFound2 != "not_found" && compareIndexes(indexFound5,indexFound2,lastIndex) && compareIndexes(indexFound3,indexFound2,lastIndex) ){
         val investmentAmount = lastIndex.slice(0+lastIndex.indexOf(indexFound)+indexFound.size, lastIndex.indexOf(indexFound2))
         lastIndex = lastIndex.slice(lastIndex.indexOf(indexFound2),lastIndex.size)
         println("investmentAmount:"+investmentAmount)
@@ -178,45 +178,56 @@ object ScalaImapSsl {
         val investmentAmount = lastIndex.slice(0, lastIndex.indexOf(indexFound3))
         lastIndex = lastIndex.slice(lastIndex.indexOf(indexFound2),lastIndex.size)
         println("investmentAmount:"+investmentAmount)
-      } else if(indexFound2 != "not found"  && indexFound3 != "not found"  && lastIndex.indexOf(indexFound3) < lastIndex.indexOf(indexFound2)) {
+      } else if(indexFound2 != "not found"  && indexFound3 != "not found"  && compareIndexes(indexFound5,indexFound2,lastIndex) ) {
         val investmentAmount = lastIndex.slice(0+lastIndex.indexOf(indexFound)+indexFound.size, lastIndex.indexOf(indexFound3))
         lastIndex = lastIndex.slice(lastIndex.indexOf(indexFound3),lastIndex.size)
-        println("investmentAmount3:"+investmentAmount)
+        println("investmentAmount:"+investmentAmount)
       }
 
-      val preInvestorsKeywords :List[String] =List("led by","co-led by","from","include")  //".",
+      val preInvestorsKeywords :List[String] =List("led by","co-led by","from","include","led the round")  //".",
       val indexFound4 = calculateMinIndex(preInvestorsKeywords,lastIndex)
 
-
       //investmentRound
-      if(indexFound3 != "not_found" && indexFound2 != "not_found" && lastIndex.indexOf(indexFound4) > lastIndex.indexOf(indexFound2)){
+      if(indexFound3 != "not_found" && indexFound2 != "not_found" && compareIndexes(indexFound4,indexFound2,lastIndex) ){
         val investmentRound = lastIndex.slice(0, lastIndex.indexOf(indexFound3))
         lastIndex = lastIndex.slice(lastIndex.indexOf(indexFound3)+indexFound3.size,lastIndex.size)
         println("investmentRound:"+investmentRound)
       }
 
+      //Investors
       if(indexFound4 != "not_found") {
-        val investors = lastIndex.slice(0+lastIndex.indexOf(indexFound4)+indexFound4.size+1, lastIndex.indexOf(".",0+lastIndex.indexOf(indexFound4)+indexFound4.size+1))
-        lastIndex = lastIndex.slice(lastIndex.indexOf(".",0+lastIndex.indexOf(indexFound4)+indexFound4.size+1), lastIndex.size)
-        println("investors:" + investors)
+        if (indexFound4 == "led the round" && indexFound5 != "not found"){
+          val investors = lastIndex.slice(0, lastIndex.indexOf(indexFound5))
+          lastIndex = lastIndex.slice(lastIndex.indexOf(investors)+ investors.size, lastIndex.size)
+          println("investors:" + investors)
+        }else{
+          val investors = lastIndex.slice(0+lastIndex.indexOf(indexFound4)+indexFound4.size+1, lastIndex.indexOf(".",0+lastIndex.indexOf(indexFound4)+indexFound4.size+1))
+          lastIndex = lastIndex.slice(lastIndex.indexOf(".",0+lastIndex.indexOf(indexFound4)+indexFound4.size+1), lastIndex.size)
+          println("investors:" + investors)
+        }
       }
 
 
+
+      //Link
       if(indexFound5 != "not found"){
-        println("lastIndex :"+lastIndex)
-        val newYearIndex = calculateMinIndex(yearKeywords,lastIndex)
-        if(lastIndex.indexOf(newYearIndex) == -1){
-          val chunkedNewline = lastIndex.slice(0, lastIndex.indexOf(newYearIndex))
-          chunkedNewline.slice(0,lastIndex.lastIndexOf("."))
-          val link = chunkedNewline.slice(0,lastIndex.lastIndexOf("."))
-          lastIndex = lastIndex.slice(lastIndex.indexOf(link)+link.size,lastIndex.size).toString
+        //println("lastIndex :"+lastIndex)
+        val newAgeIndex = calculateMinIndex(yearKeywords,lastIndex)
+        println("lastIndex.indexOf(newAgeIndex) :"+lastIndex.indexOf(newAgeIndex)+"\t and lastIndex.indexOf(indexFound5)"+lastIndex.indexOf(indexFound5))
+        if(lastIndex.indexOf(newAgeIndex) != -1 && lastIndex.indexOf(indexFound5) != -1 && (compareIndexes(newAgeIndex,indexFound5,lastIndex))  ){
+          val chunkedNewline = lastIndex.slice(0, lastIndex.indexOf(newAgeIndex))
+          println("chunkedNewline: "+chunkedNewline)
+          println(chunkedNewline.lastIndexOf("."))
+          val link = chunkedNewline.slice(0,chunkedNewline.lastIndexOf("."))
           println("link1:" + link)
+          if(lastIndex.substring(lastIndex.indexOf(link)+link.size +1,lastIndex.length).size >=0){
+            headerContentFilter(lastIndex.substring(lastIndex.indexOf(link)+link.size +1,lastIndex.length),headerName)
+          }
         }else {
           val link = lastIndex.slice(0, lastIndex.indexOf(indexFound5)+indexFound5.size)
           lastIndex = lastIndex.slice(0,lastIndex.indexOf(".")).appended("\n").slice(0,lastIndex.size).toString
           println("link2:" + link)
         }
-        //lastIndex = lastIndex.slice(lastIndex.indexOf("funding") + 7, lastIndex.size)
       }
 
     })
@@ -224,10 +235,22 @@ object ScalaImapSsl {
   }
 
 
-  def calculateMinIndex(keywordList :List[String],lastIndex:String):String ={
+  private[this] def calculateMinIndex(keywordList :List[String],lastIndex :String):String ={
     val result = keywordList.filter(value => lastIndex.indexOf(value)!= -1).minByOption(empty => empty).getOrElse("not_found")
-    val minIndexOfafterInvestmentRoundKeywords = keywordList.zipWithIndex.filter{case (value,index) => lastIndex.indexOf(value)!= -1}.foldLeft(("not_found".asInstanceOf[String],-1.asInstanceOf[Int]))((acc, value) => if(acc._1 =="not_found") (value._1,value._2) else if(acc._1 !="not_found" && (lastIndex.indexOf(value._1) < lastIndex.indexOf(acc._1))) (value._1,value._2) else (acc._1,acc._2) ).asInstanceOf[Tuple2[String,Int]]._2
-    keywordList(minIndexOfafterInvestmentRoundKeywords)
+    val wordListminIndex = keywordList.zipWithIndex.filter{case (value,index) => lastIndex.indexOf(value)!= -1}.foldLeft(("not_found".asInstanceOf[String],-1.asInstanceOf[Int]))((acc, value) => if(acc._1 =="not_found") (value._1,value._2) else if(acc._1 !="not_found" && (lastIndex.indexOf(value._1) < lastIndex.indexOf(acc._1))) (value._1,value._2) else (acc._1,acc._2) ).asInstanceOf[Tuple2[String,Int]]._2
+    if(result != "not_found"){
+      keywordList(wordListminIndex)
+    }else{
+      result
+    }
+
+  }
+
+  private[this] def compareIndexes(nextindex :String, previousindex :String, lastIndex :String): Boolean ={
+    if(lastIndex.indexOf(nextindex) != -1 )
+      lastIndex.indexOf(nextindex) > lastIndex.indexOf(previousindex)
+    else
+      true
   }
 
 
