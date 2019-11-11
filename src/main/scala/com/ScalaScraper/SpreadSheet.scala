@@ -1,42 +1,17 @@
-<<<<<<< Updated upstream
-package com.example
-
-=======
 package com.ScalaScraper
 import scala.io.Source
->>>>>>> Stashed changes
+import collection.JavaConverters._
 
 object Spreadsheets {
-
-
-  trait Email
-  case class Header(name :String) extends Email
-  case class SubHeader(name :String) extends Email
-  case class Contents(body :Body) extends Email
-  case class Body(name :String, age:String,based:String,value_proposition :String,investment_amount:String,
-                  investment_round:String,lead_VCs:String,rest_VCs:String,link:String) extends Email
+  import com.ScalaScraper.ScrapeUtils._
+  import com.ScalaScraper.EmailUtils._
+  
+  private[this] var hrefLinkList : org.jsoup.select.Elements = _
 
   private[this] final val headerNames: List[Header] = List(Header("Massive Fundings "),Header("Big-But-Not-Crazy-Big Fundings ")
     ,Header("Smaller Fundings "),Header("Not-Saying-How-Much Fundings "),Header("New Funds"))
 
   def main(args: Array[String]) {
-<<<<<<< Updated upstream
-    val code :String  = """Massive Fundings
-     Menlo Security, a six-year-old, Palo Alto, Ca.-based startup that says it isolates and executes all web content in the cloud, so users can safely interact with websites, links and documents online without compromising their security, has closed on $75 million in Series D funding. JP Morgan Asset Management led the round (using its clients' money), with earlier investors also jumping in, including General Catalyst, Sutter Hill Ventures, Osage University Partners, American Express Ventures, HSBC, JP Morgan Chase and Engineering Capital. More here.
-     Tsign, a 17-year-old, Hangzhou, China-based e-signature service company, has raised nearly  $100 million in Series C funding led by Ant Financial. China Money Network has more here (though a subscription is required).
-     Big-But-Not-Crazy-Big Fundings
-     Mogrify, a four-year-old, U.K.-based cell therapy startup focused on arthritis, has raised $16 million in Series A funding led by Ahren, with participation from Parkwalk, 24Haymarket, and the University of Bristol Enterprise Fund. The Times has more here.
-     Radius Networks, an eight-year-old, Washington, D.C.-based technology company that uses its machine learning location platform to help businesses conduct location-based transactions with their customers, has raised $15 million in Series A funding, Backers include new and earlier investors, including Contour Venture Partnersand Core Capital Partners. CityBizList has more here.
-     Smaller Fundings
-     Redesign Science, a platform technology company hoping to advance new small molecule therapeutics, has raised $2 million in seed funding led by Notation, with participation from Morningside Venture Capital, Third Kind Venture Capital, Refactor Capital, and angel investor Thomas Weingarten. More here.
-     Latent AI, an 11-month-old,  Menlo Park, Ca.- based AI processing company that spun out of SRI International late last year, has raised $3.5 million in seed funding led by Steve Jurvetson's Future Ventures. More here.
-     Not-Saying-How-Much Fundings
-     VIPKid, the six-year-old, Beijing, China-based online education platform, says it has closed on an undisclosed amount of Series E funding led by Tencent Holdings. According to previous media reports, VIPKid was looking to raise as much as $500 million in the round at a valuation of $4.5 billion, up from $3.5 billion valuation it was assigned by investors last year. DealStreetAsia has more here.
-     New Funds
-     Three self-professed gamers and veteran entrepreneurs have come together to form a brand new VC firm called Hiro Capital that's focused on games, e-sports, and digital sports in Europe and the UK. It's looking to raise up to €100 million, it will be based in London and Luxembourg, and the founding team consists of Ian Livingstone CBE, co-founder of Games Workshop; Luke Alvarez, co-founder of Inspired Entertainment; and Cherry Freeman, co-founder of LoveCrafts. Tech.eu has the story here."""
-
-    println(bodyMessageFilteringToCSVRow(code))
-=======
 /*     val code :String  = """Massive Fundings
     Faire, a nearly three-year-old, San Francisco-based curated wholesale marketplace that connects independent retailers and makers, has raised $150 million in Series D funding at a $1 billion valuation. Lightspeed Venture Partners and Founders Fund co-led the round, joined by including earlier backers Forerunner Ventures, YC Continuity, and Khosla Ventures. Crunchbase News has more here.
     Big-But-Not-Crazy-Big Fundings 
@@ -61,9 +36,8 @@ object Spreadsheets {
     """ */
     val filename = "/home/stkat/Desktop/Mwh.html"
     val fileContents = Source.fromFile(filename).getLines.mkString
-    println(fileContents)
-    //println(bodyMessageFilteringToCSVRow(code))
->>>>>>> Stashed changes
+    //println(fileContents)
+    println(bodyMessageFilteringToCSVRow(fileContents))
   }
 
 
@@ -71,89 +45,137 @@ object Spreadsheets {
 
   private[this] def headerNamesIterator(bodyMessage: String, remainingNames: List[Header]):List[String] =
     remainingNames match {
+      case body :: Nil => List[String]()
+      case  x :: xs =>
+        val rawBodyMessage = org.jsoup.Jsoup.parse(bodyMessage).text()
+        val nextHeader:Either[String,Header] =findNextHeader(xs,rawBodyMessage)
 
-      case body :: Nil =>  headerContentFilter(bodyMessage.slice(bodyMessage.indexOf(body.name)+body.name.size,bodyMessage.length),body.name) :: List[String]()
-
-      case  x :: xs => {
-        if(bodyMessage.indexOf(x.name).!=(-1) && bodyMessage.indexOf(xs.head.name).!=(-1)){
-          //println(bodyMessage.slice(bodyMessage.indexOf(x.name)+x.name.size,bodyMessage.indexOf(xs.head.name)))
-          headerContentFilter(bodyMessage.slice(bodyMessage.indexOf(x.name)+x.name.size,bodyMessage.indexOf(xs.head.name)),x.name) :: headerNamesIterator(bodyMessage,xs)
-        }else{
+        if(rawBodyMessage.indexOf(x.name).!=(-1) && nextHeader.isRight){
+          val chunkedHtmlText = bodyMessage.slice(bodyMessage.indexOf(x.name.trim)+x.name.trim.length,bodyMessage.indexOf(nextHeader.getOrElse(Header("NotFound")).name.trim))
+          println("chunkedHtmlText: "+chunkedHtmlText)
+          
+          hrefLinkList = org.jsoup.Jsoup.parse(chunkedHtmlText).select("meta[name=Big-But-Not-Crazy-Big Fundings]")  //.eachAttr("href").asScala.toList)).reverse
+          //println("hrefLinkList :"+org.jsoup.Jsoup.parse(chunkedHtmlText).select("a").eachAttr("href").asScala.toList+" for headers from "+x.name+" to "+nextHeader.getOrElse(Header("NotFound")).name.trim)
+          headerContentFilter(chunkedHtmlText,org.jsoup.Jsoup.parse(chunkedHtmlText).text(),x.name) :: headerNamesIterator(bodyMessage,xs)
+        }else
           List[String]()
-        }
-      }
       case Nil => List[String]()
     }
 
 
-  private[this] def headerContentFilter(headerContents: String, headerName: String): String = {
-    //TODO filter by \n
-    headerContents.split("\\n").foreach({ headerContent =>
-      var lastIndex = headerContent
-      var name =""
-      if (lastIndex.indexOf(",") != -1) {
-        name = lastIndex.slice(0, lastIndex.indexOf(","))
-        lastIndex = lastIndex.slice(lastIndex.indexOf(",")+1,lastIndex.size)
-        //csvWriter.writeRow()
-        println("Name:"+name)
-      }
-      if(lastIndex.contains("year-old")){
-        val age = lastIndex.slice(3, lastIndex.indexOf(","))
-        lastIndex = lastIndex.slice(lastIndex.indexOf(",")+1,lastIndex.size)
-        println("Age:"+age)
-      }
-
-      val investmentKeywords :List[String] =List("has raised","just raised","raised","has closed on","has closed","closed")
-
-      //println("has :"+ lastIndex.indexOf("has")+"  raised :"+lastIndex.indexOf("raised")+" has+raised :"+lastIndex.indexOf("has")+lastIndex.indexOf("raised"))
-
-      val array1:List[Int] = investmentKeywords.map(word => word.split("\\W").head.size)
-      val functionalResult = investmentKeywords.map(word => word.split("\\W") match {
-        case x if x.size >=2 =>  Array(x.head,x.last).foldLeft("0".toInt)((acc,wrd) => lastIndex.indexOf(wrd)-acc) -(x.size -1)  // -word.split("\\W").size
-        case z if z.size < 2 =>  lastIndex.indexOf(z)
-      })
-
-      //println("Functional result :"+investmentKeywords.map(word =>lastIndex.indexOf(word)))
-      //println(investmentKeywords.zipWithIndex)
-      //println(investmentKeywords.zipWithIndex.min._2)
-      //println(lastIndex.indexOf("has closed in"))
-      //val minIndexOfKeyword:Option[Int] =(array1.zip(functionalResult)).map{case (x,y) => if(x.equals(y)) x}.zipWithIndex.filter{case (x,y) => !x.toString.equals("()")}.map{case (x,y) => y}.minByOption(empty => empty)
-
-      if(lastIndex.contains("-based")){
-        val based = lastIndex.slice(1, lastIndex.indexOf("-based")+7)
-        lastIndex = lastIndex.slice(lastIndex.indexOf("-based")+7,lastIndex.size)
-        println("Based:"+based)
-        val result = investmentKeywords.filter(value => lastIndex.indexOf(value)!= -1).minByOption(empty => empty).getOrElse("not_found")
-        println(investmentKeywords.filter(value => lastIndex.indexOf(value)!= -1).map(value => lastIndex.indexOf(value)) )
-        if(!result.equals("not_found")){
-          println("result:"+result)
-          val valueProposition = lastIndex.slice(0, lastIndex.indexOf(result)-1)
-          lastIndex = lastIndex.slice(lastIndex.indexOf(result)+1,lastIndex.size)
-          println("valueProposition:"+valueProposition)
-        }else {
-          val valueProposition = lastIndex.slice(0, lastIndex.indexOf(",")-1)
-          lastIndex = lastIndex.slice(lastIndex.indexOf(",")+1,lastIndex.size)
-          println("valueProposition:"+valueProposition)
+    private[this] def headerContentFilter(htmlheaderContents: String, headerContents: String, headerName: String): String = {
+      headerContents.split("\\n").filter(htmlheaderContents => htmlheaderContents.trim.length != 0).foreach({ headerContent =>
+        var lastIndex = headerContent //Get the un-HTML-ed code from headerContent
+        //println("htmlheaderContents "+htmlheaderContents)
+        var name =""
+        if (lastIndex.indexOf(",") != -1) {
+          name = lastIndex.slice(0, lastIndex.indexOf(","))
+          lastIndex = lastIndex.slice(lastIndex.indexOf(",")+1,lastIndex.length)
         }
-      }else if(!lastIndex.contains("-based")){
-        val valueProposition = lastIndex.slice(0, lastIndex.indexOf(","))
-        lastIndex = lastIndex.slice(lastIndex.indexOf(",")+1,lastIndex.size)
-        println("valueProposition:"+valueProposition)
-      }
-
-      val investmentKeywords2 :List[String] =List("in Series","in seed","has closed on","has closed","closed","has raised")
-      val result2 = investmentKeywords.filter(value => lastIndex.contains(value)).headOption.getOrElse("not_found")
-
-      if(result2 != "not_found"){
-        val investmentAmount = lastIndex.slice(0+lastIndex.indexOf(result2)+result2.size, lastIndex.indexOf(result2))
-        lastIndex = lastIndex.slice(lastIndex.indexOf(result2),lastIndex.size)
-        println("investmentAmount:"+investmentAmount)
-        val investmentRound = lastIndex.slice(3, lastIndex.indexOf("funding"))
-        lastIndex = lastIndex.slice(lastIndex.indexOf("funding")+7,lastIndex.size)
-        println("investmentRound:"+investmentRound)
-      }
-    })
-    ""
+  
+        val yearKeywords :List[String] =List("years-old","year-old","month-old","months-old","days-old")
+        val yearIndexFound = calculateMinIndex(yearKeywords,lastIndex)
+  
+        var age =""
+        if(yearIndexFound != "not_found"){
+          age = lastIndex.slice(0, lastIndex.indexOf(yearIndexFound)+yearIndexFound.length)
+          lastIndex = lastIndex.slice(lastIndex.indexOf(yearIndexFound)+yearIndexFound.length+1,lastIndex.length)
+        }
+  
+        val basedKeywords :List[String] =List("-based","- based","based")
+        val basedIndexFound = calculateMinIndex(basedKeywords,lastIndex)
+  
+        val preInvestmentAmountKeywords :List[String] =List("has raised","just raised","raised","raising","has closed on","has closed","closed")
+        val preIAindexFound = calculateMinIndex(preInvestmentAmountKeywords,lastIndex)
+  
+        var based =""
+        var valueProposition =""
+        if(basedIndexFound !="not_found"){
+          based = lastIndex.slice(0, lastIndex.indexOf(basedIndexFound)+basedIndexFound.length)
+          lastIndex = lastIndex.slice(lastIndex.indexOf(basedIndexFound)+basedIndexFound.length,lastIndex.length)
+  
+          if(!preIAindexFound.equals("not_found")){
+            valueProposition = lastIndex.slice(0, lastIndex.indexOf(preIAindexFound)-1)
+            lastIndex = lastIndex.slice(lastIndex.indexOf(preIAindexFound),lastIndex.length)
+          }else {
+            valueProposition = lastIndex.slice(0, lastIndex.indexOf(",")-1)
+            lastIndex = lastIndex.slice(lastIndex.indexOf(",")+1,lastIndex.length)
+          }
+        }else if(basedIndexFound =="not_found"){
+          valueProposition = lastIndex.slice(0, lastIndex.indexOf(","))
+          lastIndex = lastIndex.slice(lastIndex.indexOf(",")+1,lastIndex.length)
+        }
+  
+        val preInvestmentRoundKeywords :List[String] =List("in pre-Series","in Series","in seed","from")
+        val indexFound2 = calculateMinIndex(preInvestmentRoundKeywords,lastIndex)
+  
+        val afterInvestmentRoundKeywords :List[String] =List("funding","in financing","financing","valuation")
+        val indexFound3 = calculateMinIndex(afterInvestmentRoundKeywords,lastIndex)
+  
+        val prelinkKeywords :List[String] =List("has more here","has much more here","More here","here")  //".",
+        val indexFound5 = calculateMinIndex(prelinkKeywords,lastIndex)
+  
+        //println("indexFound: "+indexFound+" and indexFound2: "+indexFound2+" and lastIndex.indexOf(indexFound2) "+lastIndex.indexOf(indexFound2) +" must be < indexFound3 :"+indexFound3+" which is lastIndex.indexOf(indexFound3)"+lastIndex.indexOf(indexFound3))
+        //InvestedAmount
+        var investmentAmount =""
+        if(indexFound2 != "not_found" && compareIndexes(indexFound5,indexFound2,lastIndex) && compareIndexes(indexFound3,indexFound2,lastIndex) ){
+          investmentAmount = lastIndex.slice(0+lastIndex.indexOf(preIAindexFound)+preIAindexFound.length, lastIndex.indexOf(indexFound2))
+          lastIndex = lastIndex.slice(lastIndex.indexOf(indexFound2),lastIndex.length)
+        }else if(indexFound2 == "not found"  && indexFound3 != "not found" ) {
+          investmentAmount = lastIndex.slice(0, lastIndex.indexOf(indexFound3))
+          lastIndex = lastIndex.slice(lastIndex.indexOf(indexFound2),lastIndex.length)
+        } else if(indexFound2 != "not found"  && indexFound3 != "not found"  && compareIndexes(indexFound5,indexFound2,lastIndex) ) {
+          investmentAmount = lastIndex.slice(0+lastIndex.indexOf(preIAindexFound)+preIAindexFound.length, lastIndex.indexOf(indexFound3))
+          lastIndex = lastIndex.slice(lastIndex.indexOf(indexFound3),lastIndex.length)
+        }
+  
+        val preInvestorsKeywords :List[String] =List("led by","co-led by","from","include","led the round")  //".",
+        val indexFound4 = calculateMinIndex(preInvestorsKeywords,lastIndex)
+  
+        //investmentRound
+        var investmentRound =""
+        if(indexFound3 != "not_found" && indexFound2 != "not_found" && compareIndexes(indexFound4,indexFound2,lastIndex) ){
+          investmentRound = lastIndex.slice(0, lastIndex.indexOf(indexFound3))
+          lastIndex = lastIndex.slice(lastIndex.indexOf(indexFound3)+indexFound3.length,lastIndex.length)
+        }
+  
+        //Investors
+        var investors =""
+        if(indexFound4 != "not_found") {
+          if (indexFound4 == "led the round" && indexFound5 != "not found"){
+            investors = lastIndex.slice(0, lastIndex.indexOf(indexFound5))
+            lastIndex = lastIndex.slice(lastIndex.indexOf(investors)+ investors.length, lastIndex.length)
+          }else{
+            investors = lastIndex.slice(0+lastIndex.indexOf(indexFound4)+indexFound4.length+1, lastIndex.indexOf(".",0+lastIndex.indexOf(indexFound4)+indexFound4.length+1))
+            lastIndex = lastIndex.slice(lastIndex.indexOf(".",0+lastIndex.indexOf(indexFound4)+indexFound4.length+1), lastIndex.length)
+          }
+        }
+  
+        //Link
+        var link =""
+        if(indexFound5 != "not_found"){
+          val newAgeIndex = calculateMinIndex(yearKeywords,lastIndex)
+          if(lastIndex.indexOf(newAgeIndex) != -1 && (compareIndexes(newAgeIndex,indexFound5,lastIndex))  ){
+            link = lastIndex.slice(0, lastIndex.indexOf(indexFound5)+indexFound5.length)
+            if(lastIndex.substring(lastIndex.indexOf(link)+link.length +1,lastIndex.length).length >=0){
+              headerContentFilter(htmlheaderContents,lastIndex.substring(lastIndex.indexOf(link)+link.length +1,lastIndex.length),headerName)
+            }
+          }else {
+            link = lastIndex.slice(0, lastIndex.indexOf(indexFound5)+indexFound5.length)
+            lastIndex = lastIndex.slice(0,lastIndex.indexOf(".")).appended("\n").slice(0,lastIndex.length).toString
+          }
+        }else{
+          link ="@not_found"
+        }
+        if(!link.equals("@not_found")){
+          //csvWriter.writeRow(List(name,age,based,valueProposition,investmentAmount,investmentRound,investors,link,hrefLinkList.headOption.getOrElse(""),emailDate))
+          hrefLinkList = null
+        }else{
+          //csvWriter.writeRow(List(name,age,based,valueProposition,investmentAmount,investmentRound,investors,"",emailDate))
+        }
+  
+      })
+      ""
+    }
+  
   }
-
-}
