@@ -35,3 +35,10 @@ rub
 run
 rnu
 run
+<<<<<<< Updated upstream
+=======
+run --email stelios.katsiadramis@gmail.com --imapsPass vdbxbdywtswnocon --outputPath /home/stelios/Downloads/
+compile
+run --email stelios.katsiadramis@gmail.com --imapsPass vdbxbdywtswnocon --outputPath /home/stelios/Downloads/
+compile
+>>>>>>> Stashed changes

@@ -1,5 +1,10 @@
+<<<<<<< Updated upstream
 package com.example
 
+=======
+package com.ScalaScraper
+import scala.io.Source
+>>>>>>> Stashed changes
 
 object Spreadsheets {
 
@@ -15,6 +20,7 @@ object Spreadsheets {
     ,Header("Smaller Fundings "),Header("Not-Saying-How-Much Fundings "),Header("New Funds"))
 
   def main(args: Array[String]) {
+<<<<<<< Updated upstream
     val code :String  = """Massive Fundings
      Menlo Security, a six-year-old, Palo Alto, Ca.-based startup that says it isolates and executes all web content in the cloud, so users can safely interact with websites, links and documents online without compromising their security, has closed on $75 million in Series D funding. JP Morgan Asset Management led the round (using its clients' money), with earlier investors also jumping in, including General Catalyst, Sutter Hill Ventures, Osage University Partners, American Express Ventures, HSBC, JP Morgan Chase and Engineering Capital. More here.
      Tsign, a 17-year-old, Hangzhou, China-based e-signature service company, has raised nearly  $100 million in Series C funding led by Ant Financial. China Money Network has more here (though a subscription is required).
@@ -30,6 +36,34 @@ object Spreadsheets {
      Three self-professed gamers and veteran entrepreneurs have come together to form a brand new VC firm called Hiro Capital that's focused on games, e-sports, and digital sports in Europe and the UK. It's looking to raise up to €100 million, it will be based in London and Luxembourg, and the founding team consists of Ian Livingstone CBE, co-founder of Games Workshop; Luke Alvarez, co-founder of Inspired Entertainment; and Cherry Freeman, co-founder of LoveCrafts. Tech.eu has the story here."""
 
     println(bodyMessageFilteringToCSVRow(code))
+=======
+/*     val code :String  = """Massive Fundings
+    Faire, a nearly three-year-old, San Francisco-based curated wholesale marketplace that connects independent retailers and makers, has raised $150 million in Series D funding at a $1 billion valuation. Lightspeed Venture Partners and Founders Fund co-led the round, joined by including earlier backers Forerunner Ventures, YC Continuity, and Khosla Ventures. Crunchbase News has more here.
+    Big-But-Not-Crazy-Big Fundings 
+    Brut, a 3.5-year-old, Paris-based video news startup that's focused on social good and social impact, has raised $40 million in Series B funding, money it will use, in part, to launch in the U.S. The round was led by Red River West and blisce. Other investors include Aryeh Bourkoff, the founder and CEO of LionTree; and Eric Zinterhofer, a founding partner of Searchlight Capital Partners. TechCrunch has more here.
+    Datameer, a 10-year-old, San Francisco-based big data analytics platform, has raised $40 million in funding led by ST Telemedia, with participation from earlier backers Redpoint Ventures, Kleiner Perkins, Nextworld Capital, Citi Ventures, and Top Tier Capital Partners. TechCrunch has more here. 
+    Duality, a three-year-old, Newark, N.J.-based company that builds software based on homomorphic encryption — a technique that encrypts an organization’s data in a way that lets it stay encrypted even as the company collaborates with third parties that also process the data — has raised $16 million in funding. The Series A round is being led by Intel Capital, with participation from Hearst Ventures and Team8. TechCrunch has more here.
+    ElasticRun, a three-year-old Pune, India-based startup that's building a logistics network to supply goods to the thousands of neighborhood stores that dot large and small cities, towns, and villages in India, has $40 million in a Series C funding led by Prosus Ventures, the newly public company spun out of Naspers. Earlier investors Avataar Ventures and Kalaari Capital also participated in the round, which brings ElasticRun's total funding to $55.5 million. TechCrunch explains the opportunity it's chasing here.
+    Mirror, a three-year-old, New York-based fitness content streaming device that users can hang and use like a traditional full-length mirror, has raised $34 million more in a Series B-1 funding round led by Point72 Ventures. , whose founder, hedge fund billionaire Steve Cohen, is also joining the board. The company has now raised $72 million to date. More here.
+    Muy, a two-year-old, Bogota, Colombia-based dark kitchen company that's producing its own food, has raised $15 million in Series B funding to expand into Mexico and, later, Brazil. The Mexico-based investor ALLVP led the round, with participation from earlier backer Seaya. The company has now raised $20.5 million altogether. TechCrunch has more here.
+    Particle, a seven-year-old, San Francisco-based platform for Internet of Things devices, has raised $40 million in its latest round of funding. Qualcomm Ventures and Energy Impact Partners led the round, with participation from earlier investors Root Ventures, Bonfire Ventures, Industry Ventures, Spark Capital, Green D Ventures, Counterpart Ventures, and SOSV. The company has now raised $81 million to date. TechCrunch has more here. 
+    Rokt, a seven-year-old, New York-based  e-commerce marketing technology, today announced an investment of $48 million from global investment firm, TDM Growth Partners, as well as existing investors. More here. 
+    Stampli, a four-year-old, Mountain View, Ca.-based company looking to automate invoice management, has today announced the close of a $25 million Series B round. The funding was led by SignalFire, with participation from Hillsven Capital, Bloomberg Beta, as well as new investor NextWorld Capital. TechCrunch has more here.
+    Smaller Fundings 
+    Artmyn, a three-year-old, Saint-Sulpice, Switzerland-based startup focused on the highly accurate digitization of visual artworks (it has developed a portable scanner that captures gigabytes of data describing the artwork in its finest details that it says results in true-to-life a visualization), has raised $4 million in funding. The round was co-led by the online marketplace for fine art and antiques Invaluable, along with earlier backers. More here.
+    CoinList, a two-year-old, San Francisco-based company that connects investors to crypto projects, has raised $10 million in funding led by Polychain Capital, with participation from Jack Dorsey, among others. The WSJ has more here.
+    Link3D, a three-year-old, New York-based startup behind an enterprise additive manufacturing execution system that connects organizations' digital manufacturing ecosystems, has raised $7 million in funding led by the AI-focused venture capital firm AI Capital. More here.  
+    Ruti, a nearly 11-year-old, Belmont, Ca.-based fashion brand with what it describes as a high-tech, highly personalized in-store experience (it has eight stores so far), has raised $6 million in a Series A funding led by Viola Ventures. More here.
+    Stardog, a 12-year-old, Arlington, Va.-based reusable, scalable knowledge graph platform that helps enterprises unify all their data, has raised $9 million in Series B funding led by Tenfore Holdings, with participation from Grotech Ventures, Boulder Ventures, and Core Capital. More here. 
+    Workiz, a four-year-old, San Diego, Ca.-based startup whose software helps field service professionals manage their work, has raised $5 million in Series A funding led by Magenta Venture Partners, with participation from earlier investor Aleph. TechCrunch has more here.
+    Jungle Ventures founded seven years ago in Singapore, has raised $240 million for its third Southeast Asian fund, with almost 60 percent of the capital coming from outside Asia, says Bloomberg. Investors in the fund included German development finance institution DEG, the World Bank‘s International Finance Corp., Bangkok Bank’s corporate venture capital arm, Cisco Investments and Singapore’s state investment firm, Temasek Holdings. More here.
+    New Funds 
+    """ */
+    val filename = "/home/stkat/Desktop/Mwh.html"
+    val fileContents = Source.fromFile(filename).getLines.mkString
+    println(fileContents)
+    //println(bodyMessageFilteringToCSVRow(code))
+>>>>>>> Stashed changes
   }
 
 
