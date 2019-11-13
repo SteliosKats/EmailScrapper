@@ -235,7 +235,7 @@ object ScalaImapSsl {
         csvWriter.writeRow(List(name,age,based,valueProposition,investmentAmount,investmentRound,investors,link,hrefLinkList.headOption.getOrElse(""),emailDate))
         hrefLinkList = hrefLinkList.drop(1)
       }else{
-        csvWriter.writeRow(List(name,age,based,valueProposition,investmentAmount,investmentRound,investors,"",emailDate)
+        csvWriter.writeRow(List(name,age,based,valueProposition,investmentAmount,investmentRound,investors,"",emailDate))
       }
 
     })

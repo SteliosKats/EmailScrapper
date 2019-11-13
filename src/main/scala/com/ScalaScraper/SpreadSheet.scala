@@ -97,11 +97,11 @@ object Spreadsheets {//extends JFXApp {
     Jungle Ventures founded seven years ago in Singapore, has raised $240 million for its third Southeast Asian fund, with almost 60 percent of the capital coming from outside Asia, says Bloomberg. Investors in the fund included German development finance institution DEG, the World Bank‘s International Finance Corp., Bangkok Bank’s corporate venture capital arm, Cisco Investments and Singapore’s state investment firm, Temasek Holdings. More here.
     New Funds 
     """ 
-    csvWriter = CSVWriter.open("/home/stkat/Downloads/output.csv" , append = true)
+    csvWriter = CSVWriter.open("/home/stelios/Downloads/output.csv" , append = true)
     csvWriter.writeRow(List("Name :", "Age :","Based :","Value_proposition :","Investment_amount :", "investment_round :","lead_VCs :","link","Date")) //,"rest_VCs :" after lead VC's
 
     emailDate = new Date()
-    val filename = "/home/stkat/Desktop/Mwh.html"
+    val filename = "/home/stelios/Desktop/Mwh.html"
     val fileContents = Source.fromFile(filename).getLines.mkString
     //println(fileContents)
     println(bodyMessageFilteringToCSVRow(fileContents))
@@ -236,19 +236,13 @@ object Spreadsheets {//extends JFXApp {
           link ="@not_found"
         }
         if(!link.equals("@not_found")){
-          val occurences =link.slice(0,link.length).count(occ => occ.==("here"))
-          val linkResult =(1 to occurences).foldLeft(new StringBuilder(""))((acc,result) => result.asInstanceOf[StringBuilder].addString(new StringBuilder("=HYPERLINK(\""+textLinkList.headOption.getOrElse("")+"\";\"\"here\")")) ).toString  //.addString("=HYPERLINK(\""+textLinkList.headOption.getOrElse("")+"\";\"\"here\")")
-          csvWriter.writeRow(delimitWithDoubleQuotes(List(name,age,based,valueProposition,investmentAmount,investmentRound,investors,link,hrefLinkList.headOption.getOrElse(""))),List(emailDate))
-
-          /*           if(occurences >= 2) {
-            (1 to occurences).foldLeft(new StringBuilder(""))((acc,result) => result.asInstanceOf[StringBuilder].addString(new StringBuilder("=HYPERLINK(\""+textLinkList.headOption.getOrElse("")+"\";\"\"here\")")) )  //.addString("=HYPERLINK(\""+textLinkList.headOption.getOrElse("")+"\";\"\"here\")")
-            csvWriter.writeRow(List(name,age,based,valueProposition,investmentAmount,investmentRound,investors,link,textLinkList.headOption.getOrElse(""),emailDate))
-            textLinkList = null
-          }else{
-
-          } */
+          val occurences =link.sliding("here".length).count(occ => occ.==("here"))
+          val linkResult =(0 until occurences).foldLeft(new StringBuilder(""))((acc,result) => acc.asInstanceOf[StringBuilder].addString(new StringBuilder("=HYPERLINK(\""+textLinkList.headOption.getOrElse("")+"\";\"\"here\")"))).toString
+          textLinkList = textLinkList.drop(occurences)
+          val newList = List(name,age,based,valueProposition,investmentAmount,investmentRound,investors,link,linkResult).:+(emailDate)
+          csvWriter.writeRow(newList)
         }else{
-          csvWriter.writeRow(delimitWithDoubleQuotes(List(name,age,based,valueProposition,investmentAmount,investmentRound,investors,"",emailDate)))
+          csvWriter.writeRow(delimitWithDoubleQuotes(List(name,age,based,valueProposition,investmentAmount,investmentRound,investors,"")).:+(emailDate))
         }
   
       })
