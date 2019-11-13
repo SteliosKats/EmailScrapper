@@ -1,18 +1,81 @@
 package com.ScalaScraper
+
+import java.util.{Date, Properties}
+
+import scalafx.Includes._
+import scalafx.application.JFXApp
+import scalafx.application.JFXApp.PrimaryStage
+import scalafx.event.ActionEvent
+import scalafx.geometry.Insets
+import scalafx.scene.Scene
+import scalafx.scene.control.{MenuButton, MenuItem}
+import scalafx.scene.layout.VBox
+import scalafx.scene.control.Label
+import scalafx.scene.Node
+import scalafx.scene.paint.Color
+import scalafx.beans.property.ObjectProperty 
+import scalafx.scene.text.{Font, FontWeight, Text}
+import scalafx.geometry.Pos
+
 import scala.io.Source
 import collection.JavaConverters._
+import org.jsoup.nodes.Element
+import com.github.tototoshi.csv._
 
-object Spreadsheets {
+object TypeClass {
+  def manOf[T: Manifest](t: T): Manifest[T] = manifest[T]
+}
+
+object Spreadsheets {//extends JFXApp {
   import com.ScalaScraper.ScrapeUtils._
   import com.ScalaScraper.EmailUtils._
   
-  private[this] var hrefLinkList : org.jsoup.select.Elements = _
+  private[this] var textLinkList : List[Tuple2[String,String]] = _
+  private[this] var csvWriter :CSVWriter= _
+  private[this] var emailDate :Date = _
 
-  private[this] final val headerNames: List[Header] = List(Header("Massive Fundings "),Header("Big-But-Not-Crazy-Big Fundings ")
-    ,Header("Smaller Fundings "),Header("Not-Saying-How-Much Fundings "),Header("New Funds"))
+  private[this] final val headerNames: List[Header] = List(Header("Massive Fundings "),Header("Big-But-Not ")
+    ,Header("Smaller Fundings "),Header("Not-Saying-How-Much Fundings "),Header("New Funds"))  //-Crazy-Big Fundings
+  
 
-  def main(args: Array[String]) {
-/*     val code :String  = """Massive Fundings
+/*   stage = new PrimaryStage {
+    scene = new Scene(200, 200) {
+      content = new VBox {
+        padding = Insets(10)
+        spacing = 10
+        autosize()
+        children = List(
+          new Label("StrictlyVC Email Scraper"){
+            textFill = Color.DARKCYAN    
+          },
+          new MenuButton("MenuButton 1") {
+            items = List(
+              new MenuItem("MenuItem A") {
+                onAction = {ae: ActionEvent => {println(ae.eventType + " occurred on Menu Item A")}}
+              },
+              new MenuItem("MenuItem B")
+            )
+          },
+          new MenuButton {
+            text = "MenuButton 2"
+            items = List(
+              new MenuItem("MenuItem C") {
+                onAction = {ae: ActionEvent => {println(ae.eventType + " occurred on Menu Item C")}}
+              },
+              new MenuItem("MenuItem D")
+            )
+          },
+          new Text("ΠΩΠΩ ΕΝΑ CSV!ΕΛΑ ΓΙΩΡΓΗ!") {
+            font = Font.font(null, FontWeight.Bold, 18)
+            fill = Color.DARKCYAN
+            alignmentInParent = Pos.BottomCenter
+          }
+        )
+      }
+    }
+  } */
+  def main(args: Array[String]): Unit = {
+    val code :String  = """Massive Fundings
     Faire, a nearly three-year-old, San Francisco-based curated wholesale marketplace that connects independent retailers and makers, has raised $150 million in Series D funding at a $1 billion valuation. Lightspeed Venture Partners and Founders Fund co-led the round, joined by including earlier backers Forerunner Ventures, YC Continuity, and Khosla Ventures. Crunchbase News has more here.
     Big-But-Not-Crazy-Big Fundings 
     Brut, a 3.5-year-old, Paris-based video news startup that's focused on social good and social impact, has raised $40 million in Series B funding, money it will use, in part, to launch in the U.S. The round was led by Red River West and blisce. Other investors include Aryeh Bourkoff, the founder and CEO of LionTree; and Eric Zinterhofer, a founding partner of Searchlight Capital Partners. TechCrunch has more here.
@@ -33,11 +96,16 @@ object Spreadsheets {
     Workiz, a four-year-old, San Diego, Ca.-based startup whose software helps field service professionals manage their work, has raised $5 million in Series A funding led by Magenta Venture Partners, with participation from earlier investor Aleph. TechCrunch has more here.
     Jungle Ventures founded seven years ago in Singapore, has raised $240 million for its third Southeast Asian fund, with almost 60 percent of the capital coming from outside Asia, says Bloomberg. Investors in the fund included German development finance institution DEG, the World Bank‘s International Finance Corp., Bangkok Bank’s corporate venture capital arm, Cisco Investments and Singapore’s state investment firm, Temasek Holdings. More here.
     New Funds 
-    """ */
+    """ 
+    csvWriter = CSVWriter.open("/home/stkat/Downloads/output.csv" , append = true)
+    csvWriter.writeRow(List("Name :", "Age :","Based :","Value_proposition :","Investment_amount :", "investment_round :","lead_VCs :","link","Date")) //,"rest_VCs :" after lead VC's
+
+    emailDate = new Date()
     val filename = "/home/stkat/Desktop/Mwh.html"
     val fileContents = Source.fromFile(filename).getLines.mkString
     //println(fileContents)
     println(bodyMessageFilteringToCSVRow(fileContents))
+    csvWriter.close()
   }
 
 
@@ -51,12 +119,12 @@ object Spreadsheets {
         val nextHeader:Either[String,Header] =findNextHeader(xs,rawBodyMessage)
 
         if(rawBodyMessage.indexOf(x.name).!=(-1) && nextHeader.isRight){
-          val chunkedHtmlText = bodyMessage.slice(bodyMessage.indexOf(x.name.trim)+x.name.trim.length,bodyMessage.indexOf(nextHeader.getOrElse(Header("NotFound")).name.trim))
-          println("chunkedHtmlText: "+chunkedHtmlText)
-          
-          hrefLinkList = org.jsoup.Jsoup.parse(chunkedHtmlText).select("meta[name=Big-But-Not-Crazy-Big Fundings]")  //.eachAttr("href").asScala.toList)).reverse
-          //println("hrefLinkList :"+org.jsoup.Jsoup.parse(chunkedHtmlText).select("a").eachAttr("href").asScala.toList+" for headers from "+x.name+" to "+nextHeader.getOrElse(Header("NotFound")).name.trim)
-          headerContentFilter(chunkedHtmlText,org.jsoup.Jsoup.parse(chunkedHtmlText).text(),x.name) :: headerNamesIterator(bodyMessage,xs)
+          val chunkedHtmlText = bodyMessage.slice(bodyMessage.indexOf(x.name.trim)+x.name.trim.length,bodyMessage.indexOf(nextHeader.fold(l => "NotFound", r => r.name.trim)))  //
+          textLinkList = org.jsoup.Jsoup.parse(chunkedHtmlText).select("a").asScala.toList
+          .map(x => Tuple2(x.asInstanceOf[Element].html().toLowerCase,x.asInstanceOf[Element].attr("href")))
+          .filter{case (text,href) => text.contains("here")}
+
+          headerContentFilter(chunkedHtmlText,org.jsoup.Jsoup.parse(chunkedHtmlText).text(),x.name) :: headerNamesIterator(chunkedHtmlText,xs)
         }else
           List[String]()
       case Nil => List[String]()
@@ -168,10 +236,19 @@ object Spreadsheets {
           link ="@not_found"
         }
         if(!link.equals("@not_found")){
-          //csvWriter.writeRow(List(name,age,based,valueProposition,investmentAmount,investmentRound,investors,link,hrefLinkList.headOption.getOrElse(""),emailDate))
-          hrefLinkList = null
+          val occurences =link.slice(0,link.length).count(occ => occ.==("here"))
+          val linkResult =(1 to occurences).foldLeft(new StringBuilder(""))((acc,result) => result.asInstanceOf[StringBuilder].addString(new StringBuilder("=HYPERLINK(\""+textLinkList.headOption.getOrElse("")+"\";\"\"here\")")) ).toString  //.addString("=HYPERLINK(\""+textLinkList.headOption.getOrElse("")+"\";\"\"here\")")
+          csvWriter.writeRow(delimitWithDoubleQuotes(List(name,age,based,valueProposition,investmentAmount,investmentRound,investors,link,hrefLinkList.headOption.getOrElse(""))),List(emailDate))
+
+          /*           if(occurences >= 2) {
+            (1 to occurences).foldLeft(new StringBuilder(""))((acc,result) => result.asInstanceOf[StringBuilder].addString(new StringBuilder("=HYPERLINK(\""+textLinkList.headOption.getOrElse("")+"\";\"\"here\")")) )  //.addString("=HYPERLINK(\""+textLinkList.headOption.getOrElse("")+"\";\"\"here\")")
+            csvWriter.writeRow(List(name,age,based,valueProposition,investmentAmount,investmentRound,investors,link,textLinkList.headOption.getOrElse(""),emailDate))
+            textLinkList = null
+          }else{
+
+          } */
         }else{
-          //csvWriter.writeRow(List(name,age,based,valueProposition,investmentAmount,investmentRound,investors,"",emailDate))
+          csvWriter.writeRow(delimitWithDoubleQuotes(List(name,age,based,valueProposition,investmentAmount,investmentRound,investors,"",emailDate)))
         }
   
       })

@@ -30,7 +30,7 @@ object ScalaImapSsl {
   private[this] final val ventureAddr: InternetAddress = new InternetAddress(
     "StrictlyVC <connie@strictlyvc.com>")
 
-  def main(args: Array[String]) {
+  def main(args: Array[String]): Unit = {
       parser1.parse(args, Config()) match {
       case Some(config) =>
         csvWriter = CSVWriter.open(config.outputPath+"output.csv" , append = true)  //"/home/stelios/Downloads/output.csv"
@@ -235,7 +235,7 @@ object ScalaImapSsl {
         csvWriter.writeRow(List(name,age,based,valueProposition,investmentAmount,investmentRound,investors,link,hrefLinkList.headOption.getOrElse(""),emailDate))
         hrefLinkList = hrefLinkList.drop(1)
       }else{
-        csvWriter.writeRow(List(name,age,based,valueProposition,investmentAmount,investmentRound,investors,"",emailDate))
+        csvWriter.writeRow(List(name,age,based,valueProposition,investmentAmount,investmentRound,investors,"",emailDate)
       }
 
     })
