@@ -122,7 +122,6 @@ object ScalaImapSsl {
         if(rawBodyMessage.indexOf(x.name).!=(-1) && nextHeader.isRight){
           val chunkedHtmlText = bodyMessage.slice(bodyMessage.indexOf(x.name.trim)+x.name.trim.length,bodyMessage.indexOf(nextHeader.getOrElse(Header("NotFound")).name.trim))
           hrefLinkList = (hrefLinkList.:::(org.jsoup.Jsoup.parse(chunkedHtmlText).select("a").eachAttr("href").asScala.toList)).reverse
-          println("hrefLinkList :"+org.jsoup.Jsoup.parse(chunkedHtmlText).select("a").eachAttr("href").asScala.toList+" for headers from "+x.name+" to "+nextHeader.getOrElse(Header("NotFound")).name.trim)
           headerContentFilter(bodyMessage,org.jsoup.Jsoup.parse(chunkedHtmlText).text(),x.name) :: headerNamesIterator(bodyMessage,xs)
         }else
           List[String]()
