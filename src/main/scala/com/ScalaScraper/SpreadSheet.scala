@@ -237,7 +237,7 @@ object Spreadsheets {//extends JFXApp {
         }
         if(!link.equals("@not_found")){
           val occurences =link.sliding("here".length).count(occ => occ.==("here"))
-          val linkResult =(0 until occurences).foldLeft(new StringBuilder(""))((acc,result) => acc.asInstanceOf[StringBuilder].addString(new StringBuilder("=HYPERLINK(\""+textLinkList.headOption.getOrElse("")+"\";\"\"here\")"))).toString
+          val linkResult =(0 until occurences).foldLeft(new StringBuilder(""))((acc,result) => acc.asInstanceOf[StringBuilder].addString(new StringBuilder("=HYPERLINK(\""+textLinkList.headOption.getOrElse("")+"\",\"here\")"))).toString
           textLinkList = textLinkList.drop(occurences)
           val newList = List(name,age,based,valueProposition,investmentAmount,investmentRound,investors,link,linkResult).:+(emailDate)
           csvWriter.writeRow(newList)
