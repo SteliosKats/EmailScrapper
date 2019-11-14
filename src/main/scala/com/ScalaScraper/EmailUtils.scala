@@ -34,8 +34,9 @@ object EmailUtils {
 
   def linkExtractor(doc :org.jsoup.nodes.Document): List[String] = java.util.Arrays.asList(doc.select("a[href]")).asScala.toList.map(element => element.attr("href"))
 
-  def delimitWithDoubleQuotes(input :List[String]):List[String] = input.map{
-    case x if(x.contains("\"")) => "\""+x.replaceAll("\"","\"\"")+"\""
-    case x if(x.contains(",")) => "\""+input+"\""
-  }
+/*   def delimitWithDoubleQuotes(input :List[String]) :List[String] = input.map{  //:List[String]
+    case x if(x.contains("\"")) => "\""+x.replaceAll("\"","\"\"")+"\""  //println("Quoted :"+"\""+x.replaceAll("\"","\"\"")+"\"");x //
+    case x if(x.contains(",")) =>  "\""+x+"\"" //println("Comma :"+"\""+x+"\"");
+    case x => x
+  } */
 }

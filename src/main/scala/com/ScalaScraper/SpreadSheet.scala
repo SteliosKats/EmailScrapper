@@ -97,11 +97,11 @@ object Spreadsheets {//extends JFXApp {
     Jungle Ventures founded seven years ago in Singapore, has raised $240 million for its third Southeast Asian fund, with almost 60 percent of the capital coming from outside Asia, says Bloomberg. Investors in the fund included German development finance institution DEG, the World Bank‘s International Finance Corp., Bangkok Bank’s corporate venture capital arm, Cisco Investments and Singapore’s state investment firm, Temasek Holdings. More here.
     New Funds 
     """ 
-    csvWriter = CSVWriter.open("/home/stelios/Downloads/output.csv" , append = true)
+    csvWriter = CSVWriter.open("/home/stkat/Downloads/output.csv" , append = true)
     csvWriter.writeRow(List("Name :", "Age :","Based :","Value_proposition :","Investment_amount :", "investment_round :","lead_VCs :","link","Date")) //,"rest_VCs :" after lead VC's
 
     emailDate = new Date()
-    val filename = "/home/stelios/Desktop/Mwh.html"
+    val filename = "/home/stkat/Desktop/Mwh.html"
     val fileContents = Source.fromFile(filename).getLines.mkString
     //println(fileContents)
     println(bodyMessageFilteringToCSVRow(fileContents))
@@ -174,8 +174,8 @@ object Spreadsheets {//extends JFXApp {
           lastIndex = lastIndex.slice(lastIndex.indexOf(",")+1,lastIndex.length)
         }
   
-        val preInvestmentRoundKeywords :List[String] =List("in pre-Series","in Series","in seed","from")
-        val indexFound2 = calculateMinIndex(preInvestmentRoundKeywords,lastIndex)
+        val preInvestmentRoundKeywords :List[String] =List("in pre-Series","in Series","in seed","from", "in funding") //,"in funding"
+        val preInvestIndex = calculateMinIndex(preInvestmentRoundKeywords,lastIndex)
   
         val afterInvestmentRoundKeywords :List[String] =List("funding","in financing","financing","valuation")
         val indexFound3 = calculateMinIndex(afterInvestmentRoundKeywords,lastIndex)
@@ -183,16 +183,16 @@ object Spreadsheets {//extends JFXApp {
         val prelinkKeywords :List[String] =List("has more here","has much more here","More here","here")  //".",
         val indexFound5 = calculateMinIndex(prelinkKeywords,lastIndex)
   
-        //println("indexFound: "+indexFound+" and indexFound2: "+indexFound2+" and lastIndex.indexOf(indexFound2) "+lastIndex.indexOf(indexFound2) +" must be < indexFound3 :"+indexFound3+" which is lastIndex.indexOf(indexFound3)"+lastIndex.indexOf(indexFound3))
+        //println("indexFound: "+indexFound+" and preInvestIndex: "+preInvestIndex+" and lastIndex.indexOf(preInvestIndex) "+lastIndex.indexOf(preInvestIndex) +" must be < indexFound3 :"+indexFound3+" which is lastIndex.indexOf(indexFound3)"+lastIndex.indexOf(indexFound3))
         //InvestedAmount
         var investmentAmount =""
-        if(indexFound2 != "not_found" && compareIndexes(indexFound5,indexFound2,lastIndex) && compareIndexes(indexFound3,indexFound2,lastIndex) ){
-          investmentAmount = lastIndex.slice(0+lastIndex.indexOf(preIAindexFound)+preIAindexFound.length, lastIndex.indexOf(indexFound2))
-          lastIndex = lastIndex.slice(lastIndex.indexOf(indexFound2),lastIndex.length)
-        }else if(indexFound2 == "not found"  && indexFound3 != "not found" ) {
+        if(preInvestIndex != "not_found" && compareIndexes(indexFound5,preInvestIndex,lastIndex) && compareIndexes(indexFound3,preInvestIndex,lastIndex) ){
+          investmentAmount = lastIndex.slice(0+lastIndex.indexOf(preIAindexFound)+preIAindexFound.length, lastIndex.indexOf(preInvestIndex))
+          lastIndex = lastIndex.slice(lastIndex.indexOf(preInvestIndex),lastIndex.length)
+        }else if(preInvestIndex == "not found"  && indexFound3 != "not found" ) {
           investmentAmount = lastIndex.slice(0, lastIndex.indexOf(indexFound3))
-          lastIndex = lastIndex.slice(lastIndex.indexOf(indexFound2),lastIndex.length)
-        } else if(indexFound2 != "not found"  && indexFound3 != "not found"  && compareIndexes(indexFound5,indexFound2,lastIndex) ) {
+          lastIndex = lastIndex.slice(lastIndex.indexOf(preInvestIndex),lastIndex.length)
+        } else if(preInvestIndex != "not found"  && indexFound3 != "not found"  && compareIndexes(indexFound5,preInvestIndex,lastIndex) ) {
           investmentAmount = lastIndex.slice(0+lastIndex.indexOf(preIAindexFound)+preIAindexFound.length, lastIndex.indexOf(indexFound3))
           lastIndex = lastIndex.slice(lastIndex.indexOf(indexFound3),lastIndex.length)
         }
@@ -202,7 +202,10 @@ object Spreadsheets {//extends JFXApp {
   
         //investmentRound
         var investmentRound =""
-        if(indexFound3 != "not_found" && indexFound2 != "not_found" && compareIndexes(indexFound4,indexFound2,lastIndex) ){
+        if(indexFound3 != "not_found" && preInvestIndex != "not_found" && compareIndexes(indexFound4,preInvestIndex,lastIndex) && preInvestIndex =="in funding"){
+          investmentRound = lastIndex.slice(0, lastIndex.indexOf(preInvestIndex)+preInvestIndex.length)
+          lastIndex = lastIndex.slice(lastIndex.indexOf(indexFound3)+indexFound3.length,lastIndex.length)
+        }else if(indexFound3 != "not_found" && preInvestIndex != "not_found" && compareIndexes(indexFound4,preInvestIndex,lastIndex) ){
           investmentRound = lastIndex.slice(0, lastIndex.indexOf(indexFound3))
           lastIndex = lastIndex.slice(lastIndex.indexOf(indexFound3)+indexFound3.length,lastIndex.length)
         }
@@ -236,13 +239,13 @@ object Spreadsheets {//extends JFXApp {
           link ="@not_found"
         }
         if(!link.equals("@not_found")){
-          val occurences =link.sliding("here".length).count(occ => occ.==("here"))
+          val occurences =link.toSeq.sliding("here".length).map(_.unwrap).count(occ => occ.==("here"))
           val linkResult =(0 until occurences).foldLeft(new StringBuilder(""))((acc,result) => acc.asInstanceOf[StringBuilder].addString(new StringBuilder("=HYPERLINK(\""+textLinkList.headOption.getOrElse("")+"\",\"here\")"))).toString
           textLinkList = textLinkList.drop(occurences)
-          val newList = List(name,age,based,valueProposition,investmentAmount,investmentRound,investors,link,linkResult).:+(emailDate)
+          val newList = List(name,age,based,valueProposition,investmentAmount,investmentRound,investors,link,linkResult,emailDate)
           csvWriter.writeRow(newList)
         }else{
-          csvWriter.writeRow(delimitWithDoubleQuotes(List(name,age,based,valueProposition,investmentAmount,investmentRound,investors,"")).:+(emailDate))
+          csvWriter.writeRow(List(name,age,based,valueProposition,investmentAmount,investmentRound,investors,"",emailDate))
         }
   
       })
