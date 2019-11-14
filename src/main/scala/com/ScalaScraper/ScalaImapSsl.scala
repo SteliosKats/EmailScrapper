@@ -5,6 +5,7 @@ import java.util.{Date, Properties}
 import com.github.tototoshi.csv._
 import javax.mail._
 import javax.mail.internet._
+import org.jsoup.nodes.Element
 import collection.JavaConverters._
 import scala.annotation.tailrec
 
@@ -23,7 +24,7 @@ object ScalaImapSsl {
   //private[this] final val outputFile = new BufferedWriter(new FileWriter("/home/stelios/Downloads/output.csv"))
   private[this] var csvWriter :CSVWriter= _
   private[this] var emailDate :Date = _
-  private[this] var hrefLinkList : List[String] = Nil
+  private[this] var textLinkList : List[Tuple2[String,String]] = _
   private[this] final val scrapeFolderName = "scrapedEmails"
   private[this] final val georgeAddr: InternetAddress = new InternetAddress(
     "gk@venturefriends.vc")
@@ -51,15 +52,14 @@ object ScalaImapSsl {
             val messages = inbox.getMessages()
 
             val filteredMessages = messages.filter(message => message.getFrom.contains(ventureAddr))  //ventureAddr
-            csvWriter.writeRow(List("Name :", "Age :","Based :","Value_proposition :","Investment_amount :", "investment_round :","lead_VCs :","link","Date")) //,"rest_VCs :" after lead VC's
+            csvWriter.writeRow(List("Name :", "Age :","Based :","Value_proposition :","Investment_amount :", "investment_round :","lead_VCs :","link","hrefLink(s)","Date")) //,"rest_VCs :" after lead VC's
 
             for(message:Message <- filteredMessages ) {
               if (message.isMimeType("multipart/*") ){  //!emailStr.equals("") &&
                 val result = getTextFromMimeMultipart(message.getContent.asInstanceOf[MimeMultipart])
                 emailDate = message.getReceivedDate
                 bodyMessageFilteringToCSVRow(result)
-                hrefLinkList = Nil
-                println("hrefLinkList :"+hrefLinkList)
+                textLinkList = Nil
               }
             }
             csvWriter.close()
@@ -120,126 +120,136 @@ object ScalaImapSsl {
         val nextHeader:Either[String,Header] =findNextHeader(xs,rawBodyMessage)
 
         if(rawBodyMessage.indexOf(x.name).!=(-1) && nextHeader.isRight){
-          val chunkedHtmlText = bodyMessage.slice(bodyMessage.indexOf(x.name.trim)+x.name.trim.length,bodyMessage.indexOf(nextHeader.getOrElse(Header("NotFound")).name.trim))
-          hrefLinkList = (hrefLinkList.:::(org.jsoup.Jsoup.parse(chunkedHtmlText).select("a").eachAttr("href").asScala.toList)).reverse
-          headerContentFilter(bodyMessage,org.jsoup.Jsoup.parse(chunkedHtmlText).text(),x.name) :: headerNamesIterator(bodyMessage,xs)
+          val chunkedHtmlText = bodyMessage.slice(bodyMessage.indexOf(x.name.trim)+x.name.trim.length,bodyMessage.indexOf(nextHeader.fold(l => "NotFound", r => r.name.trim)))  //
+          textLinkList = org.jsoup.Jsoup.parse(chunkedHtmlText).select("a").asScala.toList
+          .map(x => Tuple2(x.asInstanceOf[Element].html().toLowerCase,x.asInstanceOf[Element].attr("href")))
+          .filter{case (text,href) => text.contains("here")}
+
+          headerContentFilter(chunkedHtmlText,org.jsoup.Jsoup.parse(chunkedHtmlText).text(),x.name) :: headerNamesIterator(chunkedHtmlText,xs)
         }else
           List[String]()
       case Nil => List[String]()
     }
 
-  private[this] def headerContentFilter(htmlheaderContents: String, headerContents: String, headerName: String): String = {
-    headerContents.split("\\n").filter(headerContent => headerContent.trim.length != 0).foreach({ headerContent =>
-      var lastIndex = headerContent //Get the un-HTML-ed code from headerContent
-      var name =""
-      if (lastIndex.indexOf(",") != -1) {
-        name = lastIndex.slice(0, lastIndex.indexOf(","))
-        lastIndex = lastIndex.slice(lastIndex.indexOf(",")+1,lastIndex.length)
-      }
-
-      val yearKeywords :List[String] =List("years-old","year-old","month-old","months-old","days-old")
-      val yearIndexFound = calculateMinIndex(yearKeywords,lastIndex)
-
-      var age =""
-      if(yearIndexFound != "not_found"){
-        age = lastIndex.slice(0, lastIndex.indexOf(yearIndexFound)+yearIndexFound.length)
-        lastIndex = lastIndex.slice(lastIndex.indexOf(yearIndexFound)+yearIndexFound.length+1,lastIndex.length)
-      }
-
-      val basedKeywords :List[String] =List("-based","- based","based")
-      val basedIndexFound = calculateMinIndex(basedKeywords,lastIndex)
-
-      val preInvestmentAmountKeywords :List[String] =List("has raised","just raised","raised","raising","has closed on","has closed","closed")
-      val preIAindexFound = calculateMinIndex(preInvestmentAmountKeywords,lastIndex)
-
-      var based =""
-      var valueProposition =""
-      if(basedIndexFound !="not_found"){
-        based = lastIndex.slice(0, lastIndex.indexOf(basedIndexFound)+basedIndexFound.length)
-        lastIndex = lastIndex.slice(lastIndex.indexOf(basedIndexFound)+basedIndexFound.length,lastIndex.length)
-
-        if(!preIAindexFound.equals("not_found")){
-          valueProposition = lastIndex.slice(0, lastIndex.indexOf(preIAindexFound)-1)
-          lastIndex = lastIndex.slice(lastIndex.indexOf(preIAindexFound),lastIndex.length)
-        }else {
-          valueProposition = lastIndex.slice(0, lastIndex.indexOf(",")-1)
+    private[this] def headerContentFilter(htmlheaderContents: String, headerContents: String, headerName: String): String = {
+      headerContents.split("\\n").filter(htmlheaderContents => htmlheaderContents.trim.length != 0).foreach({ headerContent =>
+        var lastIndex = headerContent //Get the un-HTML-ed code from headerContent
+        //println("htmlheaderContents "+htmlheaderContents)
+        var name =""
+        if (lastIndex.indexOf(",") != -1) {
+          name = lastIndex.slice(0, lastIndex.indexOf(","))
           lastIndex = lastIndex.slice(lastIndex.indexOf(",")+1,lastIndex.length)
         }
-      }else if(basedIndexFound =="not_found"){
-        valueProposition = lastIndex.slice(0, lastIndex.indexOf(","))
-        lastIndex = lastIndex.slice(lastIndex.indexOf(",")+1,lastIndex.length)
-      }
-
-      val preInvestmentRoundKeywords :List[String] =List("in pre-Series","in Series","in seed","from")
-      val indexFound2 = calculateMinIndex(preInvestmentRoundKeywords,lastIndex)
-
-      val afterInvestmentRoundKeywords :List[String] =List("funding","in financing","financing","valuation")
-      val indexFound3 = calculateMinIndex(afterInvestmentRoundKeywords,lastIndex)
-
-      val prelinkKeywords :List[String] =List("has more here","has much more here","More here","here")  //".",
-      val indexFound5 = calculateMinIndex(prelinkKeywords,lastIndex)
-
-      //println("indexFound: "+indexFound+" and indexFound2: "+indexFound2+" and lastIndex.indexOf(indexFound2) "+lastIndex.indexOf(indexFound2) +" must be < indexFound3 :"+indexFound3+" which is lastIndex.indexOf(indexFound3)"+lastIndex.indexOf(indexFound3))
-      //InvestedAmount
-      var investmentAmount =""
-      if(indexFound2 != "not_found" && compareIndexes(indexFound5,indexFound2,lastIndex) && compareIndexes(indexFound3,indexFound2,lastIndex) ){
-        investmentAmount = lastIndex.slice(0+lastIndex.indexOf(preIAindexFound)+preIAindexFound.length, lastIndex.indexOf(indexFound2))
-        lastIndex = lastIndex.slice(lastIndex.indexOf(indexFound2),lastIndex.length)
-      }else if(indexFound2 == "not found"  && indexFound3 != "not found" ) {
-        investmentAmount = lastIndex.slice(0, lastIndex.indexOf(indexFound3))
-        lastIndex = lastIndex.slice(lastIndex.indexOf(indexFound2),lastIndex.length)
-      } else if(indexFound2 != "not found"  && indexFound3 != "not found"  && compareIndexes(indexFound5,indexFound2,lastIndex) ) {
-        investmentAmount = lastIndex.slice(0+lastIndex.indexOf(preIAindexFound)+preIAindexFound.length, lastIndex.indexOf(indexFound3))
-        lastIndex = lastIndex.slice(lastIndex.indexOf(indexFound3),lastIndex.length)
-      }
-
-      val preInvestorsKeywords :List[String] =List("led by","co-led by","from","include","led the round")  //".",
-      val indexFound4 = calculateMinIndex(preInvestorsKeywords,lastIndex)
-
-      //investmentRound
-      var investmentRound =""
-      if(indexFound3 != "not_found" && indexFound2 != "not_found" && compareIndexes(indexFound4,indexFound2,lastIndex) ){
-        investmentRound = lastIndex.slice(0, lastIndex.indexOf(indexFound3))
-        lastIndex = lastIndex.slice(lastIndex.indexOf(indexFound3)+indexFound3.length,lastIndex.length)
-      }
-
-      //Investors
-      var investors =""
-      if(indexFound4 != "not_found") {
-        if (indexFound4 == "led the round" && indexFound5 != "not found"){
-          investors = lastIndex.slice(0, lastIndex.indexOf(indexFound5))
-          lastIndex = lastIndex.slice(lastIndex.indexOf(investors)+ investors.length, lastIndex.length)
-        }else{
-          investors = lastIndex.slice(0+lastIndex.indexOf(indexFound4)+indexFound4.length+1, lastIndex.indexOf(".",0+lastIndex.indexOf(indexFound4)+indexFound4.length+1))
-          lastIndex = lastIndex.slice(lastIndex.indexOf(".",0+lastIndex.indexOf(indexFound4)+indexFound4.length+1), lastIndex.length)
+  
+        val yearKeywords :List[String] =List("years-old","year-old","month-old","months-old","days-old")
+        val yearIndexFound = calculateMinIndex(yearKeywords,lastIndex)
+  
+        var age =""
+        if(yearIndexFound != "not_found"){
+          age = lastIndex.slice(0, lastIndex.indexOf(yearIndexFound)+yearIndexFound.length)
+          lastIndex = lastIndex.slice(lastIndex.indexOf(yearIndexFound)+yearIndexFound.length+1,lastIndex.length)
         }
-      }
-
-      //Link
-      var link =""
-      if(indexFound5 != "not_found"){
-        val newAgeIndex = calculateMinIndex(yearKeywords,lastIndex)
-        if(lastIndex.indexOf(newAgeIndex) != -1 && (compareIndexes(newAgeIndex,indexFound5,lastIndex))  ){
-          link = lastIndex.slice(0, lastIndex.indexOf(indexFound5)+indexFound5.length)
-          if(lastIndex.substring(lastIndex.indexOf(link)+link.length +1,lastIndex.length).length >=0){
-            headerContentFilter(htmlheaderContents,lastIndex.substring(lastIndex.indexOf(link)+link.length +1,lastIndex.length),headerName)
+  
+        val basedKeywords :List[String] =List("-based","- based","based")
+        val basedIndexFound = calculateMinIndex(basedKeywords,lastIndex)
+  
+        val preInvestmentAmountKeywords :List[String] =List("has raised","just raised","raised","raising","has closed on","has closed","closed")
+        val preIAindexFound = calculateMinIndex(preInvestmentAmountKeywords,lastIndex)
+  
+        var based =""
+        var valueProposition =""
+        if(basedIndexFound !="not_found"){
+          based = lastIndex.slice(0, lastIndex.indexOf(basedIndexFound)+basedIndexFound.length)
+          lastIndex = lastIndex.slice(lastIndex.indexOf(basedIndexFound)+basedIndexFound.length,lastIndex.length)
+  
+          if(!preIAindexFound.equals("not_found")){
+            valueProposition = lastIndex.slice(0, lastIndex.indexOf(preIAindexFound)-1)
+            lastIndex = lastIndex.slice(lastIndex.indexOf(preIAindexFound),lastIndex.length)
+          }else {
+            valueProposition = lastIndex.slice(0, lastIndex.indexOf(",")-1)
+            lastIndex = lastIndex.slice(lastIndex.indexOf(",")+1,lastIndex.length)
           }
-        }else {
-          link = lastIndex.slice(0, lastIndex.indexOf(indexFound5)+indexFound5.length)
-          lastIndex = lastIndex.slice(0,lastIndex.indexOf(".")).appended("\n").slice(0,lastIndex.length).toString
+        }else if(basedIndexFound =="not_found"){
+          valueProposition = lastIndex.slice(0, lastIndex.indexOf(","))
+          lastIndex = lastIndex.slice(lastIndex.indexOf(",")+1,lastIndex.length)
         }
-      }else{
-        link ="@not_found"
-      }
-      if(!link.equals("@not_found")){
-        csvWriter.writeRow(List(name,age,based,valueProposition,investmentAmount,investmentRound,investors,link,hrefLinkList.headOption.getOrElse(""),emailDate))
-        hrefLinkList = hrefLinkList.drop(1)
-      }else{
-        csvWriter.writeRow(List(name,age,based,valueProposition,investmentAmount,investmentRound,investors,"",emailDate))
-      }
-
-    })
-    ""
+  
+        val preInvestmentRoundKeywords :List[String] =List("in pre-Series","in Series","in seed","from", "in funding") //,"in funding"
+        val preInvestIndex = calculateMinIndex(preInvestmentRoundKeywords,lastIndex)
+  
+        val afterInvestmentRoundKeywords :List[String] =List("funding","in financing","financing","valuation")
+        val indexFound3 = calculateMinIndex(afterInvestmentRoundKeywords,lastIndex)
+  
+        val prelinkKeywords :List[String] =List("has more here","has much more here","More here","here")  //".",
+        val indexFound5 = calculateMinIndex(prelinkKeywords,lastIndex)
+  
+        //println("indexFound: "+indexFound+" and preInvestIndex: "+preInvestIndex+" and lastIndex.indexOf(preInvestIndex) "+lastIndex.indexOf(preInvestIndex) +" must be < indexFound3 :"+indexFound3+" which is lastIndex.indexOf(indexFound3)"+lastIndex.indexOf(indexFound3))
+        //InvestedAmount
+        var investmentAmount =""
+        if(preInvestIndex != "not_found" && compareIndexes(indexFound5,preInvestIndex,lastIndex) && compareIndexes(indexFound3,preInvestIndex,lastIndex) ){
+          investmentAmount = lastIndex.slice(0+lastIndex.indexOf(preIAindexFound)+preIAindexFound.length, lastIndex.indexOf(preInvestIndex))
+          lastIndex = lastIndex.slice(lastIndex.indexOf(preInvestIndex),lastIndex.length)
+        }else if(preInvestIndex == "not found"  && indexFound3 != "not found" ) {
+          investmentAmount = lastIndex.slice(0, lastIndex.indexOf(indexFound3))
+          lastIndex = lastIndex.slice(lastIndex.indexOf(preInvestIndex),lastIndex.length)
+        } else if(preInvestIndex != "not found"  && indexFound3 != "not found"  && compareIndexes(indexFound5,preInvestIndex,lastIndex) ) {
+          investmentAmount = lastIndex.slice(0+lastIndex.indexOf(preIAindexFound)+preIAindexFound.length, lastIndex.indexOf(indexFound3))
+          lastIndex = lastIndex.slice(lastIndex.indexOf(indexFound3),lastIndex.length)
+        }
+  
+        val preInvestorsKeywords :List[String] =List("led by","co-led by","from","include","led the round")  //".",
+        val indexFound4 = calculateMinIndex(preInvestorsKeywords,lastIndex)
+  
+        //investmentRound
+        var investmentRound =""
+        if(indexFound3 != "not_found" && preInvestIndex != "not_found" && compareIndexes(indexFound4,preInvestIndex,lastIndex) && preInvestIndex =="in funding"){
+          investmentRound = lastIndex.slice(0, lastIndex.indexOf(preInvestIndex)+preInvestIndex.length)
+          lastIndex = lastIndex.slice(lastIndex.indexOf(indexFound3)+indexFound3.length,lastIndex.length)
+        }else if(indexFound3 != "not_found" && preInvestIndex != "not_found" && compareIndexes(indexFound4,preInvestIndex,lastIndex) ){
+          investmentRound = lastIndex.slice(0, lastIndex.indexOf(indexFound3))
+          lastIndex = lastIndex.slice(lastIndex.indexOf(indexFound3)+indexFound3.length,lastIndex.length)
+        }
+  
+        //Investors
+        var investors =""
+        if(indexFound4 != "not_found") {
+          if (indexFound4 == "led the round" && indexFound5 != "not found"){
+            investors = lastIndex.slice(0, lastIndex.indexOf(indexFound5))
+            lastIndex = lastIndex.slice(lastIndex.indexOf(investors)+ investors.length, lastIndex.length)
+          }else{
+            investors = lastIndex.slice(0+lastIndex.indexOf(indexFound4)+indexFound4.length+1, lastIndex.indexOf(".",0+lastIndex.indexOf(indexFound4)+indexFound4.length+1))
+            lastIndex = lastIndex.slice(lastIndex.indexOf(".",0+lastIndex.indexOf(indexFound4)+indexFound4.length+1), lastIndex.length)
+          }
+        }
+  
+        //Link
+        var link =""
+        if(indexFound5 != "not_found"){
+          val newAgeIndex = calculateMinIndex(yearKeywords,lastIndex)
+          if(lastIndex.indexOf(newAgeIndex) != -1 && (compareIndexes(newAgeIndex,indexFound5,lastIndex))  ){
+            link = lastIndex.slice(0, lastIndex.indexOf(indexFound5)+indexFound5.length)
+            if(lastIndex.substring(lastIndex.indexOf(link)+link.length +1,lastIndex.length).length >=0){
+              headerContentFilter(htmlheaderContents,lastIndex.substring(lastIndex.indexOf(link)+link.length +1,lastIndex.length),headerName)
+            }
+          }else {
+            link = lastIndex.slice(0, lastIndex.indexOf(indexFound5)+indexFound5.length)
+            lastIndex = lastIndex.slice(0,lastIndex.indexOf(".")).appended("\n").slice(0,lastIndex.length).toString
+          }
+        }else{
+          link ="@not_found"
+        }
+        if(!link.equals("@not_found")){
+          val occurences =link.toSeq.sliding("here".length).map(_.unwrap).count(occ => occ.==("here"))
+          val linkResult =(0 until occurences).foldLeft(new StringBuilder(""))((acc,result) => acc.asInstanceOf[StringBuilder].addString(new StringBuilder("=HYPERLINK(\""+textLinkList.headOption.map(x => x._2).getOrElse("")+"\";\"here\")"))).toString //;\"here\"
+          textLinkList = textLinkList.drop(occurences)
+          val newList = List(name,age,based,valueProposition,investmentAmount,investmentRound,investors,link,linkResult,emailDate)
+          csvWriter.writeRow(newList)
+        }else{
+          csvWriter.writeRow(List(name,age,based,valueProposition,investmentAmount,investmentRound,investors,"","",emailDate))
+        }
+  
+      })
+      ""
+    }
+  
   }
-
-}
