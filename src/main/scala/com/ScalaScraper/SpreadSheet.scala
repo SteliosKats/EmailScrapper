@@ -98,7 +98,7 @@ object Spreadsheets {//extends JFXApp {
     New Funds 
     """ 
     csvWriter = CSVWriter.open("/home/stkat/Downloads/output.csv" , append = true)
-    csvWriter.writeRow(List("Name :", "Age :","Based :","Value_proposition :","Investment_amount :", "investment_round :","lead_VCs :","link","Date")) //,"rest_VCs :" after lead VC's
+    csvWriter.writeRow(List("Name :", "Age :","Based :","Value_proposition :","Investment_amount :", "investment_round :","lead_VCs :","linkText","hrefLinks","Date")) //,"rest_VCs :" after lead VC's
 
     emailDate = new Date()
     val filename = "/home/stkat/Desktop/Mwh.html"
@@ -240,7 +240,7 @@ object Spreadsheets {//extends JFXApp {
         }
         if(!link.equals("@not_found")){
           val occurences =link.toSeq.sliding("here".length).map(_.unwrap).count(occ => occ.==("here"))
-          val linkResult =(0 until occurences).foldLeft(new StringBuilder(""))((acc,result) => acc.asInstanceOf[StringBuilder].addString(new StringBuilder("=HYPERLINK(\""+textLinkList.headOption.getOrElse("")+"\",\"here\")"))).toString
+          val linkResult =(0 until occurences).foldLeft(new StringBuilder(""))((acc,result) => acc.asInstanceOf[StringBuilder].addString(new StringBuilder("=HYPERLINK(\""+textLinkList.headOption.map(x => x._2).getOrElse("")+"\";\"here\")"))).toString //;\"here\"
           textLinkList = textLinkList.drop(occurences)
           val newList = List(name,age,based,valueProposition,investmentAmount,investmentRound,investors,link,linkResult,emailDate)
           csvWriter.writeRow(newList)
