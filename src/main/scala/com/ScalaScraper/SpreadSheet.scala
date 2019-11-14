@@ -245,7 +245,7 @@ object Spreadsheets {//extends JFXApp {
           val newList = List(name,age,based,valueProposition,investmentAmount,investmentRound,investors,link,linkResult,emailDate)
           csvWriter.writeRow(newList)
         }else{
-          csvWriter.writeRow(List(name,age,based,valueProposition,investmentAmount,investmentRound,investors,"",emailDate))
+          csvWriter.writeRow(List(name,age,based,valueProposition,investmentAmount,investmentRound,investors,"","",emailDate))
         }
   
       })
