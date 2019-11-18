@@ -34,9 +34,10 @@ object Spreadsheets {//extends JFXApp {
   private[this] var csvWriter :CSVWriter= _
   private[this] var emailDate :Date = _
 
-  private[this] final val headerNames: List[Header] = List(Header("Massive Fundings "),Header("Big-But-Not ")
-    ,Header("Smaller Fundings "),Header("Not-Saying-How-Much Fundings "),Header("New Funds"))  //-Crazy-Big Fundings
-  
+  private[this] final val headerNames: List[Header] = List(Header("Massive Fundings "),Header("Big-But-Not-Crazy-Big Fundings")
+    ,Header("Smaller Fundings "),Header("Not-Saying-How-Much Fundings "),Header("New Funds"))  //Not-Crazy-Big Fundings
+  private[this] final val excludeHeaders: List[Header] = List(Header("Exits"),Header("People"),Header("Sponsored By"),Header("Jobs"),Header("Essential Reads"))
+  private[this] final val htlmlUncheckedNames:Header = Header("Big-But-Not-<em>Crazy</em>-Big Fundings")
 
 /*   stage = new PrimaryStage {
     scene = new Scene(200, 200) {
@@ -76,32 +77,35 @@ object Spreadsheets {//extends JFXApp {
   } */
   def main(args: Array[String]): Unit = {
     val code :String  = """Massive Fundings
-    Faire, a nearly three-year-old, San Francisco-based curated wholesale marketplace that connects independent retailers and makers, has raised $150 million in Series D funding at a $1 billion valuation. Lightspeed Venture Partners and Founders Fund co-led the round, joined by including earlier backers Forerunner Ventures, YC Continuity, and Khosla Ventures. Crunchbase News has more here.
+    Arranta Bio, a months-old, Watertown, Ma.-based contract development manufacturing organization focused on the biotech industry, has raised $82 million in funding, including from Ampersand Capital Partners and Thermo Fisher. More here.
+    B8ta, a four-year-old, San Francisco- and New York-based operator of an experiential retail-as-a-service platform, has raised $50 million in Series C funding led by Evolution Ventures, with participation from Macy’s, Khosla Ventures, and Peak State Ventures. Retail Touchpoints has more here.
+    Tmunity Therapeutics, a four-year-old, Philadelphia, Pa.-based biotherapeutics company trying to propel a series of cancer-fighting cellular therapies through clinical trials, has raised $75 million in Series B funding led by Andreessen Horowitz. Other investors in the round include Kleiner Perkins, Westlake Village BioPartners, Gilead Sciences, The University of Pennsylvania, Be The Match BioTherapies and BrightEdge Venture Fund. More here and here.
+    Vindex, a months-old, New York-based esports infrastructure platform founded by a former Activision Blizzard vice president, has raised $60 million in Series A funding from unnamed investors. ESPN has more here.
     Big-But-Not-Crazy-Big Fundings 
-    Brut, a 3.5-year-old, Paris-based video news startup that's focused on social good and social impact, has raised $40 million in Series B funding, money it will use, in part, to launch in the U.S. The round was led by Red River West and blisce. Other investors include Aryeh Bourkoff, the founder and CEO of LionTree; and Eric Zinterhofer, a founding partner of Searchlight Capital Partners. TechCrunch has more here.
-    Datameer, a 10-year-old, San Francisco-based big data analytics platform, has raised $40 million in funding led by ST Telemedia, with participation from earlier backers Redpoint Ventures, Kleiner Perkins, Nextworld Capital, Citi Ventures, and Top Tier Capital Partners. TechCrunch has more here. 
-    Duality, a three-year-old, Newark, N.J.-based company that builds software based on homomorphic encryption — a technique that encrypts an organization’s data in a way that lets it stay encrypted even as the company collaborates with third parties that also process the data — has raised $16 million in funding. The Series A round is being led by Intel Capital, with participation from Hearst Ventures and Team8. TechCrunch has more here.
-    ElasticRun, a three-year-old Pune, India-based startup that's building a logistics network to supply goods to the thousands of neighborhood stores that dot large and small cities, towns, and villages in India, has $40 million in a Series C funding led by Prosus Ventures, the newly public company spun out of Naspers. Earlier investors Avataar Ventures and Kalaari Capital also participated in the round, which brings ElasticRun's total funding to $55.5 million. TechCrunch explains the opportunity it's chasing here.
-    Mirror, a three-year-old, New York-based fitness content streaming device that users can hang and use like a traditional full-length mirror, has raised $34 million more in a Series B-1 funding round led by Point72 Ventures. , whose founder, hedge fund billionaire Steve Cohen, is also joining the board. The company has now raised $72 million to date. More here.
-    Muy, a two-year-old, Bogota, Colombia-based dark kitchen company that's producing its own food, has raised $15 million in Series B funding to expand into Mexico and, later, Brazil. The Mexico-based investor ALLVP led the round, with participation from earlier backer Seaya. The company has now raised $20.5 million altogether. TechCrunch has more here.
-    Particle, a seven-year-old, San Francisco-based platform for Internet of Things devices, has raised $40 million in its latest round of funding. Qualcomm Ventures and Energy Impact Partners led the round, with participation from earlier investors Root Ventures, Bonfire Ventures, Industry Ventures, Spark Capital, Green D Ventures, Counterpart Ventures, and SOSV. The company has now raised $81 million to date. TechCrunch has more here. 
-    Rokt, a seven-year-old, New York-based  e-commerce marketing technology, today announced an investment of $48 million from global investment firm, TDM Growth Partners, as well as existing investors. More here. 
-    Stampli, a four-year-old, Mountain View, Ca.-based company looking to automate invoice management, has today announced the close of a $25 million Series B round. The funding was led by SignalFire, with participation from Hillsven Capital, Bloomberg Beta, as well as new investor NextWorld Capital. TechCrunch has more here.
+    Crunchbase, a 12-year-old, Bay Area-based private company information database that spun out of TechCrunch in 2015, has raised $30 million in Series C funding led by OMERS Ventures. Earlier investors also participated in the round, including Emergence Capital, Mayfield, Cowboy Ventures, and Verizon Ventures. TechCrunch has more here.
+    CytoVale, a six-year-old, San Francisco-based med-tech startup focused on re-imagining diagnostics using cell mechanics and machine learning and applying this first to sepsis, just raised $15 million in funding. Breakout Ventures and Blackhorn Ventures led the round. More here.
+    dotData, a year-old, San Mateo, Ca.-based data science automation platform, has raised $23 million in Series A funding led by JAFCO, with participation from Goldman Sachs and NEC Corp. VentureBeat has more here.
+    Freetrade, a four-year-old, London-based startup offering a mobile app for zero-commission trades and professional advice, has raised $15 million in Series A funding, including from Draper Esprit. TechCrunch has more here.
     Smaller Fundings 
-    Artmyn, a three-year-old, Saint-Sulpice, Switzerland-based startup focused on the highly accurate digitization of visual artworks (it has developed a portable scanner that captures gigabytes of data describing the artwork in its finest details that it says results in true-to-life a visualization), has raised $4 million in funding. The round was co-led by the online marketplace for fine art and antiques Invaluable, along with earlier backers. More here.
-    CoinList, a two-year-old, San Francisco-based company that connects investors to crypto projects, has raised $10 million in funding led by Polychain Capital, with participation from Jack Dorsey, among others. The WSJ has more here.
-    Link3D, a three-year-old, New York-based startup behind an enterprise additive manufacturing execution system that connects organizations' digital manufacturing ecosystems, has raised $7 million in funding led by the AI-focused venture capital firm AI Capital. More here.  
-    Ruti, a nearly 11-year-old, Belmont, Ca.-based fashion brand with what it describes as a high-tech, highly personalized in-store experience (it has eight stores so far), has raised $6 million in a Series A funding led by Viola Ventures. More here.
-    Stardog, a 12-year-old, Arlington, Va.-based reusable, scalable knowledge graph platform that helps enterprises unify all their data, has raised $9 million in Series B funding led by Tenfore Holdings, with participation from Grotech Ventures, Boulder Ventures, and Core Capital. More here. 
-    Workiz, a four-year-old, San Diego, Ca.-based startup whose software helps field service professionals manage their work, has raised $5 million in Series A funding led by Magenta Venture Partners, with participation from earlier investor Aleph. TechCrunch has more here.
-    Jungle Ventures founded seven years ago in Singapore, has raised $240 million for its third Southeast Asian fund, with almost 60 percent of the capital coming from outside Asia, says Bloomberg. Investors in the fund included German development finance institution DEG, the World Bank‘s International Finance Corp., Bangkok Bank’s corporate venture capital arm, Cisco Investments and Singapore’s state investment firm, Temasek Holdings. More here.
-    New Funds 
+    Capital, a year-old, New York-based venture debt lender, has raised $5 million from Greycroft, Future Ventures, Wavemaker Ventures, and Disruptive. TechCrunch has more here.
+    Inne, a three-year-old, Berlin, Germany-based maker of mini-labs for women to track hormones and fertility, has raised €8 million in Series A funding. Blossom Capital led the round, joined by Monkfish Equity. TechCrunch has more here.
+    Kangarootime, a four-year-old, Buffalo, N.Y.-based maker of early childhood software, just raised $3.5 million in Series A funding, including from Cultivation Capital. More here.
+    Kubit, a year-old, Fremont, Ca.-based maker of augmented analytics software that aims to help teams meet their objectives, has raised $4.5 million in seed funding from Shasta Ventures.
+    Modus, a nearly two-year-old, Seattle-based real estate startup focused on title and escrow services, has raised $12.5 million in Series A funding co-led by NFX and Felicis Ventures. Liquid 2 Ventures and earlier backers Mucker Capital, Hustle Fund, 500 Startups, Rambleside and Cascadia Ventures also participated in the round. TechCrunch has more here.
+    Tactile Mobility, a seven-year-old, Haifa, Israel-based auto tech firm that sells tactile sensing and data analytics tech for smart and autonomous vehicles, municipalities, and fleet managers, has raised $9 million in funding. Investors include Porsche and Union Tech Ventures. VentureBeat has more here.
+    Techtonic, a 13-year-old, Boulder, Co.-based developer of onshore, product-driven software, has raised $6 million in Series B funding. Camden Partners led the round, joined by University Ventures and Zoma Capital. More here.
+    People
+    Aaref Hilaly has left Sequoia Capital after seven years to join Wing Venture Capital as a partner. Before joining Sequoia, Hilaly was a VP of engineering at Symantec.
+    Scott Painter, the founder of the SoftBank-backed car leasing startup Fair.com, has resigned as CEO following last week’s layoffs and announcement of a planned restructuring, according to The Verge. SoftBank’s Adam Hieber is taking over as interim CEO. Painter will stay on as chairman of Fair. His brother, who was Fair’s CFO, left the company last week. Painter is insisting he'll remain highly involved and that "different skill sets are needed during different phases of a company's growth," but this still looks awfully messy and it certainly comes at a lousy time for SoftBank. In fact . . .
+    SoftBank Masayoshi Son has evidently been so overworked of late that he actually fell asleep on stage earlier this week at the Future Investment Initiative conference, held in Saudi Arabia. We get it. Jet lag plus four people on a panel? It's a nightmare scenario. Business Insider has more here.
+    VC Cack Wilhelm has left her role as a San Francisco-based partner with Accomplice, says Axios, a job she took two years ago after spending three years as a principal with Scale Venture Partners. Axios notes that Wilhelm isn't talking next steps yet.
+    Noah Wintroub, a key figure at in JPMorgan who has been helping break the lock that Goldman Sachs and Morgan Stanley have on leading tech IPOs, receives more attention than he might like in a new Business Insider piece. The outlet talked with current and former JPMorgan employees about Wintroub's rise. While some suggest he's an "outstanding banker," he's also assigned some of the blame for JPMorgan's overly cozy relationship with WeWork. More here.
     """ 
-    csvWriter = CSVWriter.open("/home/stkat/Downloads/output.csv" , append = true)
+    csvWriter = CSVWriter.open("/home/stelios/Downloads/output.csv" , append = true)
     csvWriter.writeRow(List("Name :", "Age :","Based :","Value_proposition :","Investment_amount :", "investment_round :","lead_VCs :","linkText","hrefLinks","Date")) //,"rest_VCs :" after lead VC's
 
     emailDate = new Date()
-    val filename = "/home/stkat/Desktop/Mwh.html"
+    val filename = "/home/stelios/Desktop/Mwh.html"
     val fileContents = Source.fromFile(filename).getLines.mkString
     //println(fileContents)
     println(bodyMessageFilteringToCSVRow(fileContents))
@@ -113,26 +117,43 @@ object Spreadsheets {//extends JFXApp {
 
   private[this] def headerNamesIterator(bodyMessage: String, remainingNames: List[Header]):List[String] =
     remainingNames match {
-      case body :: Nil => List[String]()
+      
       case  x :: xs =>
-        val rawBodyMessage = org.jsoup.Jsoup.parse(bodyMessage).text()
-        val nextHeader:Either[String,Header] =findNextHeader(xs,rawBodyMessage)
-
-        if(rawBodyMessage.indexOf(x.name).!=(-1) && nextHeader.isRight){
-          val chunkedHtmlText = bodyMessage.slice(bodyMessage.indexOf(x.name.trim)+x.name.trim.length,bodyMessage.indexOf(nextHeader.fold(l => "NotFound", r => r.name.trim)))  //
-          textLinkList = org.jsoup.Jsoup.parse(chunkedHtmlText).select("a").asScala.toList
-          .map(x => Tuple2(x.asInstanceOf[Element].html().toLowerCase,x.asInstanceOf[Element].attr("href")))
-          .filter{case (text,href) => text.contains("here")}
-
-          headerContentFilter(chunkedHtmlText,org.jsoup.Jsoup.parse(chunkedHtmlText).text(),x.name) :: headerNamesIterator(chunkedHtmlText,xs)
-        }else
-          List[String]()
-      case Nil => List[String]()
+          val rawBodyMessage = org.jsoup.Jsoup.parse(bodyMessage).text()
+          //println(rawBodyMessage)
+          val nextHeader:Either[String,Header] = findNextHeader(xs,rawBodyMessage)
+          val nextUncheckedHeader:Either[String,Header] = findNextHeader(excludeHeaders,rawBodyMessage)
+          //println("nextHeader :"+nextHeader+"\t and \t xs:"+xs+"\t and x: \t"+x)
+          if(rawBodyMessage.indexOf(x.name.trim).!=(-1) && nextHeader.isRight){
+             val headerResult = nextHeader.fold(l => "NotFound", r => r.name.trim)
+             val startingHeaderPlusLength = bodyMessage.indexOf(x.name.trim)+x.name.length
+             val startingHeaderPlusLength2 = bodyMessage.indexOf(htlmlUncheckedNames.name)+htlmlUncheckedNames.name.length
+             val chunkedHtmlText = 
+             if(headerResult.equals("Big-But-Not-Crazy-Big Fundings") && bodyMessage.indexOf(headerResult) == -1)
+               bodyMessage.slice(startingHeaderPlusLength,bodyMessage.indexOf(htlmlUncheckedNames.name))
+             else
+               bodyMessage.slice(startingHeaderPlusLength2,bodyMessage.indexOf(nextHeader.fold(l => "NotFound", r => r.name.trim)))  //
+             //println("chunkedHtmlText:"+chunkedHtmlText)
+             //println("ChunkedText:"+chunkedText)
+             textLinkList = org.jsoup.Jsoup.parse(chunkedHtmlText).select("a").asScala.toList
+             .map(x => Tuple2(x.asInstanceOf[Element].html().toLowerCase,x.asInstanceOf[Element].attr("href")))
+             .filter{case (text,href) => text.contains("here")}
+             //println(startingHeaderPlusLength+"\t and "+chunkedHtmlText.length)
+             headerContentFilter(chunkedHtmlText,org.jsoup.Jsoup.parse(chunkedHtmlText).text()) :: headerNamesIterator(bodyMessage.substring(startingHeaderPlusLength,bodyMessage.length),xs)
+          }else if(rawBodyMessage.indexOf(x.name.trim).!=(-1) && (xs == Nil || nextHeader.isLeft)){
+             //headerNamesIterator(bodyMessage.substring(startingHeaderPlusLength,bodyMessage.length),xs)
+             val processedBody = bodyMessage.slice(bodyMessage.indexOf(x.name.trim),bodyMessage.indexOf(nextUncheckedHeader.fold(l => "NotFound", r => r.name.trim)))
+            headerContentFilter(processedBody ,org.jsoup.Jsoup.parse(processedBody).text()) //:: headerNamesIterator(bodyMessage,Nil)   
+            Nil
+          } else {
+            headerNamesIterator(bodyMessage, xs)
+          }
+      case Nil => Nil
     }
 
 
-    private[this] def headerContentFilter(htmlheaderContents: String, headerContents: String, headerName: String): String = {
-      headerContents.split("\\n").filter(htmlheaderContents => htmlheaderContents.trim.length != 0).foreach({ headerContent =>
+    private[this] def headerContentFilter(htmlheaderContents: String, headerContents: String): String  = {
+      headerContents.split("\\n").filter(headerContents => headerContents.trim.length != 0).foreach({ headerContent =>
         var lastIndex = headerContent //Get the un-HTML-ed code from headerContent
         //println("htmlheaderContents "+htmlheaderContents)
         var name =""
@@ -224,12 +245,15 @@ object Spreadsheets {//extends JFXApp {
   
         //Link
         var link =""
-        if(indexFound5 != "not_found"){
+        if(investors.contains("Shasta Ventures")){
+          println("indexFound5="+indexFound5)
+        }
+        if(indexFound5 != "not_found" && compareIndexes(yearIndexFound,indexFound5,lastIndex) ){
           val newAgeIndex = calculateMinIndex(yearKeywords,lastIndex)
           if(lastIndex.indexOf(newAgeIndex) != -1 && (compareIndexes(newAgeIndex,indexFound5,lastIndex))  ){
             link = lastIndex.slice(0, lastIndex.indexOf(indexFound5)+indexFound5.length)
             if(lastIndex.substring(lastIndex.indexOf(link)+link.length +1,lastIndex.length).length >=0){
-              headerContentFilter(htmlheaderContents,lastIndex.substring(lastIndex.indexOf(link)+link.length +1,lastIndex.length),headerName)
+              headerContentFilter(htmlheaderContents,lastIndex.substring(lastIndex.indexOf(link)+link.length +1,lastIndex.length))
             }
           }else {
             link = lastIndex.slice(0, lastIndex.indexOf(indexFound5)+indexFound5.length)
@@ -237,6 +261,7 @@ object Spreadsheets {//extends JFXApp {
           }
         }else{
           link ="@not_found"
+          headerContentFilter(htmlheaderContents,lastIndex)
         }
         if(!link.equals("@not_found")){
           val occurences =link.toSeq.sliding("here".length).map(_.unwrap).count(occ => occ.==("here"))
@@ -245,11 +270,11 @@ object Spreadsheets {//extends JFXApp {
           val newList = List(name,age,based,valueProposition,investmentAmount,investmentRound,investors,link,linkResult,emailDate)
           csvWriter.writeRow(newList)
         }else{
-          csvWriter.writeRow(List(name,age,based,valueProposition,investmentAmount,investmentRound,investors,"","",emailDate))
+          csvWriter.writeRow(List(name,age,based,valueProposition,investmentAmount,investmentRound,investors,"@not_found","@not_found",emailDate))
         }
   
       })
-      ""
+     ""
     }
   
   }

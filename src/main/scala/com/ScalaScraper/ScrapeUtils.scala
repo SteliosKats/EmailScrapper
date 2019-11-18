@@ -25,7 +25,7 @@ object ScrapeUtils {
   }
 
   def findNextHeader(remainingHeaderNames:List[Header],bodyMessage:String):Either[String,Header] = remainingHeaderNames match {
-    case x :: Nil => if(bodyMessage.indexOf(x.name).!=(-1)) Right(x) else Left("not_found")
+    case x :: Nil => if(bodyMessage.indexOf(x.name.trim).!=(-1)) Right(x) else Left("not_found")
 
     case x :: xs => if(bodyMessage.indexOf(x.name).!=(-1)) Right(x) else findNextHeader(xs,bodyMessage)
 
