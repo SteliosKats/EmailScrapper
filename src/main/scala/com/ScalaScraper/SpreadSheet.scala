@@ -105,7 +105,7 @@ object Spreadsheets {//extends JFXApp {
     csvWriter.writeRow(List("Name :", "Age :","Based :","Value_proposition :","Investment_amount :", "investment_round :","lead_VCs :","linkText","hrefLinks","Date")) //,"rest_VCs :" after lead VC's
 
     emailDate = new Date()
-    val filename = "/home/stelios/Desktop/Mwh.html"
+    val filename = "/home/stelios/Desktop/html2.html"
     val fileContents = Source.fromFile(filename).getLines.mkString
     //println(fileContents)
     println(bodyMessageFilteringToCSVRow(fileContents))
@@ -137,13 +137,15 @@ object Spreadsheets {//extends JFXApp {
              //println("ChunkedText:"+chunkedText)
              textLinkList = org.jsoup.Jsoup.parse(chunkedHtmlText).select("a").asScala.toList
              .map(x => Tuple2(x.asInstanceOf[Element].html().toLowerCase,x.asInstanceOf[Element].attr("href")))
-             .filter{case (text,href) => text.contains("here")}
+             .filter{case (text,href) => text.contains("here")}.reverse
              //println(startingHeaderPlusLength+"\t and "+chunkedHtmlText.length)
              headerContentFilter(chunkedHtmlText,org.jsoup.Jsoup.parse(chunkedHtmlText).text()) :: headerNamesIterator(bodyMessage.substring(startingHeaderPlusLength,bodyMessage.length),xs)
           }else if(rawBodyMessage.indexOf(x.name.trim).!=(-1) && (xs == Nil || nextHeader.isLeft)){
-             //headerNamesIterator(bodyMessage.substring(startingHeaderPlusLength,bodyMessage.length),xs)
+             textLinkList = org.jsoup.Jsoup.parse(bodyMessage).select("a").asScala.toList
+             .map(x => Tuple2(x.asInstanceOf[Element].html().toLowerCase,x.asInstanceOf[Element].attr("href")))
+             .filter{case (text,href) => text.contains("here")}.reverse
              val processedBody = bodyMessage.slice(bodyMessage.indexOf(x.name.trim),bodyMessage.indexOf(nextUncheckedHeader.fold(l => "NotFound", r => r.name.trim)))
-            headerContentFilter(processedBody ,org.jsoup.Jsoup.parse(processedBody).text()) //:: headerNamesIterator(bodyMessage,Nil)   
+            headerContentFilter(processedBody ,org.jsoup.Jsoup.parse(processedBody).text()) 
             Nil
           } else {
             headerNamesIterator(bodyMessage, xs)
@@ -201,10 +203,9 @@ object Spreadsheets {//extends JFXApp {
         val afterInvestmentRoundKeywords :List[String] =List("funding","in financing","financing","valuation")
         val indexFound3 = calculateMinIndex(afterInvestmentRoundKeywords,lastIndex)
   
-        val prelinkKeywords :List[String] =List("has more here","has much more here","More here","here")  //".",
+        val prelinkKeywords :List[String] =List("More here and here","more here and here","has more here","has much more here","More here","here")  //".",
         val indexFound5 = calculateMinIndex(prelinkKeywords,lastIndex)
   
-        //println("indexFound: "+indexFound+" and preInvestIndex: "+preInvestIndex+" and lastIndex.indexOf(preInvestIndex) "+lastIndex.indexOf(preInvestIndex) +" must be < indexFound3 :"+indexFound3+" which is lastIndex.indexOf(indexFound3)"+lastIndex.indexOf(indexFound3))
         //InvestedAmount
         var investmentAmount =""
         if(preInvestIndex != "not_found" && compareIndexes(indexFound5,preInvestIndex,lastIndex) && compareIndexes(indexFound3,preInvestIndex,lastIndex) ){
@@ -245,9 +246,6 @@ object Spreadsheets {//extends JFXApp {
   
         //Link
         var link =""
-        if(investors.contains("Shasta Ventures")){
-          println("indexFound5="+indexFound5)
-        }
         if(indexFound5 != "not_found" && compareIndexes(yearIndexFound,indexFound5,lastIndex) ){
           val newAgeIndex = calculateMinIndex(yearKeywords,lastIndex)
           if(lastIndex.indexOf(newAgeIndex) != -1 && (compareIndexes(newAgeIndex,indexFound5,lastIndex))  ){
