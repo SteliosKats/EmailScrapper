@@ -20,8 +20,8 @@ object ScalaImapSsl {
   private[this] final val waitTimeout = 2000
   private[this] final val headerNames: List[Header] = List(Header("Massive Fundings "),Header("Big-But-Not-Crazy-Big Fundings")
     ,Header("Smaller Fundings "),Header("Not-Saying-How-Much Fundings "),Header("New Funds"))  //Not-Crazy-Big Fundings
-  private[this] final val excludeHeaders: List[Header] = List(Header("Exits"),Header("People"),Header("Sponsored By"),Header("Jobs"),Header("Essential Reads"))
-  private[this] final val htlmlUncheckedNames:Header = Header("Big-But-Not-<em>Crazy</em>-Big Fundings")
+  private[this] final val excludeHeaders: List[Header] = List(Header("Exits"),Header("IPOs"),Header("People"),Header("Sponsored By"),Header("Jobs"),Header("Essential Reads"))
+  private[this] final val htlmlUncheckedNames: Header = Header("Big-But-Not-<em>Crazy</em>-Big Fundings")
 
   //private[this] final val outputFile = new BufferedWriter(new FileWriter("/home/stelios/Downloads/output.csv"))
   private[this] var csvWriter :CSVWriter= _
@@ -118,31 +118,34 @@ object ScalaImapSsl {
     remainingNames match {
       
       case  x :: xs =>
+          textLinkList = List()
           val rawBodyMessage = org.jsoup.Jsoup.parse(bodyMessage).text()
           //println(rawBodyMessage)
           val nextHeader:Either[String,Header] = findNextHeader(xs,rawBodyMessage)
           val nextUncheckedHeader:Either[String,Header] = findNextHeader(excludeHeaders,rawBodyMessage)
           //println("nextHeader :"+nextHeader+"\t and \t xs:"+xs+"\t and x: \t"+x)
           if(rawBodyMessage.indexOf(x.name.trim).!=(-1) && nextHeader.isRight){
-             val headerResult = nextHeader.fold(l => "NotFound", r => r.name.trim)
-             val startingHeaderPlusLength = bodyMessage.indexOf(x.name.trim)+x.name.length
-             val startingHeaderPlusLength2 = bodyMessage.indexOf(htlmlUncheckedNames.name)+htlmlUncheckedNames.name.length
-             val chunkedHtmlText = 
-             if(headerResult.equals("Big-But-Not-Crazy-Big Fundings") && bodyMessage.indexOf(headerResult) == -1)
-               bodyMessage.slice(startingHeaderPlusLength,bodyMessage.indexOf(htlmlUncheckedNames.name))
+ 
+             val nextHeaderResult = nextHeader.fold(l => "NotFound", r => r.name.trim)
+             val startingHeaderPlusLength = rawBodyMessage.indexOf(x.name.trim)+x.name.length
+             //val startingHeaderPlusLength2 = rawBodyMessage.indexOf(htlmlUncheckedNames.name)+htlmlUncheckedNames.name.length
+             val chunkedText = rawBodyMessage.substring(startingHeaderPlusLength,rawBodyMessage.indexOf(nextHeaderResult))
+
+             val chunkedHtmlText = if(nextHeaderResult.equals("Big-But-Not-Crazy-Big Fundings") && bodyMessage.indexOf(nextHeaderResult) == -1)
+               bodyMessage.substring(startingHeaderPlusLength,bodyMessage.indexOf(htlmlUncheckedNames.name))
              else
-               bodyMessage.slice(startingHeaderPlusLength2,bodyMessage.indexOf(nextHeader.fold(l => "NotFound", r => r.name.trim)))  //
-             //println("chunkedHtmlText:"+chunkedHtmlText)
-             //println("ChunkedText:"+chunkedText)
+               bodyMessage.substring(startingHeaderPlusLength,bodyMessage.indexOf(nextHeaderResult))  //
+             
              textLinkList = org.jsoup.Jsoup.parse(chunkedHtmlText).select("a").asScala.toList
              .map(x => Tuple2(x.asInstanceOf[Element].html().toLowerCase,x.asInstanceOf[Element].attr("href")))
-             .filter{case (text,href) => text.contains("here")}
-             //println(startingHeaderPlusLength+"\t and "+chunkedHtmlText.length)
-             headerContentFilter(chunkedHtmlText,org.jsoup.Jsoup.parse(chunkedHtmlText).text()) :: headerNamesIterator(bodyMessage.substring(startingHeaderPlusLength,bodyMessage.length),xs)
+             .filter{case (text,href) => text.contains("here")}.reverse
+             headerContentFilter(chunkedText) :: headerNamesIterator(bodyMessage.substring(startingHeaderPlusLength,bodyMessage.length),xs)
           }else if(rawBodyMessage.indexOf(x.name.trim).!=(-1) && (xs == Nil || nextHeader.isLeft)){
-             //headerNamesIterator(bodyMessage.substring(startingHeaderPlusLength,bodyMessage.length),xs)
-             val processedBody = bodyMessage.slice(bodyMessage.indexOf(x.name.trim),bodyMessage.indexOf(nextUncheckedHeader.fold(l => "NotFound", r => r.name.trim)))
-            headerContentFilter(processedBody ,org.jsoup.Jsoup.parse(processedBody).text()) //:: headerNamesIterator(bodyMessage,Nil)   
+             textLinkList = org.jsoup.Jsoup.parse(bodyMessage).select("a").asScala.toList
+             .map(x => Tuple2(x.asInstanceOf[Element].html().toLowerCase,x.asInstanceOf[Element].attr("href")))
+             .filter{case (text,href) => text.contains("here")}.reverse
+             val processedBody = rawBodyMessage.substring(rawBodyMessage.indexOf(x.name.trim),rawBodyMessage.indexOf(nextUncheckedHeader.fold(l => "NotFound", r => r.name.trim)))
+            headerContentFilter(processedBody)
             Nil
           } else {
             headerNamesIterator(bodyMessage, xs)
@@ -150,10 +153,10 @@ object ScalaImapSsl {
       case Nil => Nil
     }
 
-
-    private[this] def headerContentFilter(htmlheaderContents: String, headerContents: String): String  = {
+    private[this] def headerContentFilter(headerContents: String): String  = {
       headerContents.split("\\n").filter(headerContents => headerContents.trim.length != 0).foreach({ headerContent =>
         var lastIndex = headerContent //Get the un-HTML-ed code from headerContent
+        //println("htmlheaderContents "+htmlheaderContents)
         var name =""
         if (lastIndex.indexOf(",") != -1) {
           name = lastIndex.slice(0, lastIndex.indexOf(","))
@@ -199,7 +202,7 @@ object ScalaImapSsl {
         val afterInvestmentRoundKeywords :List[String] =List("funding","in financing","financing","valuation")
         val indexFound3 = calculateMinIndex(afterInvestmentRoundKeywords,lastIndex)
   
-        val prelinkKeywords :List[String] =List("has more here","has much more here","More here","here")  //".",
+        val prelinkKeywords :List[String] =List("More here and here","more here and here","has more here","has much more here","More here","here")  //".",
         val indexFound5 = calculateMinIndex(prelinkKeywords,lastIndex)
   
         //InvestedAmount
@@ -247,7 +250,7 @@ object ScalaImapSsl {
           if(lastIndex.indexOf(newAgeIndex) != -1 && (compareIndexes(newAgeIndex,indexFound5,lastIndex))  ){
             link = lastIndex.slice(0, lastIndex.indexOf(indexFound5)+indexFound5.length)
             if(lastIndex.substring(lastIndex.indexOf(link)+link.length +1,lastIndex.length).length >=0){
-              headerContentFilter(htmlheaderContents,lastIndex.substring(lastIndex.indexOf(link)+link.length +1,lastIndex.length))
+              headerContentFilter(lastIndex.substring(lastIndex.indexOf(link)+link.length +1,lastIndex.length))
             }
           }else {
             link = lastIndex.slice(0, lastIndex.indexOf(indexFound5)+indexFound5.length)
@@ -255,7 +258,9 @@ object ScalaImapSsl {
           }
         }else{
           link ="@not_found"
-          //headerContentFilter(htmlheaderContents,lastIndex)
+          if(lastIndex.trim.length != 0){
+            headerContentFilter(lastIndex)
+          }
         }
         if(!link.equals("@not_found")){
           val occurences =link.toSeq.sliding("here".length).map(_.unwrap).count(occ => occ.==("here"))
