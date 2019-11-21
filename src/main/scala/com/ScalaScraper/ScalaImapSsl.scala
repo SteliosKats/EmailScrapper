@@ -124,6 +124,10 @@ object ScalaImapSsl {
           val nextHeader:Either[String,Header] = findNextHeader(xs,rawBodyMessage)
           val nextUncheckedHeader:Either[String,Header] = findNextHeader(excludeHeaders,rawBodyMessage)
           //println("nextHeader :"+nextHeader+"\t and \t xs:"+xs+"\t and x: \t"+x)
+          //if(x.name.equals("New Funds")){
+            println("NextHeader : "+findNextHeader(xs,rawBodyMessage))
+            //("ChunkedText: "+rawBodyMessage.substring(rawBodyMessage.indexOf(x.name.trim)+x.name.length,rawBodyMessage.indexOf(nextHeader.fold(l => "NotFound", r => r.name.trim))))
+          //}
           if(rawBodyMessage.indexOf(x.name.trim).!=(-1) && nextHeader.isRight){
  
              val nextHeaderResult = nextHeader.fold(l => "NotFound", r => r.name.trim)

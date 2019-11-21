@@ -20,6 +20,8 @@ import scalafx.geometry.Pos
 import scala.io.Source
 import collection.JavaConverters._
 import org.jsoup.nodes.Element
+import org.jsoup.nodes.Document
+import org.jsoup.Jsoup
 import com.github.tototoshi.csv._
 
 object TypeClass {
@@ -101,11 +103,11 @@ object Spreadsheets {//extends JFXApp {
     VC Cack Wilhelm has left her role as a San Francisco-based partner with Accomplice, says Axios, a job she took two years ago after spending three years as a principal with Scale Venture Partners. Axios notes that Wilhelm isn't talking next steps yet.
     Noah Wintroub, a key figure at in JPMorgan who has been helping break the lock that Goldman Sachs and Morgan Stanley have on leading tech IPOs, receives more attention than he might like in a new Business Insider piece. The outlet talked with current and former JPMorgan employees about Wintroub's rise. While some suggest he's an "outstanding banker," he's also assigned some of the blame for JPMorgan's overly cozy relationship with WeWork. More here.
     """ 
-    csvWriter = CSVWriter.open("/home/stelios/Downloads/output.csv" , append = true)
-    csvWriter.writeRow(List("Name :", "Age :","Based :","Value_proposition :","Investment_amount :", "investment_round :","lead_VCs :","linkText","hrefLinks","Date")) //,"rest_VCs :" after lead VC's
+    csvWriter = CSVWriter.open("/home/stkat/Downloads/output.csv" , append = true)
+    csvWriter.writeRow(List("Name :", "Age :","Based :","Value_proposition :","Investment_amount :", "investment_round :","lead_VCs :","linkText :","hrefLinks :","Date :")) //,"rest_VCs :" after lead VC's
 
     emailDate = new Date()
-    val filename = "/home/stelios/Desktop/html2.html"
+    val filename = "/home/stkat/Desktop/Mwh.html"
     val fileContents = Source.fromFile(filename).getLines.mkString
     //println(fileContents)
     println(bodyMessageFilteringToCSVRow(fileContents))
@@ -119,33 +121,42 @@ object Spreadsheets {//extends JFXApp {
     remainingNames match {
       
       case  x :: xs =>
+          textLinkList = List()
           val rawBodyMessage = org.jsoup.Jsoup.parse(bodyMessage).text()
-          //println(rawBodyMessage)
+          val doc:Document = Jsoup.parse(bodyMessage)
+
+          val trSel = doc.select("table.m_965812827900677970wrapper > tbody:nth-child(1) > tr:nth-child(1) > td:nth-child(1) > table:nth-child(1) > tbody:nth-child(1) > tr:nth-child(1) > td:nth-child(1) > table:nth-child(1) > tbody:nth-child(1) > tr:nth-child(1) > td:nth-child(1) > table:nth-child(1) > tbody:nth-child(1) > tr:nth-child(1) > td:nth-child(1) > table:nth-child(12) > tbody:nth-child(1) > tr:nth-child(1) > td:nth-child(1) > div:nth-child(3) > div:nth-child(1) > div:nth-child(1) > span:nth-child(1) > span:nth-child(1)")
+
+          println(trSel)
           val nextHeader:Either[String,Header] = findNextHeader(xs,rawBodyMessage)
           val nextUncheckedHeader:Either[String,Header] = findNextHeader(excludeHeaders,rawBodyMessage)
           //println("nextHeader :"+nextHeader+"\t and \t xs:"+xs+"\t and x: \t"+x)
           if(rawBodyMessage.indexOf(x.name.trim).!=(-1) && nextHeader.isRight){
-             val headerResult = nextHeader.fold(l => "NotFound", r => r.name.trim)
-             val startingHeaderPlusLength = bodyMessage.indexOf(x.name.trim)+x.name.length
-             val startingHeaderPlusLength2 = bodyMessage.indexOf(htlmlUncheckedNames.name)+htlmlUncheckedNames.name.length
-             val chunkedHtmlText = 
-             if(headerResult.equals("Big-But-Not-Crazy-Big Fundings") && bodyMessage.indexOf(headerResult) == -1)
-               bodyMessage.slice(startingHeaderPlusLength,bodyMessage.indexOf(htlmlUncheckedNames.name))
+ 
+             val nextHeaderResult = nextHeader.fold(l => "NotFound", r => r.name.trim)
+             val startingHeaderPlusLength = rawBodyMessage.indexOf(x.name.trim)+x.name.length
+             //val startingHeaderPlusLength2 = rawBodyMessage.indexOf(htlmlUncheckedNames.name)+htlmlUncheckedNames.name.length
+             val chunkedText = rawBodyMessage.substring(startingHeaderPlusLength,rawBodyMessage.indexOf(nextHeaderResult))
+
+             val chunkedHtmlText = if(nextHeaderResult.equals("Big-But-Not-Crazy-Big Fundings") && bodyMessage.indexOf(nextHeaderResult) == -1)
+               bodyMessage.substring(startingHeaderPlusLength,bodyMessage.indexOf(htlmlUncheckedNames.name))
              else
-               bodyMessage.slice(startingHeaderPlusLength2,bodyMessage.indexOf(nextHeader.fold(l => "NotFound", r => r.name.trim)))  //
-             //println("chunkedHtmlText:"+chunkedHtmlText)
-             //println("ChunkedText:"+chunkedText)
+               bodyMessage.substring(startingHeaderPlusLength,bodyMessage.indexOf(nextHeaderResult))  //
+             
              textLinkList = org.jsoup.Jsoup.parse(chunkedHtmlText).select("a").asScala.toList
              .map(x => Tuple2(x.asInstanceOf[Element].html().toLowerCase,x.asInstanceOf[Element].attr("href")))
              .filter{case (text,href) => text.contains("here")}.reverse
-             //println(startingHeaderPlusLength+"\t and "+chunkedHtmlText.length)
-             headerContentFilter(chunkedHtmlText,org.jsoup.Jsoup.parse(chunkedHtmlText).text()) :: headerNamesIterator(bodyMessage.substring(startingHeaderPlusLength,bodyMessage.length),xs)
+             headerContentFilter(chunkedText) :: headerNamesIterator(bodyMessage.substring(startingHeaderPlusLength,bodyMessage.length),xs)
           }else if(rawBodyMessage.indexOf(x.name.trim).!=(-1) && (xs == Nil || nextHeader.isLeft)){
+            if(x.name.equals("New Funds")){
+              println("NextHeader : "+findNextHeader(xs,rawBodyMessage))
+              println("ChunkedText: "+rawBodyMessage.substring(rawBodyMessage.indexOf(x.name.trim),rawBodyMessage.indexOf(nextUncheckedHeader.fold(l => "NotFound", r => r.name.trim))))
+            }
              textLinkList = org.jsoup.Jsoup.parse(bodyMessage).select("a").asScala.toList
              .map(x => Tuple2(x.asInstanceOf[Element].html().toLowerCase,x.asInstanceOf[Element].attr("href")))
              .filter{case (text,href) => text.contains("here")}.reverse
-             val processedBody = bodyMessage.slice(bodyMessage.indexOf(x.name.trim),bodyMessage.indexOf(nextUncheckedHeader.fold(l => "NotFound", r => r.name.trim)))
-            headerContentFilter(processedBody ,org.jsoup.Jsoup.parse(processedBody).text()) 
+             val processedBody = rawBodyMessage.substring(rawBodyMessage.indexOf(x.name.trim),rawBodyMessage.indexOf(nextUncheckedHeader.fold(l => "NotFound", r => r.name.trim)))
+            headerContentFilter(processedBody)
             Nil
           } else {
             headerNamesIterator(bodyMessage, xs)
@@ -153,8 +164,7 @@ object Spreadsheets {//extends JFXApp {
       case Nil => Nil
     }
 
-
-    private[this] def headerContentFilter(htmlheaderContents: String, headerContents: String): String  = {
+    private[this] def headerContentFilter(headerContents: String): String  = {
       headerContents.split("\\n").filter(headerContents => headerContents.trim.length != 0).foreach({ headerContent =>
         var lastIndex = headerContent //Get the un-HTML-ed code from headerContent
         //println("htmlheaderContents "+htmlheaderContents)
@@ -251,7 +261,7 @@ object Spreadsheets {//extends JFXApp {
           if(lastIndex.indexOf(newAgeIndex) != -1 && (compareIndexes(newAgeIndex,indexFound5,lastIndex))  ){
             link = lastIndex.slice(0, lastIndex.indexOf(indexFound5)+indexFound5.length)
             if(lastIndex.substring(lastIndex.indexOf(link)+link.length +1,lastIndex.length).length >=0){
-              headerContentFilter(htmlheaderContents,lastIndex.substring(lastIndex.indexOf(link)+link.length +1,lastIndex.length))
+              headerContentFilter(lastIndex.substring(lastIndex.indexOf(link)+link.length +1,lastIndex.length))
             }
           }else {
             link = lastIndex.slice(0, lastIndex.indexOf(indexFound5)+indexFound5.length)
@@ -259,13 +269,18 @@ object Spreadsheets {//extends JFXApp {
           }
         }else{
           link ="@not_found"
-          headerContentFilter(htmlheaderContents,lastIndex)
+          if(lastIndex.trim.length != 0){
+            headerContentFilter(lastIndex)
+          }
         }
         if(!link.equals("@not_found")){
           val occurences =link.toSeq.sliding("here".length).map(_.unwrap).count(occ => occ.==("here"))
           val linkResult =(0 until occurences).foldLeft(new StringBuilder(""))((acc,result) => acc.asInstanceOf[StringBuilder].addString(new StringBuilder("=HYPERLINK(\""+textLinkList.headOption.map(x => x._2).getOrElse("")+"\";\"here\")"))).toString //;\"here\"
           textLinkList = textLinkList.drop(occurences)
           val newList = List(name,age,based,valueProposition,investmentAmount,investmentRound,investors,link,linkResult,emailDate)
+          if(headerContent.contains("Mubadala")){
+            println(newList)
+          }
           csvWriter.writeRow(newList)
         }else{
           csvWriter.writeRow(List(name,age,based,valueProposition,investmentAmount,investmentRound,investors,"@not_found","@not_found",emailDate))
