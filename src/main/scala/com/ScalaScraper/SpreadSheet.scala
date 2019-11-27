@@ -123,11 +123,7 @@ object Spreadsheets {//extends JFXApp {
       case  x :: xs =>
           textLinkList = List()
           val rawBodyMessage = org.jsoup.Jsoup.parse(bodyMessage).text()
-          val doc:Document = Jsoup.parse(bodyMessage)
-
-          val trSel = doc.select("table.m_965812827900677970wrapper > tbody:nth-child(1) > tr:nth-child(1) > td:nth-child(1) > table:nth-child(1) > tbody:nth-child(1) > tr:nth-child(1) > td:nth-child(1) > table:nth-child(1) > tbody:nth-child(1) > tr:nth-child(1) > td:nth-child(1) > table:nth-child(1) > tbody:nth-child(1) > tr:nth-child(1) > td:nth-child(1) > table:nth-child(12) > tbody:nth-child(1) > tr:nth-child(1) > td:nth-child(1) > div:nth-child(3) > div:nth-child(1) > div:nth-child(1) > span:nth-child(1) > span:nth-child(1)")
-
-          println(trSel)
+          //println(rawBodyMessage)
           val nextHeader:Either[String,Header] = findNextHeader(xs,rawBodyMessage)
           val nextUncheckedHeader:Either[String,Header] = findNextHeader(excludeHeaders,rawBodyMessage)
           //println("nextHeader :"+nextHeader+"\t and \t xs:"+xs+"\t and x: \t"+x)
@@ -135,28 +131,25 @@ object Spreadsheets {//extends JFXApp {
  
              val nextHeaderResult = nextHeader.fold(l => "NotFound", r => r.name.trim)
              val startingHeaderPlusLength = rawBodyMessage.indexOf(x.name.trim)+x.name.length
-             //val startingHeaderPlusLength2 = rawBodyMessage.indexOf(htlmlUncheckedNames.name)+htlmlUncheckedNames.name.length
+             val startingHeaderPlusLengthHtml = bodyMessage.indexOf(x.name.trim)+x.name.length
+
              val chunkedText = rawBodyMessage.substring(startingHeaderPlusLength,rawBodyMessage.indexOf(nextHeaderResult))
 
              val chunkedHtmlText = if(nextHeaderResult.equals("Big-But-Not-Crazy-Big Fundings") && bodyMessage.indexOf(nextHeaderResult) == -1)
-               bodyMessage.substring(startingHeaderPlusLength,bodyMessage.indexOf(htlmlUncheckedNames.name))
+               bodyMessage.substring(startingHeaderPlusLengthHtml,bodyMessage.indexOf(htlmlUncheckedNames.name))
              else
-               bodyMessage.substring(startingHeaderPlusLength,bodyMessage.indexOf(nextHeaderResult))  //
+               bodyMessage.substring(startingHeaderPlusLengthHtml,bodyMessage.indexOf(nextHeaderResult))  //
              
              textLinkList = org.jsoup.Jsoup.parse(chunkedHtmlText).select("a").asScala.toList
              .map(x => Tuple2(x.asInstanceOf[Element].html().toLowerCase,x.asInstanceOf[Element].attr("href")))
              .filter{case (text,href) => text.contains("here")}.reverse
-             headerContentFilter(chunkedText) :: headerNamesIterator(bodyMessage.substring(startingHeaderPlusLength,bodyMessage.length),xs)
+             headerContentFilter(chunkedText,true) :: headerNamesIterator(bodyMessage.substring(startingHeaderPlusLength,bodyMessage.length),xs)
           }else if(rawBodyMessage.indexOf(x.name.trim).!=(-1) && (xs == Nil || nextHeader.isLeft)){
-            if(x.name.equals("New Funds")){
-              println("NextHeader : "+findNextHeader(xs,rawBodyMessage))
-              println("ChunkedText: "+rawBodyMessage.substring(rawBodyMessage.indexOf(x.name.trim),rawBodyMessage.indexOf(nextUncheckedHeader.fold(l => "NotFound", r => r.name.trim))))
-            }
              textLinkList = org.jsoup.Jsoup.parse(bodyMessage).select("a").asScala.toList
              .map(x => Tuple2(x.asInstanceOf[Element].html().toLowerCase,x.asInstanceOf[Element].attr("href")))
              .filter{case (text,href) => text.contains("here")}.reverse
              val processedBody = rawBodyMessage.substring(rawBodyMessage.indexOf(x.name.trim),rawBodyMessage.indexOf(nextUncheckedHeader.fold(l => "NotFound", r => r.name.trim)))
-            headerContentFilter(processedBody)
+            headerContentFilter(processedBody,true)
             Nil
           } else {
             headerNamesIterator(bodyMessage, xs)
@@ -164,7 +157,7 @@ object Spreadsheets {//extends JFXApp {
       case Nil => Nil
     }
 
-    private[this] def headerContentFilter(headerContents: String): String  = {
+    private[this] def headerContentFilter(headerContents: String, firstTime : Boolean): String  = {
       headerContents.split("\\n").filter(headerContents => headerContents.trim.length != 0).foreach({ headerContent =>
         var lastIndex = headerContent //Get the un-HTML-ed code from headerContent
         //println("htmlheaderContents "+htmlheaderContents)
@@ -174,7 +167,7 @@ object Spreadsheets {//extends JFXApp {
           lastIndex = lastIndex.slice(lastIndex.indexOf(",")+1,lastIndex.length)
         }
   
-        val yearKeywords :List[String] =List("years-old","year-old","month-old","months-old","days-old")
+        val yearKeywords :List[String] = List("years-old","year-old","month-old","months-old","days-old")
         val yearIndexFound = calculateMinIndex(yearKeywords,lastIndex)
   
         var age =""
@@ -183,10 +176,10 @@ object Spreadsheets {//extends JFXApp {
           lastIndex = lastIndex.slice(lastIndex.indexOf(yearIndexFound)+yearIndexFound.length+1,lastIndex.length)
         }
   
-        val basedKeywords :List[String] =List("-based","- based","based")
+        val basedKeywords :List[String] = List("-based","- based","based")
         val basedIndexFound = calculateMinIndex(basedKeywords,lastIndex)
   
-        val preInvestmentAmountKeywords :List[String] =List("has raised","just raised","raised","raising","has closed on","has closed","closed")
+        val preInvestmentAmountKeywords :List[String] = List("has raised","just raised","raised","raising","has closed on","has closed","closed")
         val preIAindexFound = calculateMinIndex(preInvestmentAmountKeywords,lastIndex)
   
         var based =""
@@ -207,13 +200,13 @@ object Spreadsheets {//extends JFXApp {
           lastIndex = lastIndex.slice(lastIndex.indexOf(",")+1,lastIndex.length)
         }
   
-        val preInvestmentRoundKeywords :List[String] =List("in pre-Series","in Series","in seed","from", "in funding") //,"in funding"
+        val preInvestmentRoundKeywords :List[String] = List("in pre-Series","in Series","in seed","from", "in funding") //,"in funding"
         val preInvestIndex = calculateMinIndex(preInvestmentRoundKeywords,lastIndex)
   
-        val afterInvestmentRoundKeywords :List[String] =List("funding","in financing","financing","valuation")
+        val afterInvestmentRoundKeywords :List[String] = List("funding","in financing","financing","valuation")
         val indexFound3 = calculateMinIndex(afterInvestmentRoundKeywords,lastIndex)
   
-        val prelinkKeywords :List[String] =List("More here and here","more here and here","has more here","has much more here","More here","here")  //".",
+        val prelinkKeywords :List[String] = List("More here and here","more here and here","has more here","has much more here","More here","here")  //".",
         val indexFound5 = calculateMinIndex(prelinkKeywords,lastIndex)
   
         //InvestedAmount
@@ -221,15 +214,15 @@ object Spreadsheets {//extends JFXApp {
         if(preInvestIndex != "not_found" && compareIndexes(indexFound5,preInvestIndex,lastIndex) && compareIndexes(indexFound3,preInvestIndex,lastIndex) ){
           investmentAmount = lastIndex.slice(0+lastIndex.indexOf(preIAindexFound)+preIAindexFound.length, lastIndex.indexOf(preInvestIndex))
           lastIndex = lastIndex.slice(lastIndex.indexOf(preInvestIndex),lastIndex.length)
-        }else if(preInvestIndex == "not found"  && indexFound3 != "not found" ) {
+        }else if(preInvestIndex == "not found" && indexFound3 != "not found" ) {
           investmentAmount = lastIndex.slice(0, lastIndex.indexOf(indexFound3))
           lastIndex = lastIndex.slice(lastIndex.indexOf(preInvestIndex),lastIndex.length)
-        } else if(preInvestIndex != "not found"  && indexFound3 != "not found"  && compareIndexes(indexFound5,preInvestIndex,lastIndex) ) {
+        } else if(preInvestIndex != "not found" && indexFound3 != "not found"  && compareIndexes(indexFound5,preInvestIndex,lastIndex) ) {
           investmentAmount = lastIndex.slice(0+lastIndex.indexOf(preIAindexFound)+preIAindexFound.length, lastIndex.indexOf(indexFound3))
           lastIndex = lastIndex.slice(lastIndex.indexOf(indexFound3),lastIndex.length)
         }
   
-        val preInvestorsKeywords :List[String] =List("led by","co-led by","from","include","led the round")  //".",
+        val preInvestorsKeywords :List[String] = List("led by","co-led by","from","include","led the round")  //".",
         val indexFound4 = calculateMinIndex(preInvestorsKeywords,lastIndex)
   
         //investmentRound
@@ -261,7 +254,7 @@ object Spreadsheets {//extends JFXApp {
           if(lastIndex.indexOf(newAgeIndex) != -1 && (compareIndexes(newAgeIndex,indexFound5,lastIndex))  ){
             link = lastIndex.slice(0, lastIndex.indexOf(indexFound5)+indexFound5.length)
             if(lastIndex.substring(lastIndex.indexOf(link)+link.length +1,lastIndex.length).length >=0){
-              headerContentFilter(lastIndex.substring(lastIndex.indexOf(link)+link.length +1,lastIndex.length))
+              headerContentFilter(lastIndex.substring(lastIndex.indexOf(link)+link.length +1,lastIndex.length),true)
             }
           }else {
             link = lastIndex.slice(0, lastIndex.indexOf(indexFound5)+indexFound5.length)
@@ -269,18 +262,16 @@ object Spreadsheets {//extends JFXApp {
           }
         }else{
           link ="@not_found"
-          if(lastIndex.trim.length != 0){
-            headerContentFilter(lastIndex)
-          }
+          if(lastIndex.trim.length != 0 && firstTime)
+            headerContentFilter(lastIndex,false)
+          else
+            link = lastIndex.slice(0, lastIndex.length) 
         }
         if(!link.equals("@not_found")){
           val occurences =link.toSeq.sliding("here".length).map(_.unwrap).count(occ => occ.==("here"))
           val linkResult =(0 until occurences).foldLeft(new StringBuilder(""))((acc,result) => acc.asInstanceOf[StringBuilder].addString(new StringBuilder("=HYPERLINK(\""+textLinkList.headOption.map(x => x._2).getOrElse("")+"\";\"here\")"))).toString //;\"here\"
           textLinkList = textLinkList.drop(occurences)
           val newList = List(name,age,based,valueProposition,investmentAmount,investmentRound,investors,link,linkResult,emailDate)
-          if(headerContent.contains("Mubadala")){
-            println(newList)
-          }
           csvWriter.writeRow(newList)
         }else{
           csvWriter.writeRow(List(name,age,based,valueProposition,investmentAmount,investmentRound,investors,"@not_found","@not_found",emailDate))
