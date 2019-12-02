@@ -22,7 +22,7 @@ object ScalaImapSsl {
   private[this] final val headerNames: List[Header] = List(Header("Massive Fundings "),Header("Big-But-Not")
     ,Header("Smaller Fundings "),Header("Not-Saying-How-Much "),Header("New Funds"))  //Not-Crazy-Big Fundings //Not-Saying-How-Much Fundings
   private[this] final val excludeHeaders: List[Header] = List(Header("Exits"),Header("IPOs"),Header("People"),Header("Sponsored By"),Header("Jobs"),Header("Essential Reads"))
-  private[this] final val htlmlUncheckedNames: Header = Header("Big-But-Not-<em>Crazy</em>-Big Fundings")
+  private[this] final val htlmlUncheckedNames: List[(String,String)] = List("Big-But-Not"->"Big-But-Not-<em>Crazy</em>-Big Fundings","Smaller Fundings"->"Smaller&nbsp;Fundings&nbsp;")
 
   //private[this] final val outputFile = new BufferedWriter(new FileWriter("/home/stelios/Downloads/output.csv"))
   private[this] var csvWriter :CSVWriter= _
@@ -121,8 +121,6 @@ object ScalaImapSsl {
       case  x :: xs =>
           textLinkList = List()
           val rawBodyMessage = org.jsoup.Jsoup.parse(bodyMessage).text()
-        //val rawBodyMessage = org.jsoup.Jsoup.parse(bodyMessage).select("div:nth-child(2) > center > div > table >").text()
-        //println(rawBodyMessage)
           val nextHeader:Either[String,Header] = findNextHeader(xs,rawBodyMessage)
           val nextUncheckedHeader:Either[String,Header] = findNextHeader(excludeHeaders,rawBodyMessage)
           if(rawBodyMessage.indexOf(x.name.trim).!=(-1) && nextHeader.isRight){
@@ -131,12 +129,12 @@ object ScalaImapSsl {
              val startingHeaderPlusLength = rawBodyMessage.indexOf(x.name.trim)+x.name.length
              val startingHeaderPlusLengthHtml = bodyMessage.indexOf(x.name.trim)+x.name.length
              val chunkedRawText = rawBodyMessage.substring(startingHeaderPlusLength,rawBodyMessage.indexOf(nextHeaderResult))
-
-             val chunkedHtmlText = if(nextHeaderResult.equals("Big-But-Not-Crazy-Big Fundings") && bodyMessage.indexOf(nextHeaderResult) == -1)
-               bodyMessage.substring(startingHeaderPlusLengthHtml,bodyMessage.indexOf(htlmlUncheckedNames.name))
+             val nextHeaderFoundOnList :List[String] = htlmlUncheckedNames.map{case (rawHeader,htmlHeader) => if(nextHeaderResult.equals(rawHeader)) htmlHeader}.filter(_ != (())).asInstanceOf[List[String]]
+             val chunkedHtmlText = if(!nextHeaderFoundOnList.isEmpty && bodyMessage.indexOf(nextHeaderFoundOnList.head) != -1)
+               bodyMessage.substring(startingHeaderPlusLengthHtml,bodyMessage.indexOf(nextHeaderFoundOnList.head))
              else
-               bodyMessage.substring(startingHeaderPlusLengthHtml,bodyMessage.indexOf(nextHeaderResult))
-
+               bodyMessage.substring(startingHeaderPlusLengthHtml,
+                          bodyMessage.indexOf(nextHeaderResult))
 
               textLinkList = org.jsoup.Jsoup.parse(chunkedHtmlText).select("a").asScala.toList
              .map(x => Tuple2(x.asInstanceOf[Element].html().toLowerCase,x.asInstanceOf[Element].attr("href")))
