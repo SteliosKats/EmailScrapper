@@ -52,7 +52,7 @@ lazy val commonSettings = Seq(
 lazy val app = (project in file("app")).
   settings(commonSettings: _*).
   settings(
-    mainClass in assembly := Some("scalamail.ScalaImapSsl"),
+    mainClass in assembly := Some("com.ScalaScraper.ScalaImapSsl"),  //mainClass in assembly := Some("scalamail.ScalaImapSsl"),
     assemblyJarName in assembly := "GmailScrapper.jar",
     // more settings here ...
   )

@@ -44,6 +44,15 @@ object ScalaImapSsl {
         val store = session.getStore("imaps")
         try {
             Thread.currentThread.setContextClassLoader(this.getClass.getClassLoader) // Bypass exception "IMAPInputStream cannot be cast to javax.mail.Multipart"
+            import javax.activation.CommandMap
+            import javax.activation.MailcapCommandMap
+            val mc = CommandMap.getDefaultCommandMap.asInstanceOf[MailcapCommandMap]
+            mc.addMailcap("text/html;; x-java-content-handler=com.sun.mail.handlers.text_html")
+            mc.addMailcap("text/xml;; x-java-content-handler=com.sun.mail.handlers.text_xml")
+            mc.addMailcap("text/plain;; x-java-content-handler=com.sun.mail.handlers.text_plain")
+            mc.addMailcap("multipart/*;; x-java-content-handler=com.sun.mail.handlers.multipart_mixed")
+            mc.addMailcap("message/rfc822;; x-java-content-handler=com.sun.mail.handlers.message_rfc822")
+            CommandMap.setDefaultCommandMap(mc)
             store.connect("imap.gmail.com",
               config.email,
               config.imapsPass)
