@@ -19,10 +19,10 @@ object ScalaImapSsl {
   import com.ScalaScraper.JCommanderArgs._
   import com.ScalaScraper.ScrapeUtils._
   private[this] final val waitTimeout = 2000
-  private[this] final val headerNames: List[Header] = List(Header("Massive Fundings "),Header("Big-But-Not")
-    ,Header("Smaller Fundings "),Header("Not-Saying-How-Much "),Header("New Funds"))  //Not-Crazy-Big Fundings //Not-Saying-How-Much Fundings
-  private[this] final val excludeHeaders: List[Header] = List(Header("Exits"),Header("IPOs"),Header("People"),Header("Sponsored By"),Header("Jobs"),Header("Essential Reads"))
-  private[this] final val htlmlUncheckedNames: List[(String,String)] = List("Big-But-Not"->"Big-But-Not-<em>Crazy</em>-Big Fundings","Smaller Fundings"->"Smaller&nbsp;Fundings&nbsp;")
+  private[this] final val headerNames: List[Header] = List(Header("Massive Fundings "),Header("Big-But-Not-Crazy-Big Fundings")
+    ,Header("Smaller Fundings "),Header("Not-Saying-How-Much "),Header("Not-Telling-How-Much Fundings"),Header("New Funds"))  //Not-Crazy-Big Fundings //Not-Saying-How-Much Fundings
+  private[this] final val excludeHeaders: List[Header] = List(Header("Exits</span>"),Header("IPOs</span>"),Header("People</span>"),Header("Sponsored By</span>"),Header("Jobs</span>"),Header("Essential Reads</span>"))
+  private[this] final val htlmlUncheckedNames: List[(String,String)] = List("Big-But-Not-Crazy-Big Fundings"->"Big-But-Not-<em>Crazy</em>-Big Fundings","Not-Telling-How-Much Fundings" -> "Not-Telling-How-Much&nbsp;Fundings","Smaller Fundings"->"Smaller&nbsp;Fundings&nbsp;")
 
   //private[this] final val outputFile = new BufferedWriter(new FileWriter("/home/stelios/Downloads/output.csv"))
   private[this] var csvWriter :CSVWriter= _
@@ -129,31 +129,32 @@ object ScalaImapSsl {
 
       case  x :: xs =>
           textLinkList = List()
-          val rawBodyMessage = org.jsoup.Jsoup.parse(bodyMessage).text()
-          val nextHeader:Either[String,Header] = findNextHeader(xs,rawBodyMessage)
-          val nextUncheckedHeader:Either[String,Header] = findNextHeader(excludeHeaders,rawBodyMessage)
-          if(rawBodyMessage.indexOf(x.name.trim).!=(-1) && nextHeader.isRight){
+          val rawStrBodyMessage = org.jsoup.Jsoup.parse(bodyMessage).text()  //text in string format  un-htmled
+          val nextHeaderName:Either[String,Header] = findNextHeader(xs,rawStrBodyMessage)
+          val nextUncheckedHeader:Either[String,Header] = findNextHeader(excludeHeaders,bodyMessage)
+          if(rawStrBodyMessage.indexOf(x.name.trim).!=(-1) && nextHeaderName.isRight){
 
-             val nextHeaderResult = nextHeader.fold(l => "NotFound", r => r.name.trim)
-             val startingHeaderPlusLength = rawBodyMessage.indexOf(x.name.trim)+x.name.length
+             val nextHeader = nextHeaderName.fold(l => "NotFound", r => r.name.trim)
+             val startingHeaderPlusLength = rawStrBodyMessage.indexOf(x.name.trim)+x.name.length
              val startingHeaderPlusLengthHtml = bodyMessage.indexOf(x.name.trim)+x.name.length
-             val chunkedRawText = rawBodyMessage.substring(startingHeaderPlusLength,rawBodyMessage.indexOf(nextHeaderResult))
-             val nextHeaderFoundOnList :List[String] = htlmlUncheckedNames.map{case (rawHeader,htmlHeader) => if(nextHeaderResult.equals(rawHeader)) htmlHeader}.filter(_ != (())).asInstanceOf[List[String]]
+             val chunkedRawText = rawStrBodyMessage.substring(startingHeaderPlusLength,rawStrBodyMessage.indexOf(nextHeader))
+             val nextHeaderFoundOnList :List[String] = htlmlUncheckedNames.map{case (rawHeader,htmlHeader) => if(nextHeader.equals(rawHeader)) htmlHeader}.filter(_ != (())).asInstanceOf[List[String]]
              val chunkedHtmlText = if(!nextHeaderFoundOnList.isEmpty && bodyMessage.indexOf(nextHeaderFoundOnList.head) != -1)
                bodyMessage.substring(startingHeaderPlusLengthHtml,bodyMessage.indexOf(nextHeaderFoundOnList.head))
              else
                bodyMessage.substring(startingHeaderPlusLengthHtml,
-                          bodyMessage.indexOf(nextHeaderResult))
+                          bodyMessage.indexOf(nextHeader))
 
               textLinkList = org.jsoup.Jsoup.parse(chunkedHtmlText).select("a").asScala.toList
              .map(x => Tuple2(x.asInstanceOf[Element].html().toLowerCase,x.asInstanceOf[Element].attr("href")))
              .filter{case (text,href) => text.contains("here")}.reverse
              headerContentFilter(chunkedRawText,true) :: headerNamesIterator(bodyMessage.substring(startingHeaderPlusLength,bodyMessage.length),xs)
-          }else if(rawBodyMessage.indexOf(x.name.trim).!=(-1) && (xs == Nil || nextHeader.isLeft)){
+          } else if(rawStrBodyMessage.indexOf(x.name.trim).!=(-1) && (xs == Nil || nextHeaderName.isLeft)){  //case when the last header is found, so the remaining text does not contain a valid header
             textLinkList = org.jsoup.Jsoup.parse(bodyMessage).select("a").asScala.toList
              .map(x => Tuple2(x.asInstanceOf[Element].html().toLowerCase,x.asInstanceOf[Element].attr("href")))
              .filter{case (text,href) => text.contains("here")}.reverse
-             val processedBody = rawBodyMessage.substring(rawBodyMessage.indexOf(x.name.trim),rawBodyMessage.indexOf(nextUncheckedHeader.fold(l => "NotFound", r => r.name.trim)))
+             val startingHeaderPlusLengthHtml = bodyMessage.indexOf(x.name.trim)+x.name.length
+             val processedBody = org.jsoup.Jsoup.parse(bodyMessage.substring(startingHeaderPlusLengthHtml,bodyMessage.indexOf(nextUncheckedHeader.fold(l => "NotFound", r => r.name.trim)))).text()
             headerContentFilter(processedBody,true) :: headerNamesIterator("",Nil)
           } else {
             headerNamesIterator(bodyMessage, xs)
