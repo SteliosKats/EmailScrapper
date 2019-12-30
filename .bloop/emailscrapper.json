@@ -1,0 +1,1481 @@
+{
+    "version" : "1.1.2",
+    "project" : {
+        "name" : "emailscrapper",
+        "directory" : "/home/stelios/workspace/EmailScrapper",
+        "sources" : [
+            "/home/stelios/workspace/EmailScrapper/src/main/scala-2.13",
+            "/home/stelios/workspace/EmailScrapper/src/main/scala",
+            "/home/stelios/workspace/EmailScrapper/src/main/java",
+            "/home/stelios/workspace/EmailScrapper/target/scala-2.13/src_managed/main"
+        ],
+        "dependencies" : [
+            "app"
+        ],
+        "classpath" : [
+            "/home/stelios/.cache/coursier/v1/https/repo1.maven.org/maven2/org/apache/commons/commons-text/1.6/commons-text-1.6.jar",
+            "/home/stelios/.cache/coursier/v1/https/repo1.maven.org/maven2/com/github/nscala-time/nscala-time_2.13/2.22.0/nscala-time_2.13-2.22.0.jar",
+            "/home/stelios/.cache/coursier/v1/https/repo1.maven.org/maven2/org/joda/joda-convert/2.2.0/joda-convert-2.2.0.jar",
+            "/home/stelios/.cache/coursier/v1/https/repo1.maven.org/maven2/org/mortbay/jetty/servlet-api/2.5-20081211/servlet-api-2.5-20081211.jar",
+            "/home/stelios/.cache/coursier/v1/https/repo1.maven.org/maven2/com/google/apis/google-api-services-plus/v1-rev210-1.19.1/google-api-services-plus-v1-rev210-1.19.1.jar",
+            "/home/stelios/.cache/coursier/v1/https/repo1.maven.org/maven2/com/google/http-client/google-http-client/1.23.0/google-http-client-1.23.0.jar",
+            "/home/stelios/.cache/coursier/v1/https/repo1.maven.org/maven2/joda-time/joda-time/2.10.1/joda-time-2.10.1.jar",
+            "/home/stelios/.cache/coursier/v1/https/repo1.maven.org/maven2/xml-apis/xml-apis/1.4.01/xml-apis-1.4.01.jar",
+            "/home/stelios/.cache/coursier/v1/https/repo1.maven.org/maven2/org/openjfx/javafx-base/12.0.2/javafx-base-12.0.2-linux.jar",
+            "/home/stelios/.cache/coursier/v1/https/repo1.maven.org/maven2/commons-io/commons-io/2.6/commons-io-2.6.jar",
+            "/home/stelios/.cache/coursier/v1/https/repo1.maven.org/maven2/org/openjfx/javafx-fxml/12.0.2/javafx-fxml-12.0.2-linux.jar",
+            "/home/stelios/.cache/coursier/v1/https/repo1.maven.org/maven2/com/google/oauth-client/google-oauth-client-java6/1.19.0/google-oauth-client-java6-1.19.0.jar",
+            "/home/stelios/.cache/coursier/v1/https/repo1.maven.org/maven2/org/scala-lang/scala-library/2.13.1/scala-library-2.13.1.jar",
+            "/home/stelios/.cache/coursier/v1/https/repo1.maven.org/maven2/commons-codec/commons-codec/1.11/commons-codec-1.11.jar",
+            "/home/stelios/.cache/coursier/v1/https/repo1.maven.org/maven2/org/openjfx/javafx-controls/12.0.2/javafx-controls-12.0.2-linux.jar",
+            "/home/stelios/.cache/coursier/v1/https/repo1.maven.org/maven2/net/sourceforge/htmlunit/htmlunit-core-js/2.34.0/htmlunit-core-js-2.34.0.jar",
+            "/home/stelios/.cache/coursier/v1/https/repo1.maven.org/maven2/org/openjfx/javafx-swing/12.0.2/javafx-swing-12.0.2-linux.jar",
+            "/home/stelios/.cache/coursier/v1/https/repo1.maven.org/maven2/com/google/http-client/google-http-client-jackson2/1.23.0/google-http-client-jackson2-1.23.0.jar",
+            "/home/stelios/.cache/coursier/v1/https/repo1.maven.org/maven2/org/openjfx/javafx-web/12.0.2/javafx-web-12.0.2-linux.jar",
+            "/home/stelios/.cache/coursier/v1/https/repo1.maven.org/maven2/com/google/oauth-client/google-oauth-client-jetty/1.19.0/google-oauth-client-jetty-1.19.0.jar",
+            "/home/stelios/.cache/coursier/v1/https/repo1.maven.org/maven2/com/google/code/findbugs/jsr305/1.3.9/jsr305-1.3.9.jar",
+            "/home/stelios/.cache/coursier/v1/https/repo1.maven.org/maven2/org/apache/httpcomponents/httpmime/4.5.7/httpmime-4.5.7.jar",
+            "/home/stelios/.cache/coursier/v1/https/repo1.maven.org/maven2/org/openjfx/javafx-base/12.0.2/javafx-base-12.0.2.jar",
+            "/home/stelios/.cache/coursier/v1/https/repo1.maven.org/maven2/com/google/oauth-client/google-oauth-client/1.23.0/google-oauth-client-1.23.0.jar",
+            "/home/stelios/.cache/coursier/v1/https/repo1.maven.org/maven2/javax/activation/activation/1.1/activation-1.1.jar",
+            "/home/stelios/.cache/coursier/v1/https/repo1.maven.org/maven2/org/eclipse/jetty/jetty-io/9.4.15.v20190215/jetty-io-9.4.15.v20190215.jar",
+            "/home/stelios/.cache/coursier/v1/https/repo1.maven.org/maven2/org/openjfx/javafx-graphics/12.0.2/javafx-graphics-12.0.2.jar",
+            "/home/stelios/.cache/coursier/v1/https/repo1.maven.org/maven2/org/eclipse/jetty/websocket/websocket-api/9.4.15.v20190215/websocket-api-9.4.15.v20190215.jar",
+            "/home/stelios/.cache/coursier/v1/https/repo1.maven.org/maven2/org/openjfx/javafx-media/12.0.2/javafx-media-12.0.2-linux.jar",
+            "/home/stelios/.cache/coursier/v1/https/repo1.maven.org/maven2/org/apache/httpcomponents/httpclient/4.5.7/httpclient-4.5.7.jar",
+            "/home/stelios/.cache/coursier/v1/https/repo1.maven.org/maven2/org/openjfx/javafx-controls/12.0.2/javafx-controls-12.0.2.jar",
+            "/home/stelios/.cache/coursier/v1/https/repo1.maven.org/maven2/org/scalaz/scalaz-core_2.13/7.2.28/scalaz-core_2.13-7.2.28.jar",
+            "/home/stelios/.cache/coursier/v1/https/repo1.maven.org/maven2/net/ruippeixotog/scala-scraper_2.13/2.2.0/scala-scraper_2.13-2.2.0.jar",
+            "/home/stelios/.cache/coursier/v1/https/repo1.maven.org/maven2/com/github/tototoshi/scala-csv_2.13/1.3.6/scala-csv_2.13-1.3.6.jar",
+            "/home/stelios/.cache/coursier/v1/https/repo1.maven.org/maven2/org/eclipse/jetty/websocket/websocket-client/9.4.15.v20190215/websocket-client-9.4.15.v20190215.jar",
+            "/home/stelios/.cache/coursier/v1/https/repo1.maven.org/maven2/org/openjfx/javafx-media/12.0.2/javafx-media-12.0.2.jar",
+            "/home/stelios/.cache/coursier/v1/https/repo1.maven.org/maven2/org/mortbay/jetty/jetty-util/6.1.26/jetty-util-6.1.26.jar",
+            "/home/stelios/.cache/coursier/v1/https/repo1.maven.org/maven2/org/eclipse/jetty/jetty-client/9.4.15.v20190215/jetty-client-9.4.15.v20190215.jar",
+            "/home/stelios/.cache/coursier/v1/https/repo1.maven.org/maven2/net/sourceforge/htmlunit/htmlunit-cssparser/1.3.0/htmlunit-cssparser-1.3.0.jar",
+            "/home/stelios/.cache/coursier/v1/https/repo1.maven.org/maven2/com/google/guava/guava/13.0.1/guava-13.0.1.jar",
+            "/home/stelios/.cache/coursier/v1/https/repo1.maven.org/maven2/org/openjfx/javafx-graphics/12.0.2/javafx-graphics-12.0.2-linux.jar",
+            "/home/stelios/.cache/coursier/v1/https/repo1.maven.org/maven2/xalan/xalan/2.7.2/xalan-2.7.2.jar",
+            "/home/stelios/.cache/coursier/v1/https/repo1.maven.org/maven2/org/scalafx/scalafx_2.13/12.0.2-R18/scalafx_2.13-12.0.2-R18.jar",
+            "/home/stelios/.cache/coursier/v1/https/repo1.maven.org/maven2/org/mortbay/jetty/jetty/6.1.26/jetty-6.1.26.jar",
+            "/home/stelios/.cache/coursier/v1/https/repo1.maven.org/maven2/javax/mail/mail/1.4/mail-1.4.jar",
+            "/home/stelios/.cache/coursier/v1/https/repo1.maven.org/maven2/org/eclipse/jetty/jetty-util/9.4.15.v20190215/jetty-util-9.4.15.v20190215.jar",
+            "/home/stelios/.cache/coursier/v1/https/repo1.maven.org/maven2/org/eclipse/jetty/jetty-xml/9.4.15.v20190215/jetty-xml-9.4.15.v20190215.jar",
+            "/home/stelios/.cache/coursier/v1/https/repo1.maven.org/maven2/org/eclipse/jetty/jetty-http/9.4.15.v20190215/jetty-http-9.4.15.v20190215.jar",
+            "/home/stelios/.cache/coursier/v1/https/repo1.maven.org/maven2/com/google/apis/google-api-services-gmail/v1-rev72-1.23.0/google-api-services-gmail-v1-rev72-1.23.0.jar",
+            "/home/stelios/.cache/coursier/v1/https/repo1.maven.org/maven2/org/apache/commons/commons-lang3/3.8.1/commons-lang3-3.8.1.jar",
+            "/home/stelios/.cache/coursier/v1/https/repo1.maven.org/maven2/com/github/scopt/scopt_2.13/4.0.0-RC2/scopt_2.13-4.0.0-RC2.jar",
+            "/home/stelios/.cache/coursier/v1/https/repo1.maven.org/maven2/com/google/guava/guava-jdk5/17.0/guava-jdk5-17.0.jar",
+            "/home/stelios/.cache/coursier/v1/https/repo1.maven.org/maven2/commons-net/commons-net/3.6/commons-net-3.6.jar",
+            "/home/stelios/.cache/coursier/v1/https/repo1.maven.org/maven2/org/eclipse/jetty/websocket/websocket-common/9.4.15.v20190215/websocket-common-9.4.15.v20190215.jar",
+            "/home/stelios/.cache/coursier/v1/https/repo1.maven.org/maven2/xalan/serializer/2.7.2/serializer-2.7.2.jar",
+            "/home/stelios/.cache/coursier/v1/https/repo1.maven.org/maven2/com/google/gdata/core/1.47.1/core-1.47.1.jar",
+            "/home/stelios/.cache/coursier/v1/https/repo1.maven.org/maven2/org/scala-lang/scala-reflect/2.13.1/scala-reflect-2.13.1.jar",
+            "/home/stelios/.cache/coursier/v1/https/repo1.maven.org/maven2/net/sourceforge/htmlunit/neko-htmlunit/2.34.0/neko-htmlunit-2.34.0.jar",
+            "/home/stelios/.cache/coursier/v1/https/repo1.maven.org/maven2/org/apache/httpcomponents/httpcore/4.4.11/httpcore-4.4.11.jar",
+            "/home/stelios/.cache/coursier/v1/https/repo1.maven.org/maven2/com/google/api-client/google-api-client/1.23.0/google-api-client-1.23.0.jar",
+            "/home/stelios/.cache/coursier/v1/https/repo1.maven.org/maven2/com/fasterxml/jackson/core/jackson-core/2.1.3/jackson-core-2.1.3.jar",
+            "/home/stelios/.cache/coursier/v1/https/repo1.maven.org/maven2/net/sourceforge/htmlunit/htmlunit/2.34.1/htmlunit-2.34.1.jar",
+            "/home/stelios/.cache/coursier/v1/https/repo1.maven.org/maven2/xerces/xercesImpl/2.12.0/xercesImpl-2.12.0.jar",
+            "/home/stelios/.cache/coursier/v1/https/repo1.maven.org/maven2/org/jsoup/jsoup/1.11.3/jsoup-1.11.3.jar",
+            "/home/stelios/.cache/coursier/v1/https/repo1.maven.org/maven2/commons-logging/commons-logging/1.2/commons-logging-1.2.jar"
+        ],
+        "out" : "/home/stelios/workspace/EmailScrapper/.bloop/emailscrapper",
+        "classesDir" : "/home/stelios/workspace/EmailScrapper/.bloop/emailscrapper/scala-2.13/classes",
+        "resources" : [
+            "/home/stelios/workspace/EmailScrapper/src/main/resources",
+            "/home/stelios/workspace/EmailScrapper/target/scala-2.13/resource_managed/main"
+        ],
+        "scala" : {
+            "organization" : "org.scala-lang",
+            "name" : "scala-compiler",
+            "version" : "2.13.1",
+            "options" : [
+                "-unchecked",
+                "-deprecation",
+                "-Xcheckinit",
+                "-encoding",
+                "utf8",
+                "-feature",
+                "-P:semanticdb:synthetics:on",
+                "-P:semanticdb:failures:warning",
+                "-P:semanticdb:sourceroot:/home/stelios/workspace/EmailScrapper",
+                "-Yrangepos",
+                "-Xplugin-require:semanticdb",
+                "-Xplugin:/home/stelios/.cache/coursier/v1/https/repo1.maven.org/maven2/org/scalameta/semanticdb-scalac_2.13.1/4.2.3/semanticdb-scalac_2.13.1-4.2.3.jar"
+            ],
+            "jars" : [
+                "/home/stelios/.cache/coursier/v1/https/repo1.maven.org/maven2/org/scala-lang/scala-library/2.13.1/scala-library-2.13.1.jar",
+                "/home/stelios/.cache/coursier/v1/https/repo1.maven.org/maven2/org/scala-lang/scala-compiler/2.13.1/scala-compiler-2.13.1.jar",
+                "/home/stelios/.cache/coursier/v1/https/repo1.maven.org/maven2/jline/jline/2.14.6/jline-2.14.6.jar",
+                "/home/stelios/.cache/coursier/v1/https/repo1.maven.org/maven2/org/fusesource/jansi/jansi/1.12/jansi-1.12.jar",
+                "/home/stelios/.cache/coursier/v1/https/repo1.maven.org/maven2/org/scala-lang/scala-library/2.13.1/scala-library-2.13.1.jar",
+                "/home/stelios/.cache/coursier/v1/https/repo1.maven.org/maven2/org/scala-lang/scala-compiler/2.13.1/scala-compiler-2.13.1.jar",
+                "/home/stelios/.cache/coursier/v1/https/repo1.maven.org/maven2/org/scala-lang/scala-reflect/2.13.1/scala-reflect-2.13.1.jar"
+            ],
+            "setup" : {
+                "order" : "mixed",
+                "addLibraryToBootClasspath" : true,
+                "addCompilerToClasspath" : false,
+                "addExtraJarsToClasspath" : false,
+                "manageBootClasspath" : true,
+                "filterLibraryFromClasspath" : true
+            }
+        },
+        "java" : {
+            "options" : [
+            ]
+        },
+        "test" : {
+            "frameworks" : [
+                {
+                    "names" : [
+                        "org.scalacheck.ScalaCheckFramework"
+                    ]
+                },
+                {
+                    "names" : [
+                        "org.specs2.runner.Specs2Framework",
+                        "org.specs2.runner.SpecsFramework"
+                    ]
+                },
+                {
+                    "names" : [
+                        "org.specs.runner.SpecsFramework"
+                    ]
+                },
+                {
+                    "names" : [
+                        "org.scalatest.tools.Framework",
+                        "org.scalatest.tools.ScalaTestFramework"
+                    ]
+                },
+                {
+                    "names" : [
+                        "com.novocode.junit.JUnitFramework"
+                    ]
+                }
+            ],
+            "options" : {
+                "excludes" : [
+                ],
+                "arguments" : [
+                ]
+            }
+        },
+        "platform" : {
+            "name" : "jvm",
+            "config" : {
+                "home" : "/usr/lib/jvm/java-8-oracle/jre",
+                "options" : [
+                ]
+            },
+            "mainClass" : [
+            ]
+        },
+        "resolution" : {
+            "modules" : [
+                {
+                    "organization" : "org.scala-lang",
+                    "name" : "scala-library",
+                    "version" : "2.13.1",
+                    "configurations" : "default",
+                    "artifacts" : [
+                        {
+                            "name" : "scala-library",
+                            "path" : "/home/stelios/.cache/coursier/v1/https/repo1.maven.org/maven2/org/scala-lang/scala-library/2.13.1/scala-library-2.13.1.jar"
+                        },
+                        {
+                            "name" : "scala-library",
+                            "classifier" : "sources",
+                            "path" : "/home/stelios/.cache/coursier/v1/https/repo1.maven.org/maven2/org/scala-lang/scala-library/2.13.1/scala-library-2.13.1-sources.jar"
+                        },
+                        {
+                            "name" : "scala-library",
+                            "classifier" : "javadoc",
+                            "path" : "/home/stelios/.cache/coursier/v1/https/repo1.maven.org/maven2/org/scala-lang/scala-library/2.13.1/scala-library-2.13.1-javadoc.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization" : "org.apache.commons",
+                    "name" : "commons-text",
+                    "version" : "1.6",
+                    "configurations" : "default",
+                    "artifacts" : [
+                        {
+                            "name" : "commons-text",
+                            "path" : "/home/stelios/.cache/coursier/v1/https/repo1.maven.org/maven2/org/apache/commons/commons-text/1.6/commons-text-1.6.jar"
+                        },
+                        {
+                            "name" : "commons-text",
+                            "classifier" : "sources",
+                            "path" : "/home/stelios/.cache/coursier/v1/https/repo1.maven.org/maven2/org/apache/commons/commons-text/1.6/commons-text-1.6-sources.jar"
+                        },
+                        {
+                            "name" : "commons-text",
+                            "classifier" : "javadoc",
+                            "path" : "/home/stelios/.cache/coursier/v1/https/repo1.maven.org/maven2/org/apache/commons/commons-text/1.6/commons-text-1.6-javadoc.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization" : "com.github.nscala-time",
+                    "name" : "nscala-time_2.13",
+                    "version" : "2.22.0",
+                    "configurations" : "default",
+                    "artifacts" : [
+                        {
+                            "name" : "nscala-time_2.13",
+                            "path" : "/home/stelios/.cache/coursier/v1/https/repo1.maven.org/maven2/com/github/nscala-time/nscala-time_2.13/2.22.0/nscala-time_2.13-2.22.0.jar"
+                        },
+                        {
+                            "name" : "nscala-time_2.13",
+                            "classifier" : "sources",
+                            "path" : "/home/stelios/.cache/coursier/v1/https/repo1.maven.org/maven2/com/github/nscala-time/nscala-time_2.13/2.22.0/nscala-time_2.13-2.22.0-sources.jar"
+                        },
+                        {
+                            "name" : "nscala-time_2.13",
+                            "classifier" : "javadoc",
+                            "path" : "/home/stelios/.cache/coursier/v1/https/repo1.maven.org/maven2/com/github/nscala-time/nscala-time_2.13/2.22.0/nscala-time_2.13-2.22.0-javadoc.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization" : "org.joda",
+                    "name" : "joda-convert",
+                    "version" : "2.2.0",
+                    "configurations" : "default",
+                    "artifacts" : [
+                        {
+                            "name" : "joda-convert",
+                            "path" : "/home/stelios/.cache/coursier/v1/https/repo1.maven.org/maven2/org/joda/joda-convert/2.2.0/joda-convert-2.2.0.jar"
+                        },
+                        {
+                            "name" : "joda-convert",
+                            "classifier" : "sources",
+                            "path" : "/home/stelios/.cache/coursier/v1/https/repo1.maven.org/maven2/org/joda/joda-convert/2.2.0/joda-convert-2.2.0-sources.jar"
+                        },
+                        {
+                            "name" : "joda-convert",
+                            "classifier" : "javadoc",
+                            "path" : "/home/stelios/.cache/coursier/v1/https/repo1.maven.org/maven2/org/joda/joda-convert/2.2.0/joda-convert-2.2.0-javadoc.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization" : "org.mortbay.jetty",
+                    "name" : "servlet-api",
+                    "version" : "2.5-20081211",
+                    "configurations" : "default",
+                    "artifacts" : [
+                        {
+                            "name" : "servlet-api",
+                            "path" : "/home/stelios/.cache/coursier/v1/https/repo1.maven.org/maven2/org/mortbay/jetty/servlet-api/2.5-20081211/servlet-api-2.5-20081211.jar"
+                        },
+                        {
+                            "name" : "servlet-api",
+                            "classifier" : "sources",
+                            "path" : "/home/stelios/.cache/coursier/v1/https/repo1.maven.org/maven2/org/mortbay/jetty/servlet-api/2.5-20081211/servlet-api-2.5-20081211-sources.jar"
+                        },
+                        {
+                            "name" : "servlet-api",
+                            "classifier" : "javadoc",
+                            "path" : "/home/stelios/.cache/coursier/v1/https/repo1.maven.org/maven2/org/mortbay/jetty/servlet-api/2.5-20081211/servlet-api-2.5-20081211-javadoc.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization" : "com.google.apis",
+                    "name" : "google-api-services-plus",
+                    "version" : "v1-rev210-1.19.1",
+                    "configurations" : "default",
+                    "artifacts" : [
+                        {
+                            "name" : "google-api-services-plus",
+                            "path" : "/home/stelios/.cache/coursier/v1/https/repo1.maven.org/maven2/com/google/apis/google-api-services-plus/v1-rev210-1.19.1/google-api-services-plus-v1-rev210-1.19.1.jar"
+                        },
+                        {
+                            "name" : "google-api-services-plus",
+                            "classifier" : "sources",
+                            "path" : "/home/stelios/.cache/coursier/v1/https/repo1.maven.org/maven2/com/google/apis/google-api-services-plus/v1-rev210-1.19.1/google-api-services-plus-v1-rev210-1.19.1-sources.jar"
+                        },
+                        {
+                            "name" : "google-api-services-plus",
+                            "classifier" : "javadoc",
+                            "path" : "/home/stelios/.cache/coursier/v1/https/repo1.maven.org/maven2/com/google/apis/google-api-services-plus/v1-rev210-1.19.1/google-api-services-plus-v1-rev210-1.19.1-javadoc.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization" : "com.google.http-client",
+                    "name" : "google-http-client",
+                    "version" : "1.23.0",
+                    "configurations" : "default",
+                    "artifacts" : [
+                        {
+                            "name" : "google-http-client",
+                            "path" : "/home/stelios/.cache/coursier/v1/https/repo1.maven.org/maven2/com/google/http-client/google-http-client/1.23.0/google-http-client-1.23.0.jar"
+                        },
+                        {
+                            "name" : "google-http-client",
+                            "classifier" : "sources",
+                            "path" : "/home/stelios/.cache/coursier/v1/https/repo1.maven.org/maven2/com/google/http-client/google-http-client/1.23.0/google-http-client-1.23.0-sources.jar"
+                        },
+                        {
+                            "name" : "google-http-client",
+                            "classifier" : "javadoc",
+                            "path" : "/home/stelios/.cache/coursier/v1/https/repo1.maven.org/maven2/com/google/http-client/google-http-client/1.23.0/google-http-client-1.23.0-javadoc.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization" : "joda-time",
+                    "name" : "joda-time",
+                    "version" : "2.10.1",
+                    "configurations" : "default",
+                    "artifacts" : [
+                        {
+                            "name" : "joda-time",
+                            "path" : "/home/stelios/.cache/coursier/v1/https/repo1.maven.org/maven2/joda-time/joda-time/2.10.1/joda-time-2.10.1.jar"
+                        },
+                        {
+                            "name" : "joda-time",
+                            "classifier" : "sources",
+                            "path" : "/home/stelios/.cache/coursier/v1/https/repo1.maven.org/maven2/joda-time/joda-time/2.10.1/joda-time-2.10.1-sources.jar"
+                        },
+                        {
+                            "name" : "joda-time",
+                            "classifier" : "javadoc",
+                            "path" : "/home/stelios/.cache/coursier/v1/https/repo1.maven.org/maven2/joda-time/joda-time/2.10.1/joda-time-2.10.1-javadoc.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization" : "xml-apis",
+                    "name" : "xml-apis",
+                    "version" : "1.4.01",
+                    "configurations" : "default",
+                    "artifacts" : [
+                        {
+                            "name" : "xml-apis",
+                            "path" : "/home/stelios/.cache/coursier/v1/https/repo1.maven.org/maven2/xml-apis/xml-apis/1.4.01/xml-apis-1.4.01.jar"
+                        },
+                        {
+                            "name" : "xml-apis",
+                            "classifier" : "sources",
+                            "path" : "/home/stelios/.cache/coursier/v1/https/repo1.maven.org/maven2/xml-apis/xml-apis/1.4.01/xml-apis-1.4.01-sources.jar"
+                        },
+                        {
+                            "name" : "xml-apis",
+                            "classifier" : "javadoc",
+                            "path" : "/home/stelios/.cache/coursier/v1/https/repo1.maven.org/maven2/xml-apis/xml-apis/1.4.01/xml-apis-1.4.01-javadoc.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization" : "commons-io",
+                    "name" : "commons-io",
+                    "version" : "2.6",
+                    "configurations" : "default",
+                    "artifacts" : [
+                        {
+                            "name" : "commons-io",
+                            "path" : "/home/stelios/.cache/coursier/v1/https/repo1.maven.org/maven2/commons-io/commons-io/2.6/commons-io-2.6.jar"
+                        },
+                        {
+                            "name" : "commons-io",
+                            "classifier" : "sources",
+                            "path" : "/home/stelios/.cache/coursier/v1/https/repo1.maven.org/maven2/commons-io/commons-io/2.6/commons-io-2.6-sources.jar"
+                        },
+                        {
+                            "name" : "commons-io",
+                            "classifier" : "javadoc",
+                            "path" : "/home/stelios/.cache/coursier/v1/https/repo1.maven.org/maven2/commons-io/commons-io/2.6/commons-io-2.6-javadoc.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization" : "com.google.oauth-client",
+                    "name" : "google-oauth-client-java6",
+                    "version" : "1.19.0",
+                    "configurations" : "default",
+                    "artifacts" : [
+                        {
+                            "name" : "google-oauth-client-java6",
+                            "path" : "/home/stelios/.cache/coursier/v1/https/repo1.maven.org/maven2/com/google/oauth-client/google-oauth-client-java6/1.19.0/google-oauth-client-java6-1.19.0.jar"
+                        },
+                        {
+                            "name" : "google-oauth-client-java6",
+                            "classifier" : "sources",
+                            "path" : "/home/stelios/.cache/coursier/v1/https/repo1.maven.org/maven2/com/google/oauth-client/google-oauth-client-java6/1.19.0/google-oauth-client-java6-1.19.0-sources.jar"
+                        },
+                        {
+                            "name" : "google-oauth-client-java6",
+                            "classifier" : "javadoc",
+                            "path" : "/home/stelios/.cache/coursier/v1/https/repo1.maven.org/maven2/com/google/oauth-client/google-oauth-client-java6/1.19.0/google-oauth-client-java6-1.19.0-javadoc.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization" : "commons-codec",
+                    "name" : "commons-codec",
+                    "version" : "1.11",
+                    "configurations" : "default",
+                    "artifacts" : [
+                        {
+                            "name" : "commons-codec",
+                            "path" : "/home/stelios/.cache/coursier/v1/https/repo1.maven.org/maven2/commons-codec/commons-codec/1.11/commons-codec-1.11.jar"
+                        },
+                        {
+                            "name" : "commons-codec",
+                            "classifier" : "sources",
+                            "path" : "/home/stelios/.cache/coursier/v1/https/repo1.maven.org/maven2/commons-codec/commons-codec/1.11/commons-codec-1.11-sources.jar"
+                        },
+                        {
+                            "name" : "commons-codec",
+                            "classifier" : "javadoc",
+                            "path" : "/home/stelios/.cache/coursier/v1/https/repo1.maven.org/maven2/commons-codec/commons-codec/1.11/commons-codec-1.11-javadoc.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization" : "net.sourceforge.htmlunit",
+                    "name" : "htmlunit-core-js",
+                    "version" : "2.34.0",
+                    "configurations" : "default",
+                    "artifacts" : [
+                        {
+                            "name" : "htmlunit-core-js",
+                            "path" : "/home/stelios/.cache/coursier/v1/https/repo1.maven.org/maven2/net/sourceforge/htmlunit/htmlunit-core-js/2.34.0/htmlunit-core-js-2.34.0.jar"
+                        },
+                        {
+                            "name" : "htmlunit-core-js",
+                            "classifier" : "sources",
+                            "path" : "/home/stelios/.cache/coursier/v1/https/repo1.maven.org/maven2/net/sourceforge/htmlunit/htmlunit-core-js/2.34.0/htmlunit-core-js-2.34.0-sources.jar"
+                        },
+                        {
+                            "name" : "htmlunit-core-js",
+                            "classifier" : "javadoc",
+                            "path" : "/home/stelios/.cache/coursier/v1/https/repo1.maven.org/maven2/net/sourceforge/htmlunit/htmlunit-core-js/2.34.0/htmlunit-core-js-2.34.0-javadoc.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization" : "com.google.http-client",
+                    "name" : "google-http-client-jackson2",
+                    "version" : "1.23.0",
+                    "configurations" : "default",
+                    "artifacts" : [
+                        {
+                            "name" : "google-http-client-jackson2",
+                            "path" : "/home/stelios/.cache/coursier/v1/https/repo1.maven.org/maven2/com/google/http-client/google-http-client-jackson2/1.23.0/google-http-client-jackson2-1.23.0.jar"
+                        },
+                        {
+                            "name" : "google-http-client-jackson2",
+                            "classifier" : "sources",
+                            "path" : "/home/stelios/.cache/coursier/v1/https/repo1.maven.org/maven2/com/google/http-client/google-http-client-jackson2/1.23.0/google-http-client-jackson2-1.23.0-sources.jar"
+                        },
+                        {
+                            "name" : "google-http-client-jackson2",
+                            "classifier" : "javadoc",
+                            "path" : "/home/stelios/.cache/coursier/v1/https/repo1.maven.org/maven2/com/google/http-client/google-http-client-jackson2/1.23.0/google-http-client-jackson2-1.23.0-javadoc.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization" : "com.google.oauth-client",
+                    "name" : "google-oauth-client-jetty",
+                    "version" : "1.19.0",
+                    "configurations" : "default",
+                    "artifacts" : [
+                        {
+                            "name" : "google-oauth-client-jetty",
+                            "path" : "/home/stelios/.cache/coursier/v1/https/repo1.maven.org/maven2/com/google/oauth-client/google-oauth-client-jetty/1.19.0/google-oauth-client-jetty-1.19.0.jar"
+                        },
+                        {
+                            "name" : "google-oauth-client-jetty",
+                            "classifier" : "sources",
+                            "path" : "/home/stelios/.cache/coursier/v1/https/repo1.maven.org/maven2/com/google/oauth-client/google-oauth-client-jetty/1.19.0/google-oauth-client-jetty-1.19.0-sources.jar"
+                        },
+                        {
+                            "name" : "google-oauth-client-jetty",
+                            "classifier" : "javadoc",
+                            "path" : "/home/stelios/.cache/coursier/v1/https/repo1.maven.org/maven2/com/google/oauth-client/google-oauth-client-jetty/1.19.0/google-oauth-client-jetty-1.19.0-javadoc.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization" : "com.google.code.findbugs",
+                    "name" : "jsr305",
+                    "version" : "1.3.9",
+                    "configurations" : "default",
+                    "artifacts" : [
+                        {
+                            "name" : "jsr305",
+                            "checksum" : {
+                                "type" : "sha1",
+                                "digest" : "40719ea6961c0cb6afaeb6a921eaa1f6afd4cfdf\n"
+                            },
+                            "path" : "/home/stelios/.cache/coursier/v1/https/repo1.maven.org/maven2/com/google/code/findbugs/jsr305/1.3.9/jsr305-1.3.9.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization" : "org.apache.httpcomponents",
+                    "name" : "httpmime",
+                    "version" : "4.5.7",
+                    "configurations" : "default",
+                    "artifacts" : [
+                        {
+                            "name" : "httpmime",
+                            "path" : "/home/stelios/.cache/coursier/v1/https/repo1.maven.org/maven2/org/apache/httpcomponents/httpmime/4.5.7/httpmime-4.5.7.jar"
+                        },
+                        {
+                            "name" : "httpmime",
+                            "classifier" : "sources",
+                            "path" : "/home/stelios/.cache/coursier/v1/https/repo1.maven.org/maven2/org/apache/httpcomponents/httpmime/4.5.7/httpmime-4.5.7-sources.jar"
+                        },
+                        {
+                            "name" : "httpmime",
+                            "classifier" : "javadoc",
+                            "path" : "/home/stelios/.cache/coursier/v1/https/repo1.maven.org/maven2/org/apache/httpcomponents/httpmime/4.5.7/httpmime-4.5.7-javadoc.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization" : "org.openjfx",
+                    "name" : "javafx-base",
+                    "version" : "12.0.2",
+                    "configurations" : "default",
+                    "artifacts" : [
+                        {
+                            "name" : "javafx-base",
+                            "path" : "/home/stelios/.cache/coursier/v1/https/repo1.maven.org/maven2/org/openjfx/javafx-base/12.0.2/javafx-base-12.0.2.jar"
+                        },
+                        {
+                            "name" : "javafx-base",
+                            "classifier" : "sources",
+                            "path" : "/home/stelios/.cache/coursier/v1/https/repo1.maven.org/maven2/org/openjfx/javafx-base/12.0.2/javafx-base-12.0.2-sources.jar"
+                        },
+                        {
+                            "name" : "javafx-base",
+                            "classifier" : "javadoc",
+                            "path" : "/home/stelios/.cache/coursier/v1/https/repo1.maven.org/maven2/org/openjfx/javafx-base/12.0.2/javafx-base-12.0.2-javadoc.jar"
+                        },
+                        {
+                            "name" : "javafx-base",
+                            "classifier" : "linux",
+                            "path" : "/home/stelios/.cache/coursier/v1/https/repo1.maven.org/maven2/org/openjfx/javafx-base/12.0.2/javafx-base-12.0.2-linux.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization" : "com.google.oauth-client",
+                    "name" : "google-oauth-client",
+                    "version" : "1.23.0",
+                    "configurations" : "default",
+                    "artifacts" : [
+                        {
+                            "name" : "google-oauth-client",
+                            "path" : "/home/stelios/.cache/coursier/v1/https/repo1.maven.org/maven2/com/google/oauth-client/google-oauth-client/1.23.0/google-oauth-client-1.23.0.jar"
+                        },
+                        {
+                            "name" : "google-oauth-client",
+                            "classifier" : "sources",
+                            "path" : "/home/stelios/.cache/coursier/v1/https/repo1.maven.org/maven2/com/google/oauth-client/google-oauth-client/1.23.0/google-oauth-client-1.23.0-sources.jar"
+                        },
+                        {
+                            "name" : "google-oauth-client",
+                            "classifier" : "javadoc",
+                            "path" : "/home/stelios/.cache/coursier/v1/https/repo1.maven.org/maven2/com/google/oauth-client/google-oauth-client/1.23.0/google-oauth-client-1.23.0-javadoc.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization" : "javax.activation",
+                    "name" : "activation",
+                    "version" : "1.1",
+                    "configurations" : "default",
+                    "artifacts" : [
+                        {
+                            "name" : "activation",
+                            "checksum" : {
+                                "type" : "sha1",
+                                "digest" : "e6cb541461c2834bdea3eb920f1884d1eb508b50  -\n"
+                            },
+                            "path" : "/home/stelios/.cache/coursier/v1/https/repo1.maven.org/maven2/javax/activation/activation/1.1/activation-1.1.jar"
+                        },
+                        {
+                            "name" : "activation",
+                            "classifier" : "sources",
+                            "path" : "/home/stelios/.cache/coursier/v1/https/repo1.maven.org/maven2/javax/activation/activation/1.1/activation-1.1-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization" : "org.eclipse.jetty",
+                    "name" : "jetty-io",
+                    "version" : "9.4.15.v20190215",
+                    "configurations" : "default",
+                    "artifacts" : [
+                        {
+                            "name" : "jetty-io",
+                            "path" : "/home/stelios/.cache/coursier/v1/https/repo1.maven.org/maven2/org/eclipse/jetty/jetty-io/9.4.15.v20190215/jetty-io-9.4.15.v20190215.jar"
+                        },
+                        {
+                            "name" : "jetty-io",
+                            "classifier" : "sources",
+                            "path" : "/home/stelios/.cache/coursier/v1/https/repo1.maven.org/maven2/org/eclipse/jetty/jetty-io/9.4.15.v20190215/jetty-io-9.4.15.v20190215-sources.jar"
+                        },
+                        {
+                            "name" : "jetty-io",
+                            "classifier" : "javadoc",
+                            "path" : "/home/stelios/.cache/coursier/v1/https/repo1.maven.org/maven2/org/eclipse/jetty/jetty-io/9.4.15.v20190215/jetty-io-9.4.15.v20190215-javadoc.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization" : "org.openjfx",
+                    "name" : "javafx-graphics",
+                    "version" : "12.0.2",
+                    "configurations" : "default",
+                    "artifacts" : [
+                        {
+                            "name" : "javafx-graphics",
+                            "path" : "/home/stelios/.cache/coursier/v1/https/repo1.maven.org/maven2/org/openjfx/javafx-graphics/12.0.2/javafx-graphics-12.0.2.jar"
+                        },
+                        {
+                            "name" : "javafx-graphics",
+                            "classifier" : "sources",
+                            "path" : "/home/stelios/.cache/coursier/v1/https/repo1.maven.org/maven2/org/openjfx/javafx-graphics/12.0.2/javafx-graphics-12.0.2-sources.jar"
+                        },
+                        {
+                            "name" : "javafx-graphics",
+                            "classifier" : "javadoc",
+                            "path" : "/home/stelios/.cache/coursier/v1/https/repo1.maven.org/maven2/org/openjfx/javafx-graphics/12.0.2/javafx-graphics-12.0.2-javadoc.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization" : "org.eclipse.jetty.websocket",
+                    "name" : "websocket-api",
+                    "version" : "9.4.15.v20190215",
+                    "configurations" : "default",
+                    "artifacts" : [
+                        {
+                            "name" : "websocket-api",
+                            "path" : "/home/stelios/.cache/coursier/v1/https/repo1.maven.org/maven2/org/eclipse/jetty/websocket/websocket-api/9.4.15.v20190215/websocket-api-9.4.15.v20190215.jar"
+                        },
+                        {
+                            "name" : "websocket-api",
+                            "classifier" : "sources",
+                            "path" : "/home/stelios/.cache/coursier/v1/https/repo1.maven.org/maven2/org/eclipse/jetty/websocket/websocket-api/9.4.15.v20190215/websocket-api-9.4.15.v20190215-sources.jar"
+                        },
+                        {
+                            "name" : "websocket-api",
+                            "classifier" : "javadoc",
+                            "path" : "/home/stelios/.cache/coursier/v1/https/repo1.maven.org/maven2/org/eclipse/jetty/websocket/websocket-api/9.4.15.v20190215/websocket-api-9.4.15.v20190215-javadoc.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization" : "org.apache.httpcomponents",
+                    "name" : "httpclient",
+                    "version" : "4.5.7",
+                    "configurations" : "default",
+                    "artifacts" : [
+                        {
+                            "name" : "httpclient",
+                            "path" : "/home/stelios/.cache/coursier/v1/https/repo1.maven.org/maven2/org/apache/httpcomponents/httpclient/4.5.7/httpclient-4.5.7.jar"
+                        },
+                        {
+                            "name" : "httpclient",
+                            "classifier" : "sources",
+                            "path" : "/home/stelios/.cache/coursier/v1/https/repo1.maven.org/maven2/org/apache/httpcomponents/httpclient/4.5.7/httpclient-4.5.7-sources.jar"
+                        },
+                        {
+                            "name" : "httpclient",
+                            "classifier" : "javadoc",
+                            "path" : "/home/stelios/.cache/coursier/v1/https/repo1.maven.org/maven2/org/apache/httpcomponents/httpclient/4.5.7/httpclient-4.5.7-javadoc.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization" : "org.openjfx",
+                    "name" : "javafx-controls",
+                    "version" : "12.0.2",
+                    "configurations" : "default",
+                    "artifacts" : [
+                        {
+                            "name" : "javafx-controls",
+                            "path" : "/home/stelios/.cache/coursier/v1/https/repo1.maven.org/maven2/org/openjfx/javafx-controls/12.0.2/javafx-controls-12.0.2.jar"
+                        },
+                        {
+                            "name" : "javafx-controls",
+                            "classifier" : "sources",
+                            "path" : "/home/stelios/.cache/coursier/v1/https/repo1.maven.org/maven2/org/openjfx/javafx-controls/12.0.2/javafx-controls-12.0.2-sources.jar"
+                        },
+                        {
+                            "name" : "javafx-controls",
+                            "classifier" : "javadoc",
+                            "path" : "/home/stelios/.cache/coursier/v1/https/repo1.maven.org/maven2/org/openjfx/javafx-controls/12.0.2/javafx-controls-12.0.2-javadoc.jar"
+                        },
+                        {
+                            "name" : "javafx-controls",
+                            "classifier" : "linux",
+                            "path" : "/home/stelios/.cache/coursier/v1/https/repo1.maven.org/maven2/org/openjfx/javafx-controls/12.0.2/javafx-controls-12.0.2-linux.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization" : "org.scalaz",
+                    "name" : "scalaz-core_2.13",
+                    "version" : "7.2.28",
+                    "configurations" : "default",
+                    "artifacts" : [
+                        {
+                            "name" : "scalaz-core_2.13",
+                            "path" : "/home/stelios/.cache/coursier/v1/https/repo1.maven.org/maven2/org/scalaz/scalaz-core_2.13/7.2.28/scalaz-core_2.13-7.2.28.jar"
+                        },
+                        {
+                            "name" : "scalaz-core_2.13",
+                            "classifier" : "sources",
+                            "path" : "/home/stelios/.cache/coursier/v1/https/repo1.maven.org/maven2/org/scalaz/scalaz-core_2.13/7.2.28/scalaz-core_2.13-7.2.28-sources.jar"
+                        },
+                        {
+                            "name" : "scalaz-core_2.13",
+                            "classifier" : "javadoc",
+                            "path" : "/home/stelios/.cache/coursier/v1/https/repo1.maven.org/maven2/org/scalaz/scalaz-core_2.13/7.2.28/scalaz-core_2.13-7.2.28-javadoc.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization" : "net.ruippeixotog",
+                    "name" : "scala-scraper_2.13",
+                    "version" : "2.2.0",
+                    "configurations" : "default",
+                    "artifacts" : [
+                        {
+                            "name" : "scala-scraper_2.13",
+                            "path" : "/home/stelios/.cache/coursier/v1/https/repo1.maven.org/maven2/net/ruippeixotog/scala-scraper_2.13/2.2.0/scala-scraper_2.13-2.2.0.jar"
+                        },
+                        {
+                            "name" : "scala-scraper_2.13",
+                            "classifier" : "sources",
+                            "path" : "/home/stelios/.cache/coursier/v1/https/repo1.maven.org/maven2/net/ruippeixotog/scala-scraper_2.13/2.2.0/scala-scraper_2.13-2.2.0-sources.jar"
+                        },
+                        {
+                            "name" : "scala-scraper_2.13",
+                            "classifier" : "javadoc",
+                            "path" : "/home/stelios/.cache/coursier/v1/https/repo1.maven.org/maven2/net/ruippeixotog/scala-scraper_2.13/2.2.0/scala-scraper_2.13-2.2.0-javadoc.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization" : "com.github.tototoshi",
+                    "name" : "scala-csv_2.13",
+                    "version" : "1.3.6",
+                    "configurations" : "default",
+                    "artifacts" : [
+                        {
+                            "name" : "scala-csv_2.13",
+                            "path" : "/home/stelios/.cache/coursier/v1/https/repo1.maven.org/maven2/com/github/tototoshi/scala-csv_2.13/1.3.6/scala-csv_2.13-1.3.6.jar"
+                        },
+                        {
+                            "name" : "scala-csv_2.13",
+                            "classifier" : "sources",
+                            "path" : "/home/stelios/.cache/coursier/v1/https/repo1.maven.org/maven2/com/github/tototoshi/scala-csv_2.13/1.3.6/scala-csv_2.13-1.3.6-sources.jar"
+                        },
+                        {
+                            "name" : "scala-csv_2.13",
+                            "classifier" : "javadoc",
+                            "path" : "/home/stelios/.cache/coursier/v1/https/repo1.maven.org/maven2/com/github/tototoshi/scala-csv_2.13/1.3.6/scala-csv_2.13-1.3.6-javadoc.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization" : "org.eclipse.jetty.websocket",
+                    "name" : "websocket-client",
+                    "version" : "9.4.15.v20190215",
+                    "configurations" : "default",
+                    "artifacts" : [
+                        {
+                            "name" : "websocket-client",
+                            "path" : "/home/stelios/.cache/coursier/v1/https/repo1.maven.org/maven2/org/eclipse/jetty/websocket/websocket-client/9.4.15.v20190215/websocket-client-9.4.15.v20190215.jar"
+                        },
+                        {
+                            "name" : "websocket-client",
+                            "classifier" : "sources",
+                            "path" : "/home/stelios/.cache/coursier/v1/https/repo1.maven.org/maven2/org/eclipse/jetty/websocket/websocket-client/9.4.15.v20190215/websocket-client-9.4.15.v20190215-sources.jar"
+                        },
+                        {
+                            "name" : "websocket-client",
+                            "classifier" : "javadoc",
+                            "path" : "/home/stelios/.cache/coursier/v1/https/repo1.maven.org/maven2/org/eclipse/jetty/websocket/websocket-client/9.4.15.v20190215/websocket-client-9.4.15.v20190215-javadoc.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization" : "org.openjfx",
+                    "name" : "javafx-media",
+                    "version" : "12.0.2",
+                    "configurations" : "default",
+                    "artifacts" : [
+                        {
+                            "name" : "javafx-media",
+                            "path" : "/home/stelios/.cache/coursier/v1/https/repo1.maven.org/maven2/org/openjfx/javafx-media/12.0.2/javafx-media-12.0.2.jar"
+                        },
+                        {
+                            "name" : "javafx-media",
+                            "classifier" : "sources",
+                            "path" : "/home/stelios/.cache/coursier/v1/https/repo1.maven.org/maven2/org/openjfx/javafx-media/12.0.2/javafx-media-12.0.2-sources.jar"
+                        },
+                        {
+                            "name" : "javafx-media",
+                            "classifier" : "javadoc",
+                            "path" : "/home/stelios/.cache/coursier/v1/https/repo1.maven.org/maven2/org/openjfx/javafx-media/12.0.2/javafx-media-12.0.2-javadoc.jar"
+                        },
+                        {
+                            "name" : "javafx-media",
+                            "classifier" : "linux",
+                            "path" : "/home/stelios/.cache/coursier/v1/https/repo1.maven.org/maven2/org/openjfx/javafx-media/12.0.2/javafx-media-12.0.2-linux.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization" : "org.mortbay.jetty",
+                    "name" : "jetty-util",
+                    "version" : "6.1.26",
+                    "configurations" : "default",
+                    "artifacts" : [
+                        {
+                            "name" : "jetty-util",
+                            "path" : "/home/stelios/.cache/coursier/v1/https/repo1.maven.org/maven2/org/mortbay/jetty/jetty-util/6.1.26/jetty-util-6.1.26.jar"
+                        },
+                        {
+                            "name" : "jetty-util",
+                            "classifier" : "sources",
+                            "path" : "/home/stelios/.cache/coursier/v1/https/repo1.maven.org/maven2/org/mortbay/jetty/jetty-util/6.1.26/jetty-util-6.1.26-sources.jar"
+                        },
+                        {
+                            "name" : "jetty-util",
+                            "classifier" : "javadoc",
+                            "path" : "/home/stelios/.cache/coursier/v1/https/repo1.maven.org/maven2/org/mortbay/jetty/jetty-util/6.1.26/jetty-util-6.1.26-javadoc.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization" : "org.eclipse.jetty",
+                    "name" : "jetty-client",
+                    "version" : "9.4.15.v20190215",
+                    "configurations" : "default",
+                    "artifacts" : [
+                        {
+                            "name" : "jetty-client",
+                            "path" : "/home/stelios/.cache/coursier/v1/https/repo1.maven.org/maven2/org/eclipse/jetty/jetty-client/9.4.15.v20190215/jetty-client-9.4.15.v20190215.jar"
+                        },
+                        {
+                            "name" : "jetty-client",
+                            "classifier" : "sources",
+                            "path" : "/home/stelios/.cache/coursier/v1/https/repo1.maven.org/maven2/org/eclipse/jetty/jetty-client/9.4.15.v20190215/jetty-client-9.4.15.v20190215-sources.jar"
+                        },
+                        {
+                            "name" : "jetty-client",
+                            "classifier" : "javadoc",
+                            "path" : "/home/stelios/.cache/coursier/v1/https/repo1.maven.org/maven2/org/eclipse/jetty/jetty-client/9.4.15.v20190215/jetty-client-9.4.15.v20190215-javadoc.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization" : "net.sourceforge.htmlunit",
+                    "name" : "htmlunit-cssparser",
+                    "version" : "1.3.0",
+                    "configurations" : "default",
+                    "artifacts" : [
+                        {
+                            "name" : "htmlunit-cssparser",
+                            "path" : "/home/stelios/.cache/coursier/v1/https/repo1.maven.org/maven2/net/sourceforge/htmlunit/htmlunit-cssparser/1.3.0/htmlunit-cssparser-1.3.0.jar"
+                        },
+                        {
+                            "name" : "htmlunit-cssparser",
+                            "classifier" : "sources",
+                            "path" : "/home/stelios/.cache/coursier/v1/https/repo1.maven.org/maven2/net/sourceforge/htmlunit/htmlunit-cssparser/1.3.0/htmlunit-cssparser-1.3.0-sources.jar"
+                        },
+                        {
+                            "name" : "htmlunit-cssparser",
+                            "classifier" : "javadoc",
+                            "path" : "/home/stelios/.cache/coursier/v1/https/repo1.maven.org/maven2/net/sourceforge/htmlunit/htmlunit-cssparser/1.3.0/htmlunit-cssparser-1.3.0-javadoc.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization" : "com.google.guava",
+                    "name" : "guava",
+                    "version" : "13.0.1",
+                    "configurations" : "default",
+                    "artifacts" : [
+                        {
+                            "name" : "guava",
+                            "path" : "/home/stelios/.cache/coursier/v1/https/repo1.maven.org/maven2/com/google/guava/guava/13.0.1/guava-13.0.1.jar"
+                        },
+                        {
+                            "name" : "guava",
+                            "classifier" : "sources",
+                            "path" : "/home/stelios/.cache/coursier/v1/https/repo1.maven.org/maven2/com/google/guava/guava/13.0.1/guava-13.0.1-sources.jar"
+                        },
+                        {
+                            "name" : "guava",
+                            "classifier" : "javadoc",
+                            "path" : "/home/stelios/.cache/coursier/v1/https/repo1.maven.org/maven2/com/google/guava/guava/13.0.1/guava-13.0.1-javadoc.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization" : "xalan",
+                    "name" : "xalan",
+                    "version" : "2.7.2",
+                    "configurations" : "default",
+                    "artifacts" : [
+                        {
+                            "name" : "xalan",
+                            "path" : "/home/stelios/.cache/coursier/v1/https/repo1.maven.org/maven2/xalan/xalan/2.7.2/xalan-2.7.2.jar"
+                        },
+                        {
+                            "name" : "xalan",
+                            "classifier" : "sources",
+                            "path" : "/home/stelios/.cache/coursier/v1/https/repo1.maven.org/maven2/xalan/xalan/2.7.2/xalan-2.7.2-sources.jar"
+                        },
+                        {
+                            "name" : "xalan",
+                            "classifier" : "javadoc",
+                            "path" : "/home/stelios/.cache/coursier/v1/https/repo1.maven.org/maven2/xalan/xalan/2.7.2/xalan-2.7.2-javadoc.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization" : "org.scalafx",
+                    "name" : "scalafx_2.13",
+                    "version" : "12.0.2-R18",
+                    "configurations" : "default",
+                    "artifacts" : [
+                        {
+                            "name" : "scalafx_2.13",
+                            "path" : "/home/stelios/.cache/coursier/v1/https/repo1.maven.org/maven2/org/scalafx/scalafx_2.13/12.0.2-R18/scalafx_2.13-12.0.2-R18.jar"
+                        },
+                        {
+                            "name" : "scalafx_2.13",
+                            "classifier" : "sources",
+                            "path" : "/home/stelios/.cache/coursier/v1/https/repo1.maven.org/maven2/org/scalafx/scalafx_2.13/12.0.2-R18/scalafx_2.13-12.0.2-R18-sources.jar"
+                        },
+                        {
+                            "name" : "scalafx_2.13",
+                            "classifier" : "javadoc",
+                            "path" : "/home/stelios/.cache/coursier/v1/https/repo1.maven.org/maven2/org/scalafx/scalafx_2.13/12.0.2-R18/scalafx_2.13-12.0.2-R18-javadoc.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization" : "org.mortbay.jetty",
+                    "name" : "jetty",
+                    "version" : "6.1.26",
+                    "configurations" : "default",
+                    "artifacts" : [
+                        {
+                            "name" : "jetty",
+                            "path" : "/home/stelios/.cache/coursier/v1/https/repo1.maven.org/maven2/org/mortbay/jetty/jetty/6.1.26/jetty-6.1.26.jar"
+                        },
+                        {
+                            "name" : "jetty",
+                            "classifier" : "sources",
+                            "path" : "/home/stelios/.cache/coursier/v1/https/repo1.maven.org/maven2/org/mortbay/jetty/jetty/6.1.26/jetty-6.1.26-sources.jar"
+                        },
+                        {
+                            "name" : "jetty",
+                            "classifier" : "javadoc",
+                            "path" : "/home/stelios/.cache/coursier/v1/https/repo1.maven.org/maven2/org/mortbay/jetty/jetty/6.1.26/jetty-6.1.26-javadoc.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization" : "javax.mail",
+                    "name" : "mail",
+                    "version" : "1.4",
+                    "configurations" : "default",
+                    "artifacts" : [
+                        {
+                            "name" : "mail",
+                            "path" : "/home/stelios/.cache/coursier/v1/https/repo1.maven.org/maven2/javax/mail/mail/1.4/mail-1.4.jar"
+                        },
+                        {
+                            "name" : "mail",
+                            "classifier" : "sources",
+                            "path" : "/home/stelios/.cache/coursier/v1/https/repo1.maven.org/maven2/javax/mail/mail/1.4/mail-1.4-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization" : "org.eclipse.jetty",
+                    "name" : "jetty-util",
+                    "version" : "9.4.15.v20190215",
+                    "configurations" : "default",
+                    "artifacts" : [
+                        {
+                            "name" : "jetty-util",
+                            "path" : "/home/stelios/.cache/coursier/v1/https/repo1.maven.org/maven2/org/eclipse/jetty/jetty-util/9.4.15.v20190215/jetty-util-9.4.15.v20190215.jar"
+                        },
+                        {
+                            "name" : "jetty-util",
+                            "classifier" : "sources",
+                            "path" : "/home/stelios/.cache/coursier/v1/https/repo1.maven.org/maven2/org/eclipse/jetty/jetty-util/9.4.15.v20190215/jetty-util-9.4.15.v20190215-sources.jar"
+                        },
+                        {
+                            "name" : "jetty-util",
+                            "classifier" : "javadoc",
+                            "path" : "/home/stelios/.cache/coursier/v1/https/repo1.maven.org/maven2/org/eclipse/jetty/jetty-util/9.4.15.v20190215/jetty-util-9.4.15.v20190215-javadoc.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization" : "org.eclipse.jetty",
+                    "name" : "jetty-xml",
+                    "version" : "9.4.15.v20190215",
+                    "configurations" : "default",
+                    "artifacts" : [
+                        {
+                            "name" : "jetty-xml",
+                            "path" : "/home/stelios/.cache/coursier/v1/https/repo1.maven.org/maven2/org/eclipse/jetty/jetty-xml/9.4.15.v20190215/jetty-xml-9.4.15.v20190215.jar"
+                        },
+                        {
+                            "name" : "jetty-xml",
+                            "classifier" : "sources",
+                            "path" : "/home/stelios/.cache/coursier/v1/https/repo1.maven.org/maven2/org/eclipse/jetty/jetty-xml/9.4.15.v20190215/jetty-xml-9.4.15.v20190215-sources.jar"
+                        },
+                        {
+                            "name" : "jetty-xml",
+                            "classifier" : "javadoc",
+                            "path" : "/home/stelios/.cache/coursier/v1/https/repo1.maven.org/maven2/org/eclipse/jetty/jetty-xml/9.4.15.v20190215/jetty-xml-9.4.15.v20190215-javadoc.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization" : "org.eclipse.jetty",
+                    "name" : "jetty-http",
+                    "version" : "9.4.15.v20190215",
+                    "configurations" : "default",
+                    "artifacts" : [
+                        {
+                            "name" : "jetty-http",
+                            "path" : "/home/stelios/.cache/coursier/v1/https/repo1.maven.org/maven2/org/eclipse/jetty/jetty-http/9.4.15.v20190215/jetty-http-9.4.15.v20190215.jar"
+                        },
+                        {
+                            "name" : "jetty-http",
+                            "classifier" : "sources",
+                            "path" : "/home/stelios/.cache/coursier/v1/https/repo1.maven.org/maven2/org/eclipse/jetty/jetty-http/9.4.15.v20190215/jetty-http-9.4.15.v20190215-sources.jar"
+                        },
+                        {
+                            "name" : "jetty-http",
+                            "classifier" : "javadoc",
+                            "path" : "/home/stelios/.cache/coursier/v1/https/repo1.maven.org/maven2/org/eclipse/jetty/jetty-http/9.4.15.v20190215/jetty-http-9.4.15.v20190215-javadoc.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization" : "com.google.apis",
+                    "name" : "google-api-services-gmail",
+                    "version" : "v1-rev72-1.23.0",
+                    "configurations" : "default",
+                    "artifacts" : [
+                        {
+                            "name" : "google-api-services-gmail",
+                            "path" : "/home/stelios/.cache/coursier/v1/https/repo1.maven.org/maven2/com/google/apis/google-api-services-gmail/v1-rev72-1.23.0/google-api-services-gmail-v1-rev72-1.23.0.jar"
+                        },
+                        {
+                            "name" : "google-api-services-gmail",
+                            "classifier" : "sources",
+                            "path" : "/home/stelios/.cache/coursier/v1/https/repo1.maven.org/maven2/com/google/apis/google-api-services-gmail/v1-rev72-1.23.0/google-api-services-gmail-v1-rev72-1.23.0-sources.jar"
+                        },
+                        {
+                            "name" : "google-api-services-gmail",
+                            "classifier" : "javadoc",
+                            "path" : "/home/stelios/.cache/coursier/v1/https/repo1.maven.org/maven2/com/google/apis/google-api-services-gmail/v1-rev72-1.23.0/google-api-services-gmail-v1-rev72-1.23.0-javadoc.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization" : "org.apache.commons",
+                    "name" : "commons-lang3",
+                    "version" : "3.8.1",
+                    "configurations" : "default",
+                    "artifacts" : [
+                        {
+                            "name" : "commons-lang3",
+                            "path" : "/home/stelios/.cache/coursier/v1/https/repo1.maven.org/maven2/org/apache/commons/commons-lang3/3.8.1/commons-lang3-3.8.1.jar"
+                        },
+                        {
+                            "name" : "commons-lang3",
+                            "classifier" : "sources",
+                            "path" : "/home/stelios/.cache/coursier/v1/https/repo1.maven.org/maven2/org/apache/commons/commons-lang3/3.8.1/commons-lang3-3.8.1-sources.jar"
+                        },
+                        {
+                            "name" : "commons-lang3",
+                            "classifier" : "javadoc",
+                            "path" : "/home/stelios/.cache/coursier/v1/https/repo1.maven.org/maven2/org/apache/commons/commons-lang3/3.8.1/commons-lang3-3.8.1-javadoc.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization" : "com.github.scopt",
+                    "name" : "scopt_2.13",
+                    "version" : "4.0.0-RC2",
+                    "configurations" : "default",
+                    "artifacts" : [
+                        {
+                            "name" : "scopt_2.13",
+                            "path" : "/home/stelios/.cache/coursier/v1/https/repo1.maven.org/maven2/com/github/scopt/scopt_2.13/4.0.0-RC2/scopt_2.13-4.0.0-RC2.jar"
+                        },
+                        {
+                            "name" : "scopt_2.13",
+                            "classifier" : "sources",
+                            "path" : "/home/stelios/.cache/coursier/v1/https/repo1.maven.org/maven2/com/github/scopt/scopt_2.13/4.0.0-RC2/scopt_2.13-4.0.0-RC2-sources.jar"
+                        },
+                        {
+                            "name" : "scopt_2.13",
+                            "classifier" : "javadoc",
+                            "path" : "/home/stelios/.cache/coursier/v1/https/repo1.maven.org/maven2/com/github/scopt/scopt_2.13/4.0.0-RC2/scopt_2.13-4.0.0-RC2-javadoc.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization" : "com.google.guava",
+                    "name" : "guava-jdk5",
+                    "version" : "17.0",
+                    "configurations" : "default",
+                    "artifacts" : [
+                        {
+                            "name" : "guava-jdk5",
+                            "path" : "/home/stelios/.cache/coursier/v1/https/repo1.maven.org/maven2/com/google/guava/guava-jdk5/17.0/guava-jdk5-17.0.jar"
+                        },
+                        {
+                            "name" : "guava-jdk5",
+                            "classifier" : "sources",
+                            "path" : "/home/stelios/.cache/coursier/v1/https/repo1.maven.org/maven2/com/google/guava/guava-jdk5/17.0/guava-jdk5-17.0-sources.jar"
+                        },
+                        {
+                            "name" : "guava-jdk5",
+                            "classifier" : "javadoc",
+                            "path" : "/home/stelios/.cache/coursier/v1/https/repo1.maven.org/maven2/com/google/guava/guava-jdk5/17.0/guava-jdk5-17.0-javadoc.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization" : "commons-net",
+                    "name" : "commons-net",
+                    "version" : "3.6",
+                    "configurations" : "default",
+                    "artifacts" : [
+                        {
+                            "name" : "commons-net",
+                            "path" : "/home/stelios/.cache/coursier/v1/https/repo1.maven.org/maven2/commons-net/commons-net/3.6/commons-net-3.6.jar"
+                        },
+                        {
+                            "name" : "commons-net",
+                            "classifier" : "sources",
+                            "path" : "/home/stelios/.cache/coursier/v1/https/repo1.maven.org/maven2/commons-net/commons-net/3.6/commons-net-3.6-sources.jar"
+                        },
+                        {
+                            "name" : "commons-net",
+                            "classifier" : "javadoc",
+                            "path" : "/home/stelios/.cache/coursier/v1/https/repo1.maven.org/maven2/commons-net/commons-net/3.6/commons-net-3.6-javadoc.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization" : "org.eclipse.jetty.websocket",
+                    "name" : "websocket-common",
+                    "version" : "9.4.15.v20190215",
+                    "configurations" : "default",
+                    "artifacts" : [
+                        {
+                            "name" : "websocket-common",
+                            "path" : "/home/stelios/.cache/coursier/v1/https/repo1.maven.org/maven2/org/eclipse/jetty/websocket/websocket-common/9.4.15.v20190215/websocket-common-9.4.15.v20190215.jar"
+                        },
+                        {
+                            "name" : "websocket-common",
+                            "classifier" : "sources",
+                            "path" : "/home/stelios/.cache/coursier/v1/https/repo1.maven.org/maven2/org/eclipse/jetty/websocket/websocket-common/9.4.15.v20190215/websocket-common-9.4.15.v20190215-sources.jar"
+                        },
+                        {
+                            "name" : "websocket-common",
+                            "classifier" : "javadoc",
+                            "path" : "/home/stelios/.cache/coursier/v1/https/repo1.maven.org/maven2/org/eclipse/jetty/websocket/websocket-common/9.4.15.v20190215/websocket-common-9.4.15.v20190215-javadoc.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization" : "xalan",
+                    "name" : "serializer",
+                    "version" : "2.7.2",
+                    "configurations" : "default",
+                    "artifacts" : [
+                        {
+                            "name" : "serializer",
+                            "path" : "/home/stelios/.cache/coursier/v1/https/repo1.maven.org/maven2/xalan/serializer/2.7.2/serializer-2.7.2.jar"
+                        },
+                        {
+                            "name" : "serializer",
+                            "classifier" : "sources",
+                            "path" : "/home/stelios/.cache/coursier/v1/https/repo1.maven.org/maven2/xalan/serializer/2.7.2/serializer-2.7.2-sources.jar"
+                        },
+                        {
+                            "name" : "serializer",
+                            "classifier" : "javadoc",
+                            "path" : "/home/stelios/.cache/coursier/v1/https/repo1.maven.org/maven2/xalan/serializer/2.7.2/serializer-2.7.2-javadoc.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization" : "com.google.gdata",
+                    "name" : "core",
+                    "version" : "1.47.1",
+                    "configurations" : "default",
+                    "artifacts" : [
+                        {
+                            "name" : "core",
+                            "path" : "/home/stelios/.cache/coursier/v1/https/repo1.maven.org/maven2/com/google/gdata/core/1.47.1/core-1.47.1.jar"
+                        },
+                        {
+                            "name" : "core",
+                            "classifier" : "sources",
+                            "path" : "/home/stelios/.cache/coursier/v1/https/repo1.maven.org/maven2/com/google/gdata/core/1.47.1/core-1.47.1-sources.jar"
+                        },
+                        {
+                            "name" : "core",
+                            "classifier" : "javadoc",
+                            "path" : "/home/stelios/.cache/coursier/v1/https/repo1.maven.org/maven2/com/google/gdata/core/1.47.1/core-1.47.1-javadoc.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization" : "org.scala-lang",
+                    "name" : "scala-reflect",
+                    "version" : "2.13.1",
+                    "configurations" : "default",
+                    "artifacts" : [
+                        {
+                            "name" : "scala-reflect",
+                            "path" : "/home/stelios/.cache/coursier/v1/https/repo1.maven.org/maven2/org/scala-lang/scala-reflect/2.13.1/scala-reflect-2.13.1.jar"
+                        },
+                        {
+                            "name" : "scala-reflect",
+                            "classifier" : "sources",
+                            "path" : "/home/stelios/.cache/coursier/v1/https/repo1.maven.org/maven2/org/scala-lang/scala-reflect/2.13.1/scala-reflect-2.13.1-sources.jar"
+                        },
+                        {
+                            "name" : "scala-reflect",
+                            "classifier" : "javadoc",
+                            "path" : "/home/stelios/.cache/coursier/v1/https/repo1.maven.org/maven2/org/scala-lang/scala-reflect/2.13.1/scala-reflect-2.13.1-javadoc.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization" : "net.sourceforge.htmlunit",
+                    "name" : "neko-htmlunit",
+                    "version" : "2.34.0",
+                    "configurations" : "default",
+                    "artifacts" : [
+                        {
+                            "name" : "neko-htmlunit",
+                            "path" : "/home/stelios/.cache/coursier/v1/https/repo1.maven.org/maven2/net/sourceforge/htmlunit/neko-htmlunit/2.34.0/neko-htmlunit-2.34.0.jar"
+                        },
+                        {
+                            "name" : "neko-htmlunit",
+                            "classifier" : "sources",
+                            "path" : "/home/stelios/.cache/coursier/v1/https/repo1.maven.org/maven2/net/sourceforge/htmlunit/neko-htmlunit/2.34.0/neko-htmlunit-2.34.0-sources.jar"
+                        },
+                        {
+                            "name" : "neko-htmlunit",
+                            "classifier" : "javadoc",
+                            "path" : "/home/stelios/.cache/coursier/v1/https/repo1.maven.org/maven2/net/sourceforge/htmlunit/neko-htmlunit/2.34.0/neko-htmlunit-2.34.0-javadoc.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization" : "org.apache.httpcomponents",
+                    "name" : "httpcore",
+                    "version" : "4.4.11",
+                    "configurations" : "default",
+                    "artifacts" : [
+                        {
+                            "name" : "httpcore",
+                            "path" : "/home/stelios/.cache/coursier/v1/https/repo1.maven.org/maven2/org/apache/httpcomponents/httpcore/4.4.11/httpcore-4.4.11.jar"
+                        },
+                        {
+                            "name" : "httpcore",
+                            "classifier" : "sources",
+                            "path" : "/home/stelios/.cache/coursier/v1/https/repo1.maven.org/maven2/org/apache/httpcomponents/httpcore/4.4.11/httpcore-4.4.11-sources.jar"
+                        },
+                        {
+                            "name" : "httpcore",
+                            "classifier" : "javadoc",
+                            "path" : "/home/stelios/.cache/coursier/v1/https/repo1.maven.org/maven2/org/apache/httpcomponents/httpcore/4.4.11/httpcore-4.4.11-javadoc.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization" : "com.google.api-client",
+                    "name" : "google-api-client",
+                    "version" : "1.23.0",
+                    "configurations" : "default",
+                    "artifacts" : [
+                        {
+                            "name" : "google-api-client",
+                            "path" : "/home/stelios/.cache/coursier/v1/https/repo1.maven.org/maven2/com/google/api-client/google-api-client/1.23.0/google-api-client-1.23.0.jar"
+                        },
+                        {
+                            "name" : "google-api-client",
+                            "classifier" : "sources",
+                            "path" : "/home/stelios/.cache/coursier/v1/https/repo1.maven.org/maven2/com/google/api-client/google-api-client/1.23.0/google-api-client-1.23.0-sources.jar"
+                        },
+                        {
+                            "name" : "google-api-client",
+                            "classifier" : "javadoc",
+                            "path" : "/home/stelios/.cache/coursier/v1/https/repo1.maven.org/maven2/com/google/api-client/google-api-client/1.23.0/google-api-client-1.23.0-javadoc.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization" : "com.fasterxml.jackson.core",
+                    "name" : "jackson-core",
+                    "version" : "2.1.3",
+                    "configurations" : "default",
+                    "artifacts" : [
+                        {
+                            "name" : "jackson-core",
+                            "path" : "/home/stelios/.cache/coursier/v1/https/repo1.maven.org/maven2/com/fasterxml/jackson/core/jackson-core/2.1.3/jackson-core-2.1.3.jar"
+                        },
+                        {
+                            "name" : "jackson-core",
+                            "classifier" : "sources",
+                            "path" : "/home/stelios/.cache/coursier/v1/https/repo1.maven.org/maven2/com/fasterxml/jackson/core/jackson-core/2.1.3/jackson-core-2.1.3-sources.jar"
+                        },
+                        {
+                            "name" : "jackson-core",
+                            "classifier" : "javadoc",
+                            "path" : "/home/stelios/.cache/coursier/v1/https/repo1.maven.org/maven2/com/fasterxml/jackson/core/jackson-core/2.1.3/jackson-core-2.1.3-javadoc.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization" : "net.sourceforge.htmlunit",
+                    "name" : "htmlunit",
+                    "version" : "2.34.1",
+                    "configurations" : "default",
+                    "artifacts" : [
+                        {
+                            "name" : "htmlunit",
+                            "path" : "/home/stelios/.cache/coursier/v1/https/repo1.maven.org/maven2/net/sourceforge/htmlunit/htmlunit/2.34.1/htmlunit-2.34.1.jar"
+                        },
+                        {
+                            "name" : "htmlunit",
+                            "classifier" : "sources",
+                            "path" : "/home/stelios/.cache/coursier/v1/https/repo1.maven.org/maven2/net/sourceforge/htmlunit/htmlunit/2.34.1/htmlunit-2.34.1-sources.jar"
+                        },
+                        {
+                            "name" : "htmlunit",
+                            "classifier" : "javadoc",
+                            "path" : "/home/stelios/.cache/coursier/v1/https/repo1.maven.org/maven2/net/sourceforge/htmlunit/htmlunit/2.34.1/htmlunit-2.34.1-javadoc.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization" : "xerces",
+                    "name" : "xercesImpl",
+                    "version" : "2.12.0",
+                    "configurations" : "default",
+                    "artifacts" : [
+                        {
+                            "name" : "xercesImpl",
+                            "path" : "/home/stelios/.cache/coursier/v1/https/repo1.maven.org/maven2/xerces/xercesImpl/2.12.0/xercesImpl-2.12.0.jar"
+                        },
+                        {
+                            "name" : "xercesImpl",
+                            "classifier" : "sources",
+                            "path" : "/home/stelios/.cache/coursier/v1/https/repo1.maven.org/maven2/xerces/xercesImpl/2.12.0/xercesImpl-2.12.0-sources.jar"
+                        },
+                        {
+                            "name" : "xercesImpl",
+                            "classifier" : "javadoc",
+                            "path" : "/home/stelios/.cache/coursier/v1/https/repo1.maven.org/maven2/xerces/xercesImpl/2.12.0/xercesImpl-2.12.0-javadoc.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization" : "org.jsoup",
+                    "name" : "jsoup",
+                    "version" : "1.11.3",
+                    "configurations" : "default",
+                    "artifacts" : [
+                        {
+                            "name" : "jsoup",
+                            "path" : "/home/stelios/.cache/coursier/v1/https/repo1.maven.org/maven2/org/jsoup/jsoup/1.11.3/jsoup-1.11.3.jar"
+                        },
+                        {
+                            "name" : "jsoup",
+                            "classifier" : "sources",
+                            "path" : "/home/stelios/.cache/coursier/v1/https/repo1.maven.org/maven2/org/jsoup/jsoup/1.11.3/jsoup-1.11.3-sources.jar"
+                        },
+                        {
+                            "name" : "jsoup",
+                            "classifier" : "javadoc",
+                            "path" : "/home/stelios/.cache/coursier/v1/https/repo1.maven.org/maven2/org/jsoup/jsoup/1.11.3/jsoup-1.11.3-javadoc.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization" : "commons-logging",
+                    "name" : "commons-logging",
+                    "version" : "1.2",
+                    "configurations" : "default",
+                    "artifacts" : [
+                        {
+                            "name" : "commons-logging",
+                            "path" : "/home/stelios/.cache/coursier/v1/https/repo1.maven.org/maven2/commons-logging/commons-logging/1.2/commons-logging-1.2.jar"
+                        },
+                        {
+                            "name" : "commons-logging",
+                            "classifier" : "sources",
+                            "path" : "/home/stelios/.cache/coursier/v1/https/repo1.maven.org/maven2/commons-logging/commons-logging/1.2/commons-logging-1.2-sources.jar"
+                        },
+                        {
+                            "name" : "commons-logging",
+                            "classifier" : "javadoc",
+                            "path" : "/home/stelios/.cache/coursier/v1/https/repo1.maven.org/maven2/commons-logging/commons-logging/1.2/commons-logging-1.2-javadoc.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization" : "org.scala-lang",
+                    "name" : "scala-library",
+                    "version" : "2.13.1",
+                    "configurations" : "optional",
+                    "artifacts" : [
+                        {
+                            "name" : "scala-library",
+                            "path" : "/home/stelios/.cache/coursier/v1/https/repo1.maven.org/maven2/org/scala-lang/scala-library/2.13.1/scala-library-2.13.1.jar"
+                        },
+                        {
+                            "name" : "scala-library",
+                            "classifier" : "sources",
+                            "path" : "/home/stelios/.cache/coursier/v1/https/repo1.maven.org/maven2/org/scala-lang/scala-library/2.13.1/scala-library-2.13.1-sources.jar"
+                        },
+                        {
+                            "name" : "scala-library",
+                            "classifier" : "javadoc",
+                            "path" : "/home/stelios/.cache/coursier/v1/https/repo1.maven.org/maven2/org/scala-lang/scala-library/2.13.1/scala-library-2.13.1-javadoc.jar"
+                        }
+                    ]
+                }
+            ]
+        }
+    }
+}
