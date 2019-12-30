@@ -19,7 +19,7 @@ object ScalaImapSsl {
   import com.ScalaScraper.JCommanderArgs._
   import com.ScalaScraper.ScrapeUtils._
   private[this] final val waitTimeout = 2000
-  private[this] final val headerNames: List[Header] = List(Header("Massive Fundings "),Header("Big-But-Not-Crazy-Big Fundings")
+  private[this] final val headerNames: List[Header] = List(Header("Massive Fundings "),Header("Big-But-Not-Crazy-Big Fundings"), Header("Big-But-N0t-Crazy-Big Fundings")
     ,Header("Smaller Fundings "),Header("Not-Saying-How-Much "),Header("Not-Telling-How-Much Fundings"),Header("New Funds"))  //Not-Crazy-Big Fundings //Not-Saying-How-Much Fundings
   private[this] final val excludeHeaders: List[Header] = List(Header("Exits</span>"),Header("IPOs</span>"),Header("People</span>"),Header("Sponsored By</span>"),Header("Jobs</span>"),Header("Essential Reads</span>"))
   private[this] final val htlmlUncheckedNames: List[(String,String)] = List("Big-But-Not-Crazy-Big Fundings"->"Big-But-Not-<em>Crazy</em>-Big Fundings","Not-Telling-How-Much Fundings" -> "Not-Telling-How-Much&nbsp;Fundings","Smaller Fundings"->"Smaller&nbsp;Fundings&nbsp;")
@@ -165,6 +165,8 @@ object ScalaImapSsl {
     private[this] def headerContentFilter(headerContents: String ,firstTime: Boolean): String  = {
       headerContents.split("\\n").filter(headerContents => headerContents.trim.length != 0).foreach({ headerContent =>
         var lastIndex = headerContent //Get the un-HTML-ed code from headerContent
+
+        //Name
         var name =""
         if (lastIndex.indexOf(",") != -1) {
           name = lastIndex.slice(0, lastIndex.indexOf(","))
@@ -174,6 +176,7 @@ object ScalaImapSsl {
         val yearKeywords :List[String] =List("years-old","year-old","month-old","months-old","days-old")
         val yearIndexFound = calculateMinIndex(yearKeywords,lastIndex)
 
+        //Age
         var age =""
         if(yearIndexFound != "not_found"){
           age = lastIndex.slice(0, lastIndex.indexOf(yearIndexFound)+yearIndexFound.length)
@@ -186,13 +189,16 @@ object ScalaImapSsl {
         val preInvestmentAmountKeywords :List[String] =List("has raised","just raised","raised","raising","has closed on","has closed","closed")
         val preIAindexFound = calculateMinIndex(preInvestmentAmountKeywords,lastIndex)
 
+        val prelinkKeywords :List[String] =List("More here and here","more here and here","has more here","has much more here","More here","here")  //".",
+        val indexFound2 = calculateMinIndex(prelinkKeywords,lastIndex)
+
         var based =""
         var valueProposition =""
-        if(basedIndexFound !="not_found"){
+        if(basedIndexFound !="not_found" && compareIndexes(indexFound2,basedIndexFound,lastIndex) ){
           based = lastIndex.slice(0, lastIndex.indexOf(basedIndexFound)+basedIndexFound.length)
           lastIndex = lastIndex.slice(lastIndex.indexOf(basedIndexFound)+basedIndexFound.length,lastIndex.length)
 
-          if(!preIAindexFound.equals("not_found")){
+          if(!preIAindexFound.equals("not_found") && compareIndexes(indexFound2,preIAindexFound,lastIndex) ){
             valueProposition = lastIndex.slice(0, lastIndex.indexOf(preIAindexFound)-1)
             lastIndex = lastIndex.slice(lastIndex.indexOf(preIAindexFound),lastIndex.length)
           }else {
@@ -209,8 +215,7 @@ object ScalaImapSsl {
 
         val afterInvestmentRoundKeywords :List[String] =List("funding","in financing","financing","valuation")
         val indexFound3 = calculateMinIndex(afterInvestmentRoundKeywords,lastIndex)
-
-        val prelinkKeywords :List[String] =List("More here and here","more here and here","has more here","has much more here","More here","here")  //".",
+     
         val indexFound5 = calculateMinIndex(prelinkKeywords,lastIndex)
 
         //InvestedAmount
