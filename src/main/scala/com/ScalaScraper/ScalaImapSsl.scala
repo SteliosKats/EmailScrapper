@@ -10,11 +10,133 @@ import org.jsoup.nodes.Element
 import scala.annotation.tailrec
 import scala.collection.JavaConverters._
 
+import scalafx.application.JFXApp
+import scalafx.scene.Scene
+import javafx.scene.control.{ToggleButton => JfxToggleBtn}
+import scalafx.geometry.Insets
+import scalafx.scene.control.{Label, ToggleButton, ToggleGroup}
+import scalafx.scene.control.ProgressBar
+import scalafx.scene.layout.{StackPane, HBox, Priority, VBox}
+import scalafx.scene.Scene
+import scalafx.geometry.Insets
+import scalafx.scene.control.ProgressIndicator
+import scalafx.scene.input.KeyCode.G
+import scalafx.scene.layout.GridPane
+import scalafx.scene.control.TextField
+import scalafx.scene.control.Button
+import scalafx.geometry.{Insets, Pos}
+
+import scalafx.application.JFXApp
+import scalafx.scene.Scene
+import scalafx.Includes._
+import scalafx.geometry.{HPos, Insets, Pos}
+import scalafx.scene.control.{Button, Label, Separator, TextField}
+import scalafx.scene.image.{Image, ImageView}
+import scalafx.scene.layout.{ColumnConstraints, GridPane, Priority, RowConstraints, VBox}
+import scalafx.scene.control.PasswordField
+
+
 object TypeClass {
   def manOf[T: Manifest](t: T): Manifest[T] = manifest[T]
 }
 
+object EmailScraperGui extends JFXApp {
+
+  val toggleLabel = new Label {
+    text ="Scrape Emails"
+    style = "-fx-font-size: 2em;"
+  }    // Radio Button Toggle Group
+
+
+
+  stage = new JFXApp.PrimaryStage {
+    title = "Email Scraper v1.0"
+    scene = new Scene {
+      root = {
+
+        val labelEmail = new Label {
+          text = "Email :"
+          alignmentInParent = Pos.BaselineLeft
+        }
+        GridPane.setConstraints(labelEmail, 0, 0, 1, 1)
+
+        val textFieldEmail = new TextField {
+          promptText = "Type email..."
+          alignmentInParent = Pos.BaselineRight
+        }
+        GridPane.setConstraints(textFieldEmail, 1, 0, 15, 1)
+
+        val labelIMAPPass = new Label {
+          text = "IMAP Password :"
+          alignmentInParent = Pos.BaselineLeft
+        }
+        GridPane.setConstraints(labelIMAPPass, 0, 1, 1, 1)
+
+        val textFieldIMAPPass = new PasswordField {
+          promptText = "Type IMAP password..."
+          alignmentInParent = Pos.BaselineRight
+        }
+        GridPane.setConstraints(textFieldIMAPPass, 1, 1, 15, 1)
+
+        val labelSavedPath = new Label {
+          text = "Output Path :"
+          alignmentInParent = Pos.BaselineLeft
+        }
+        GridPane.setConstraints(labelSavedPath, 0, 2, 1, 1)
+
+        val textSavedPath = new TextField {
+          promptText = "Type full path..."
+          alignmentInParent = Pos.BaselineLeft
+        }
+        GridPane.setConstraints(textSavedPath, 1, 2, 15, 1)
+
+        val progressInd = new ProgressIndicator {
+          prefWidth = 50
+          prefHeight = 50
+          disable =true
+          visible = false
+          //progress = 1.0F
+        }
+        GridPane.setConstraints(progressInd, 2, 3, 2, 1)
+
+        val tog = new ToggleGroup {
+          selectedToggle.onChange(
+            (_, oldValue, newValue) => {
+              progressInd.visible_=(true)
+              toggleLabel.text = "Beggining Scraping Emails : " + newValue.asInstanceOf[JfxToggleBtn].getText
+              stage.setTitle("Scraping Progress Bar")
+              stage.sizeToScene()
+              stage.centerOnScreen()
+              val emailText = "--email "+textFieldEmail.getText()
+              val imapPassText = "--imapsPass "+textFieldIMAPPass.getText()
+              val savedPathText = "--outputPath "+textSavedPath.getText()
+              ScalaImapSsl.main(Array(emailText,imapPassText,savedPathText))
+            }
+          )
+        }
+
+        val buttonEmailScrape = new ToggleButton {
+          text = "Scrape Emails..."
+          alignmentInParent = Pos.BaselineCenter
+          toggleGroup = tog
+        }
+        GridPane.setConstraints(buttonEmailScrape, 0, 3, 1, 1)
+
+        new GridPane {
+          hgap = 6
+          vgap = 6
+          margin = Insets(18)
+          children ++= Seq(labelEmail, textFieldEmail, labelIMAPPass, textFieldIMAPPass,labelSavedPath,textSavedPath,buttonEmailScrape,progressInd)
+        }
+
+     
+      }
+    }
+  }
+}
+
 object ScalaImapSsl {
+
   import com.ScalaScraper.EmailUtils._
   import com.ScalaScraper.JCommanderArgs._
   import com.ScalaScraper.ScrapeUtils._

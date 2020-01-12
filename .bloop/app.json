@@ -12,7 +12,7 @@
         "dependencies" : [
         ],
         "classpath" : [
-            "/home/stelios/.cache/coursier/v1/https/repo1.maven.org/maven2/org/scala-lang/scala-library/2.13.1/scala-library-2.13.1.jar"
+            "/home/stelios/.ivy2/cache/org.scala-lang/scala-library/jars/scala-library-2.13.1.jar"
         ],
         "out" : "/home/stelios/workspace/EmailScrapper/.bloop/app",
         "classesDir" : "/home/stelios/workspace/EmailScrapper/.bloop/app/scala-2.13/classes",
@@ -30,16 +30,14 @@
                 "-P:semanticdb:sourceroot:/home/stelios/workspace/EmailScrapper",
                 "-Yrangepos",
                 "-Xplugin-require:semanticdb",
-                "-Xplugin:/home/stelios/.cache/coursier/v1/https/repo1.maven.org/maven2/org/scalameta/semanticdb-scalac_2.13.1/4.2.3/semanticdb-scalac_2.13.1-4.2.3.jar"
+                "-Xplugin:/home/stelios/.ivy2/cache/org.scalameta/semanticdb-scalac_2.13.1/jars/semanticdb-scalac_2.13.1-4.2.3.jar"
             ],
             "jars" : [
-                "/home/stelios/.cache/coursier/v1/https/repo1.maven.org/maven2/org/scala-lang/scala-library/2.13.1/scala-library-2.13.1.jar",
-                "/home/stelios/.cache/coursier/v1/https/repo1.maven.org/maven2/org/scala-lang/scala-compiler/2.13.1/scala-compiler-2.13.1.jar",
-                "/home/stelios/.cache/coursier/v1/https/repo1.maven.org/maven2/jline/jline/2.14.6/jline-2.14.6.jar",
-                "/home/stelios/.cache/coursier/v1/https/repo1.maven.org/maven2/org/fusesource/jansi/jansi/1.12/jansi-1.12.jar",
-                "/home/stelios/.cache/coursier/v1/https/repo1.maven.org/maven2/org/scala-lang/scala-library/2.13.1/scala-library-2.13.1.jar",
-                "/home/stelios/.cache/coursier/v1/https/repo1.maven.org/maven2/org/scala-lang/scala-compiler/2.13.1/scala-compiler-2.13.1.jar",
-                "/home/stelios/.cache/coursier/v1/https/repo1.maven.org/maven2/org/scala-lang/scala-reflect/2.13.1/scala-reflect-2.13.1.jar"
+                "/home/stelios/.ivy2/cache/org.scala-lang/scala-compiler/jars/scala-compiler-2.13.1.jar",
+                "/home/stelios/.ivy2/cache/org.scala-lang/scala-library/jars/scala-library-2.13.1.jar",
+                "/home/stelios/.ivy2/cache/org.scala-lang/scala-reflect/jars/scala-reflect-2.13.1.jar",
+                "/home/stelios/.ivy2/cache/jline/jline/jars/jline-2.14.6.jar",
+                "/home/stelios/.ivy2/cache/org.fusesource.jansi/jansi/jars/jansi-1.12.jar"
             ],
             "setup" : {
                 "order" : "mixed",
@@ -94,7 +92,7 @@
         "platform" : {
             "name" : "jvm",
             "config" : {
-                "home" : "/usr/lib/jvm/java-8-oracle/jre",
+                "home" : "/usr/lib/jvm/java-11-oracle",
                 "options" : [
                 ]
             },
@@ -107,43 +105,15 @@
                     "organization" : "org.scala-lang",
                     "name" : "scala-library",
                     "version" : "2.13.1",
-                    "configurations" : "default",
                     "artifacts" : [
                         {
                             "name" : "scala-library",
-                            "path" : "/home/stelios/.cache/coursier/v1/https/repo1.maven.org/maven2/org/scala-lang/scala-library/2.13.1/scala-library-2.13.1.jar"
+                            "path" : "/home/stelios/.ivy2/cache/org.scala-lang/scala-library/jars/scala-library-2.13.1.jar"
                         },
                         {
                             "name" : "scala-library",
                             "classifier" : "sources",
-                            "path" : "/home/stelios/.cache/coursier/v1/https/repo1.maven.org/maven2/org/scala-lang/scala-library/2.13.1/scala-library-2.13.1-sources.jar"
-                        },
-                        {
-                            "name" : "scala-library",
-                            "classifier" : "javadoc",
-                            "path" : "/home/stelios/.cache/coursier/v1/https/repo1.maven.org/maven2/org/scala-lang/scala-library/2.13.1/scala-library-2.13.1-javadoc.jar"
-                        }
-                    ]
-                },
-                {
-                    "organization" : "org.scala-lang",
-                    "name" : "scala-library",
-                    "version" : "2.13.1",
-                    "configurations" : "optional",
-                    "artifacts" : [
-                        {
-                            "name" : "scala-library",
-                            "path" : "/home/stelios/.cache/coursier/v1/https/repo1.maven.org/maven2/org/scala-lang/scala-library/2.13.1/scala-library-2.13.1.jar"
-                        },
-                        {
-                            "name" : "scala-library",
-                            "classifier" : "sources",
-                            "path" : "/home/stelios/.cache/coursier/v1/https/repo1.maven.org/maven2/org/scala-lang/scala-library/2.13.1/scala-library-2.13.1-sources.jar"
-                        },
-                        {
-                            "name" : "scala-library",
-                            "classifier" : "javadoc",
-                            "path" : "/home/stelios/.cache/coursier/v1/https/repo1.maven.org/maven2/org/scala-lang/scala-library/2.13.1/scala-library-2.13.1-javadoc.jar"
+                            "path" : "/home/stelios/.ivy2/cache/org.scala-lang/scala-library/srcs/scala-library-2.13.1-sources.jar"
                         }
                     ]
                 }

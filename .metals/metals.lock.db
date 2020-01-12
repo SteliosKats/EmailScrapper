@@ -1,6 +1,6 @@
 #FileLock
-#Mon Dec 30 05:52:16 EET 2019
+#Thu Jan 09 22:26:26 EET 2020
+server=localhost\:44984
 hostName=localhost
-id=16f54eed8c3b4a30fec15a712924d6e5636e33efbff
 method=file
-server=localhost\:33813
+id=16f8bfc9dc70bb176e6868262e3073751fe9068508f
