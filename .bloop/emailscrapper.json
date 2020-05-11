@@ -1,1033 +1,1054 @@
 {
-    "version" : "1.1.2",
-    "project" : {
-        "name" : "emailscrapper",
-        "directory" : "/home/stelios/workspace/EmailScrapper",
-        "sources" : [
-            "/home/stelios/workspace/EmailScrapper/src/main/scala-2.13",
-            "/home/stelios/workspace/EmailScrapper/src/main/scala",
-            "/home/stelios/workspace/EmailScrapper/src/main/java",
-            "/home/stelios/workspace/EmailScrapper/target/scala-2.13/src_managed/main"
+    "version": "1.4.0",
+    "project": {
+        "name": "emailscrapper",
+        "directory": "/home/stkat/development/EmailScrapper",
+        "workspaceDir": "/home/stkat/development/EmailScrapper",
+        "sources": [
+            "/home/stkat/development/EmailScrapper/src/main/scala-2.13",
+            "/home/stkat/development/EmailScrapper/src/main/scala",
+            "/home/stkat/development/EmailScrapper/src/main/java",
+            "/home/stkat/development/EmailScrapper/target/scala-2.13/src_managed/main"
         ],
-        "dependencies" : [
+        "dependencies": [
             "app"
         ],
-        "classpath" : [
-            "/home/stelios/.ivy2/cache/org.scala-lang/scala-library/jars/scala-library-2.13.1.jar",
-            "/home/stelios/.ivy2/cache/com.google.code.findbugs/jsr305/jars/jsr305-1.3.9.jar",
-            "/home/stelios/.ivy2/cache/com.fasterxml.jackson.core/jackson-core/jars/jackson-core-2.1.3.jar",
-            "/home/stelios/.ivy2/cache/com.google.oauth-client/google-oauth-client-jetty/jars/google-oauth-client-jetty-1.19.0.jar",
-            "/home/stelios/.ivy2/cache/com.google.oauth-client/google-oauth-client-java6/jars/google-oauth-client-java6-1.19.0.jar",
-            "/home/stelios/.ivy2/cache/org.mortbay.jetty/jetty/jars/jetty-6.1.26.jar",
-            "/home/stelios/.ivy2/cache/org.mortbay.jetty/jetty-util/jars/jetty-util-6.1.26.jar",
-            "/home/stelios/.ivy2/cache/org.mortbay.jetty/servlet-api/jars/servlet-api-2.5-20081211.jar",
-            "/home/stelios/.ivy2/cache/net.ruippeixotog/scala-scraper_2.13/jars/scala-scraper_2.13-2.2.0.jar",
-            "/home/stelios/.ivy2/cache/com.github.nscala-time/nscala-time_2.13/jars/nscala-time_2.13-2.22.0.jar",
-            "/home/stelios/.ivy2/cache/joda-time/joda-time/jars/joda-time-2.10.1.jar",
-            "/home/stelios/.ivy2/cache/org.joda/joda-convert/jars/joda-convert-2.2.0.jar",
-            "/home/stelios/.ivy2/cache/net.sourceforge.htmlunit/htmlunit/jars/htmlunit-2.34.1.jar",
-            "/home/stelios/.ivy2/cache/xalan/xalan/jars/xalan-2.7.2.jar",
-            "/home/stelios/.ivy2/cache/xalan/serializer/jars/serializer-2.7.2.jar",
-            "/home/stelios/.ivy2/cache/org.apache.commons/commons-lang3/jars/commons-lang3-3.8.1.jar",
-            "/home/stelios/.ivy2/cache/org.apache.commons/commons-text/jars/commons-text-1.6.jar",
-            "/home/stelios/.ivy2/cache/org.apache.httpcomponents/httpmime/jars/httpmime-4.5.7.jar",
-            "/home/stelios/.ivy2/cache/org.apache.httpcomponents/httpclient/jars/httpclient-4.5.7.jar",
-            "/home/stelios/.ivy2/cache/org.apache.httpcomponents/httpcore/jars/httpcore-4.4.11.jar",
-            "/home/stelios/.ivy2/cache/commons-logging/commons-logging/jars/commons-logging-1.2.jar",
-            "/home/stelios/.ivy2/cache/commons-codec/commons-codec/jars/commons-codec-1.11.jar",
-            "/home/stelios/.ivy2/cache/net.sourceforge.htmlunit/htmlunit-core-js/jars/htmlunit-core-js-2.34.0.jar",
-            "/home/stelios/.ivy2/cache/net.sourceforge.htmlunit/neko-htmlunit/jars/neko-htmlunit-2.34.0.jar",
-            "/home/stelios/.ivy2/cache/xerces/xercesImpl/jars/xercesImpl-2.12.0.jar",
-            "/home/stelios/.ivy2/cache/xml-apis/xml-apis/jars/xml-apis-1.4.01.jar",
-            "/home/stelios/.ivy2/cache/net.sourceforge.htmlunit/htmlunit-cssparser/jars/htmlunit-cssparser-1.3.0.jar",
-            "/home/stelios/.ivy2/cache/commons-io/commons-io/jars/commons-io-2.6.jar",
-            "/home/stelios/.ivy2/cache/commons-net/commons-net/jars/commons-net-3.6.jar",
-            "/home/stelios/.ivy2/cache/org.eclipse.jetty.websocket/websocket-client/jars/websocket-client-9.4.15.v20190215.jar",
-            "/home/stelios/.ivy2/cache/org.eclipse.jetty/jetty-client/jars/jetty-client-9.4.15.v20190215.jar",
-            "/home/stelios/.ivy2/cache/org.eclipse.jetty/jetty-http/jars/jetty-http-9.4.15.v20190215.jar",
-            "/home/stelios/.ivy2/cache/org.eclipse.jetty/jetty-util/jars/jetty-util-9.4.15.v20190215.jar",
-            "/home/stelios/.ivy2/cache/org.eclipse.jetty/jetty-io/jars/jetty-io-9.4.15.v20190215.jar",
-            "/home/stelios/.ivy2/cache/org.eclipse.jetty/jetty-xml/jars/jetty-xml-9.4.15.v20190215.jar",
-            "/home/stelios/.ivy2/cache/org.eclipse.jetty.websocket/websocket-common/jars/websocket-common-9.4.15.v20190215.jar",
-            "/home/stelios/.ivy2/cache/org.eclipse.jetty.websocket/websocket-api/jars/websocket-api-9.4.15.v20190215.jar",
-            "/home/stelios/.ivy2/cache/org.jsoup/jsoup/jars/jsoup-1.11.3.jar",
-            "/home/stelios/.ivy2/cache/org.scalaz/scalaz-core_2.13/bundles/scalaz-core_2.13-7.2.28.jar",
-            "/home/stelios/.ivy2/cache/com.google.apis/google-api-services-gmail/jars/google-api-services-gmail-v1-rev72-1.23.0.jar",
-            "/home/stelios/.ivy2/cache/com.google.api-client/google-api-client/jars/google-api-client-1.23.0.jar",
-            "/home/stelios/.ivy2/cache/com.google.oauth-client/google-oauth-client/jars/google-oauth-client-1.23.0.jar",
-            "/home/stelios/.ivy2/cache/com.google.http-client/google-http-client/jars/google-http-client-1.23.0.jar",
-            "/home/stelios/.ivy2/cache/com.google.http-client/google-http-client-jackson2/jars/google-http-client-jackson2-1.23.0.jar",
-            "/home/stelios/.ivy2/cache/com.google.guava/guava-jdk5/bundles/guava-jdk5-17.0.jar",
-            "/home/stelios/.ivy2/cache/com.google.apis/google-api-services-plus/jars/google-api-services-plus-v1-rev210-1.19.1.jar",
-            "/home/stelios/.ivy2/cache/com.github.tototoshi/scala-csv_2.13/jars/scala-csv_2.13-1.3.6.jar",
-            "/home/stelios/.ivy2/cache/com.google.gdata/core/jars/core-1.47.1.jar",
-            "/home/stelios/.ivy2/cache/com.google.guava/guava/jars/guava-13.0.1.jar",
-            "/home/stelios/.ivy2/cache/javax.mail/mail/jars/mail-1.4.jar",
-            "/home/stelios/.ivy2/cache/javax.activation/activation/jars/activation-1.1.jar",
-            "/home/stelios/.ivy2/cache/com.github.scopt/scopt_2.13/jars/scopt_2.13-4.0.0-RC2.jar",
-            "/home/stelios/.ivy2/cache/org.scalafx/scalafx_2.13/jars/scalafx_2.13-12.0.2-R18.jar",
-            "/home/stelios/.ivy2/cache/org.scala-lang/scala-reflect/jars/scala-reflect-2.13.1.jar",
-            "/home/stelios/.ivy2/cache/org.openjfx/javafx-base/jars/javafx-base-12.0.2-linux.jar",
-            "/home/stelios/.ivy2/cache/org.openjfx/javafx-controls/jars/javafx-controls-12.0.2-linux.jar",
-            "/home/stelios/.ivy2/cache/org.openjfx/javafx-graphics/jars/javafx-graphics-12.0.2-linux.jar",
-            "/home/stelios/.ivy2/cache/org.openjfx/javafx-fxml/jars/javafx-fxml-12.0.2-linux.jar",
-            "/home/stelios/.ivy2/cache/org.openjfx/javafx-media/jars/javafx-media-12.0.2-linux.jar",
-            "/home/stelios/.ivy2/cache/org.openjfx/javafx-swing/jars/javafx-swing-12.0.2-linux.jar",
-            "/home/stelios/.ivy2/cache/org.openjfx/javafx-web/jars/javafx-web-12.0.2-linux.jar"
+        "classpath": [
+            "/home/stkat/.ivy2/cache/org.scala-lang/scala-library/jars/scala-library-2.13.1.jar",
+            "/home/stkat/.ivy2/cache/com.google.code.findbugs/jsr305/jars/jsr305-1.3.9.jar",
+            "/home/stkat/.ivy2/cache/com.fasterxml.jackson.core/jackson-core/jars/jackson-core-2.1.3.jar",
+            "/home/stkat/.ivy2/cache/com.google.oauth-client/google-oauth-client-jetty/jars/google-oauth-client-jetty-1.19.0.jar",
+            "/home/stkat/.ivy2/cache/com.google.oauth-client/google-oauth-client-java6/jars/google-oauth-client-java6-1.19.0.jar",
+            "/home/stkat/.ivy2/cache/org.mortbay.jetty/jetty/jars/jetty-6.1.26.jar",
+            "/home/stkat/.ivy2/cache/org.mortbay.jetty/jetty-util/jars/jetty-util-6.1.26.jar",
+            "/home/stkat/.ivy2/cache/org.mortbay.jetty/servlet-api/jars/servlet-api-2.5-20081211.jar",
+            "/home/stkat/.ivy2/cache/net.ruippeixotog/scala-scraper_2.13/jars/scala-scraper_2.13-2.2.0.jar",
+            "/home/stkat/.ivy2/cache/com.github.nscala-time/nscala-time_2.13/jars/nscala-time_2.13-2.22.0.jar",
+            "/home/stkat/.ivy2/cache/joda-time/joda-time/jars/joda-time-2.10.1.jar",
+            "/home/stkat/.ivy2/cache/org.joda/joda-convert/jars/joda-convert-2.2.0.jar",
+            "/home/stkat/.ivy2/cache/net.sourceforge.htmlunit/htmlunit/jars/htmlunit-2.34.1.jar",
+            "/home/stkat/.ivy2/cache/xalan/xalan/jars/xalan-2.7.2.jar",
+            "/home/stkat/.ivy2/cache/xalan/serializer/jars/serializer-2.7.2.jar",
+            "/home/stkat/.ivy2/cache/org.apache.commons/commons-lang3/jars/commons-lang3-3.8.1.jar",
+            "/home/stkat/.ivy2/cache/org.apache.commons/commons-text/jars/commons-text-1.6.jar",
+            "/home/stkat/.ivy2/cache/org.apache.httpcomponents/httpmime/jars/httpmime-4.5.7.jar",
+            "/home/stkat/.ivy2/cache/org.apache.httpcomponents/httpclient/jars/httpclient-4.5.7.jar",
+            "/home/stkat/.ivy2/cache/org.apache.httpcomponents/httpcore/jars/httpcore-4.4.11.jar",
+            "/home/stkat/.ivy2/cache/commons-logging/commons-logging/jars/commons-logging-1.2.jar",
+            "/home/stkat/.ivy2/cache/commons-codec/commons-codec/jars/commons-codec-1.11.jar",
+            "/home/stkat/.ivy2/cache/net.sourceforge.htmlunit/htmlunit-core-js/jars/htmlunit-core-js-2.34.0.jar",
+            "/home/stkat/.ivy2/cache/net.sourceforge.htmlunit/neko-htmlunit/jars/neko-htmlunit-2.34.0.jar",
+            "/home/stkat/.ivy2/cache/xerces/xercesImpl/jars/xercesImpl-2.12.0.jar",
+            "/home/stkat/.ivy2/cache/xml-apis/xml-apis/jars/xml-apis-1.4.01.jar",
+            "/home/stkat/.ivy2/cache/net.sourceforge.htmlunit/htmlunit-cssparser/jars/htmlunit-cssparser-1.3.0.jar",
+            "/home/stkat/.ivy2/cache/commons-io/commons-io/jars/commons-io-2.6.jar",
+            "/home/stkat/.ivy2/cache/commons-net/commons-net/jars/commons-net-3.6.jar",
+            "/home/stkat/.ivy2/cache/org.eclipse.jetty.websocket/websocket-client/jars/websocket-client-9.4.15.v20190215.jar",
+            "/home/stkat/.ivy2/cache/org.eclipse.jetty/jetty-client/jars/jetty-client-9.4.15.v20190215.jar",
+            "/home/stkat/.ivy2/cache/org.eclipse.jetty/jetty-http/jars/jetty-http-9.4.15.v20190215.jar",
+            "/home/stkat/.ivy2/cache/org.eclipse.jetty/jetty-util/jars/jetty-util-9.4.15.v20190215.jar",
+            "/home/stkat/.ivy2/cache/org.eclipse.jetty/jetty-io/jars/jetty-io-9.4.15.v20190215.jar",
+            "/home/stkat/.ivy2/cache/org.eclipse.jetty/jetty-xml/jars/jetty-xml-9.4.15.v20190215.jar",
+            "/home/stkat/.ivy2/cache/org.eclipse.jetty.websocket/websocket-common/jars/websocket-common-9.4.15.v20190215.jar",
+            "/home/stkat/.ivy2/cache/org.eclipse.jetty.websocket/websocket-api/jars/websocket-api-9.4.15.v20190215.jar",
+            "/home/stkat/.ivy2/cache/org.jsoup/jsoup/jars/jsoup-1.11.3.jar",
+            "/home/stkat/.ivy2/cache/org.scalaz/scalaz-core_2.13/bundles/scalaz-core_2.13-7.2.28.jar",
+            "/home/stkat/.ivy2/cache/com.google.apis/google-api-services-gmail/jars/google-api-services-gmail-v1-rev72-1.23.0.jar",
+            "/home/stkat/.ivy2/cache/com.google.api-client/google-api-client/jars/google-api-client-1.23.0.jar",
+            "/home/stkat/.ivy2/cache/com.google.oauth-client/google-oauth-client/jars/google-oauth-client-1.23.0.jar",
+            "/home/stkat/.ivy2/cache/com.google.http-client/google-http-client/jars/google-http-client-1.23.0.jar",
+            "/home/stkat/.ivy2/cache/com.google.http-client/google-http-client-jackson2/jars/google-http-client-jackson2-1.23.0.jar",
+            "/home/stkat/.ivy2/cache/com.google.guava/guava-jdk5/bundles/guava-jdk5-17.0.jar",
+            "/home/stkat/.ivy2/cache/com.google.apis/google-api-services-plus/jars/google-api-services-plus-v1-rev210-1.19.1.jar",
+            "/home/stkat/.ivy2/cache/com.github.tototoshi/scala-csv_2.13/jars/scala-csv_2.13-1.3.6.jar",
+            "/home/stkat/.ivy2/cache/com.google.gdata/core/jars/core-1.47.1.jar",
+            "/home/stkat/.ivy2/cache/com.google.guava/guava/jars/guava-13.0.1.jar",
+            "/home/stkat/.ivy2/cache/javax.mail/mail/jars/mail-1.4.jar",
+            "/home/stkat/.ivy2/cache/javax.activation/activation/jars/activation-1.1.jar",
+            "/home/stkat/.ivy2/cache/com.github.scopt/scopt_2.13/jars/scopt_2.13-4.0.0-RC2.jar",
+            "/home/stkat/.ivy2/cache/org.scalafx/scalafx_2.13/jars/scalafx_2.13-12.0.2-R18.jar",
+            "/home/stkat/.ivy2/cache/org.scala-lang/scala-reflect/jars/scala-reflect-2.13.1.jar",
+            "/home/stkat/.ivy2/cache/org.scala-sbt/util-control_2.13/jars/util-control_2.13-1.3.2.jar",
+            "/home/stkat/.ivy2/cache/org.openjfx/javafx-base/jars/javafx-base-12.0.2-linux.jar",
+            "/home/stkat/.ivy2/cache/org.openjfx/javafx-controls/jars/javafx-controls-12.0.2-linux.jar",
+            "/home/stkat/.ivy2/cache/org.openjfx/javafx-graphics/jars/javafx-graphics-12.0.2-linux.jar",
+            "/home/stkat/.ivy2/cache/org.openjfx/javafx-fxml/jars/javafx-fxml-12.0.2-linux.jar",
+            "/home/stkat/.ivy2/cache/org.openjfx/javafx-media/jars/javafx-media-12.0.2-linux.jar",
+            "/home/stkat/.ivy2/cache/org.openjfx/javafx-swing/jars/javafx-swing-12.0.2-linux.jar",
+            "/home/stkat/.ivy2/cache/org.openjfx/javafx-web/jars/javafx-web-12.0.2-linux.jar"
         ],
-        "out" : "/home/stelios/workspace/EmailScrapper/.bloop/emailscrapper",
-        "classesDir" : "/home/stelios/workspace/EmailScrapper/.bloop/emailscrapper/scala-2.13/classes",
-        "resources" : [
-            "/home/stelios/workspace/EmailScrapper/src/main/resources",
-            "/home/stelios/workspace/EmailScrapper/target/scala-2.13/resource_managed/main"
+        "out": "/home/stkat/development/EmailScrapper/.bloop/emailscrapper",
+        "classesDir": "/home/stkat/development/EmailScrapper/.bloop/emailscrapper/scala-2.13/classes",
+        "resources": [
+            "/home/stkat/development/EmailScrapper/src/main/resources",
+            "/home/stkat/development/EmailScrapper/target/scala-2.13/resource_managed/main"
         ],
-        "scala" : {
-            "organization" : "org.scala-lang",
-            "name" : "scala-compiler",
-            "version" : "2.13.1",
-            "options" : [
+        "scala": {
+            "organization": "org.scala-lang",
+            "name": "scala-compiler",
+            "version": "2.13.1",
+            "options": [
                 "-unchecked",
                 "-deprecation",
                 "-Xcheckinit",
                 "-encoding",
                 "utf8",
-                "-feature",
-                "-P:semanticdb:synthetics:on",
-                "-P:semanticdb:failures:warning",
-                "-P:semanticdb:sourceroot:/home/stelios/workspace/EmailScrapper",
-                "-Yrangepos",
-                "-Xplugin-require:semanticdb",
-                "-Xplugin:/home/stelios/.ivy2/cache/org.scalameta/semanticdb-scalac_2.13.1/jars/semanticdb-scalac_2.13.1-4.2.3.jar"
+                "-feature"
             ],
-            "jars" : [
-                "/home/stelios/.ivy2/cache/org.scala-lang/scala-compiler/jars/scala-compiler-2.13.1.jar",
-                "/home/stelios/.ivy2/cache/org.scala-lang/scala-library/jars/scala-library-2.13.1.jar",
-                "/home/stelios/.ivy2/cache/org.scala-lang/scala-reflect/jars/scala-reflect-2.13.1.jar",
-                "/home/stelios/.ivy2/cache/jline/jline/jars/jline-2.14.6.jar",
-                "/home/stelios/.ivy2/cache/org.fusesource.jansi/jansi/jars/jansi-1.12.jar"
+            "jars": [
+                "/home/stkat/.ivy2/cache/org.scala-lang/scala-compiler/jars/scala-compiler-2.13.1.jar",
+                "/home/stkat/.ivy2/cache/org.scala-lang/scala-library/jars/scala-library-2.13.1.jar",
+                "/home/stkat/.ivy2/cache/org.scala-lang/scala-reflect/jars/scala-reflect-2.13.1.jar",
+                "/home/stkat/.ivy2/cache/jline/jline/jars/jline-2.14.6.jar",
+                "/home/stkat/.ivy2/cache/org.fusesource.jansi/jansi/jars/jansi-1.12.jar"
             ],
-            "setup" : {
-                "order" : "mixed",
-                "addLibraryToBootClasspath" : true,
-                "addCompilerToClasspath" : false,
-                "addExtraJarsToClasspath" : false,
-                "manageBootClasspath" : true,
-                "filterLibraryFromClasspath" : true
+            "analysis": "/home/stkat/development/EmailScrapper/target/streams/compile/bloopAnalysisOut/$global/streams/inc_compile_2.13.zip",
+            "setup": {
+                "order": "mixed",
+                "addLibraryToBootClasspath": true,
+                "addCompilerToClasspath": false,
+                "addExtraJarsToClasspath": false,
+                "manageBootClasspath": true,
+                "filterLibraryFromClasspath": true
             }
         },
-        "java" : {
-            "options" : [
+        "java": {
+            "options": [
+                
             ]
         },
-        "test" : {
-            "frameworks" : [
+        "test": {
+            "frameworks": [
                 {
-                    "names" : [
+                    "names": [
                         "org.scalacheck.ScalaCheckFramework"
                     ]
                 },
                 {
-                    "names" : [
+                    "names": [
                         "org.specs2.runner.Specs2Framework",
                         "org.specs2.runner.SpecsFramework"
                     ]
                 },
                 {
-                    "names" : [
+                    "names": [
                         "org.specs.runner.SpecsFramework"
                     ]
                 },
                 {
-                    "names" : [
+                    "names": [
                         "org.scalatest.tools.Framework",
                         "org.scalatest.tools.ScalaTestFramework"
                     ]
                 },
                 {
-                    "names" : [
+                    "names": [
                         "com.novocode.junit.JUnitFramework"
                     ]
                 }
             ],
-            "options" : {
-                "excludes" : [
+            "options": {
+                "excludes": [
+                    
                 ],
-                "arguments" : [
+                "arguments": [
+                    
                 ]
             }
         },
-        "platform" : {
-            "name" : "jvm",
-            "config" : {
-                "home" : "/usr/lib/jvm/java-11-oracle",
-                "options" : [
+        "platform": {
+            "name": "jvm",
+            "config": {
+                "home": "/home/stkat/opt/jdk/jdk1.8.0_241/jre",
+                "options": [
+                    "-Duser.dir=/home/stkat/development/EmailScrapper"
                 ]
             },
-            "mainClass" : [
+            "mainClass": [
+                
             ]
         },
-        "resolution" : {
-            "modules" : [
+        "resolution": {
+            "modules": [
                 {
-                    "organization" : "org.scala-lang",
-                    "name" : "scala-library",
-                    "version" : "2.13.1",
-                    "artifacts" : [
+                    "organization": "org.scala-lang",
+                    "name": "scala-library",
+                    "version": "2.13.1",
+                    "artifacts": [
                         {
-                            "name" : "scala-library",
-                            "path" : "/home/stelios/.ivy2/cache/org.scala-lang/scala-library/jars/scala-library-2.13.1.jar"
+                            "name": "scala-library",
+                            "path": "/home/stkat/.ivy2/cache/org.scala-lang/scala-library/jars/scala-library-2.13.1.jar"
                         },
                         {
-                            "name" : "scala-library",
-                            "classifier" : "sources",
-                            "path" : "/home/stelios/.ivy2/cache/org.scala-lang/scala-library/srcs/scala-library-2.13.1-sources.jar"
+                            "name": "scala-library",
+                            "classifier": "sources",
+                            "path": "/home/stkat/.ivy2/cache/org.scala-lang/scala-library/srcs/scala-library-2.13.1-sources.jar"
                         }
                     ]
                 },
                 {
-                    "organization" : "com.google.code.findbugs",
-                    "name" : "jsr305",
-                    "version" : "1.3.9",
-                    "artifacts" : [
+                    "organization": "com.google.code.findbugs",
+                    "name": "jsr305",
+                    "version": "1.3.9",
+                    "artifacts": [
                         {
-                            "name" : "jsr305",
-                            "path" : "/home/stelios/.ivy2/cache/com.google.code.findbugs/jsr305/jars/jsr305-1.3.9.jar"
+                            "name": "jsr305",
+                            "path": "/home/stkat/.ivy2/cache/com.google.code.findbugs/jsr305/jars/jsr305-1.3.9.jar"
                         }
                     ]
                 },
                 {
-                    "organization" : "com.fasterxml.jackson.core",
-                    "name" : "jackson-core",
-                    "version" : "2.1.3",
-                    "artifacts" : [
+                    "organization": "com.fasterxml.jackson.core",
+                    "name": "jackson-core",
+                    "version": "2.1.3",
+                    "artifacts": [
                         {
-                            "name" : "jackson-core",
-                            "path" : "/home/stelios/.ivy2/cache/com.fasterxml.jackson.core/jackson-core/jars/jackson-core-2.1.3.jar"
+                            "name": "jackson-core",
+                            "path": "/home/stkat/.ivy2/cache/com.fasterxml.jackson.core/jackson-core/jars/jackson-core-2.1.3.jar"
                         },
                         {
-                            "name" : "jackson-core",
-                            "classifier" : "sources",
-                            "path" : "/home/stelios/.ivy2/cache/com.fasterxml.jackson.core/jackson-core/srcs/jackson-core-2.1.3-sources.jar"
+                            "name": "jackson-core",
+                            "classifier": "sources",
+                            "path": "/home/stkat/.ivy2/cache/com.fasterxml.jackson.core/jackson-core/srcs/jackson-core-2.1.3-sources.jar"
                         }
                     ]
                 },
                 {
-                    "organization" : "com.google.oauth-client",
-                    "name" : "google-oauth-client-jetty",
-                    "version" : "1.19.0",
-                    "artifacts" : [
+                    "organization": "com.google.oauth-client",
+                    "name": "google-oauth-client-jetty",
+                    "version": "1.19.0",
+                    "artifacts": [
                         {
-                            "name" : "google-oauth-client-jetty",
-                            "path" : "/home/stelios/.ivy2/cache/com.google.oauth-client/google-oauth-client-jetty/jars/google-oauth-client-jetty-1.19.0.jar"
+                            "name": "google-oauth-client-jetty",
+                            "path": "/home/stkat/.ivy2/cache/com.google.oauth-client/google-oauth-client-jetty/jars/google-oauth-client-jetty-1.19.0.jar"
                         },
                         {
-                            "name" : "google-oauth-client-jetty",
-                            "classifier" : "sources",
-                            "path" : "/home/stelios/.ivy2/cache/com.google.oauth-client/google-oauth-client-jetty/srcs/google-oauth-client-jetty-1.19.0-sources.jar"
+                            "name": "google-oauth-client-jetty",
+                            "classifier": "sources",
+                            "path": "/home/stkat/.ivy2/cache/com.google.oauth-client/google-oauth-client-jetty/srcs/google-oauth-client-jetty-1.19.0-sources.jar"
                         }
                     ]
                 },
                 {
-                    "organization" : "com.google.oauth-client",
-                    "name" : "google-oauth-client-java6",
-                    "version" : "1.19.0",
-                    "artifacts" : [
+                    "organization": "com.google.oauth-client",
+                    "name": "google-oauth-client-java6",
+                    "version": "1.19.0",
+                    "artifacts": [
                         {
-                            "name" : "google-oauth-client-java6",
-                            "path" : "/home/stelios/.ivy2/cache/com.google.oauth-client/google-oauth-client-java6/jars/google-oauth-client-java6-1.19.0.jar"
+                            "name": "google-oauth-client-java6",
+                            "path": "/home/stkat/.ivy2/cache/com.google.oauth-client/google-oauth-client-java6/jars/google-oauth-client-java6-1.19.0.jar"
                         },
                         {
-                            "name" : "google-oauth-client-java6",
-                            "classifier" : "sources",
-                            "path" : "/home/stelios/.ivy2/cache/com.google.oauth-client/google-oauth-client-java6/srcs/google-oauth-client-java6-1.19.0-sources.jar"
+                            "name": "google-oauth-client-java6",
+                            "classifier": "sources",
+                            "path": "/home/stkat/.ivy2/cache/com.google.oauth-client/google-oauth-client-java6/srcs/google-oauth-client-java6-1.19.0-sources.jar"
                         }
                     ]
                 },
                 {
-                    "organization" : "org.mortbay.jetty",
-                    "name" : "jetty",
-                    "version" : "6.1.26",
-                    "artifacts" : [
+                    "organization": "org.mortbay.jetty",
+                    "name": "jetty",
+                    "version": "6.1.26",
+                    "artifacts": [
                         {
-                            "name" : "jetty",
-                            "path" : "/home/stelios/.ivy2/cache/org.mortbay.jetty/jetty/jars/jetty-6.1.26.jar"
+                            "name": "jetty",
+                            "path": "/home/stkat/.ivy2/cache/org.mortbay.jetty/jetty/jars/jetty-6.1.26.jar"
                         },
                         {
-                            "name" : "jetty",
-                            "classifier" : "sources",
-                            "path" : "/home/stelios/.ivy2/cache/org.mortbay.jetty/jetty/srcs/jetty-6.1.26-sources.jar"
+                            "name": "jetty",
+                            "classifier": "sources",
+                            "path": "/home/stkat/.ivy2/cache/org.mortbay.jetty/jetty/srcs/jetty-6.1.26-sources.jar"
                         }
                     ]
                 },
                 {
-                    "organization" : "org.mortbay.jetty",
-                    "name" : "jetty-util",
-                    "version" : "6.1.26",
-                    "artifacts" : [
+                    "organization": "org.mortbay.jetty",
+                    "name": "jetty-util",
+                    "version": "6.1.26",
+                    "artifacts": [
                         {
-                            "name" : "jetty-util",
-                            "path" : "/home/stelios/.ivy2/cache/org.mortbay.jetty/jetty-util/jars/jetty-util-6.1.26.jar"
+                            "name": "jetty-util",
+                            "path": "/home/stkat/.ivy2/cache/org.mortbay.jetty/jetty-util/jars/jetty-util-6.1.26.jar"
                         },
                         {
-                            "name" : "jetty-util",
-                            "classifier" : "sources",
-                            "path" : "/home/stelios/.ivy2/cache/org.mortbay.jetty/jetty-util/srcs/jetty-util-6.1.26-sources.jar"
+                            "name": "jetty-util",
+                            "classifier": "sources",
+                            "path": "/home/stkat/.ivy2/cache/org.mortbay.jetty/jetty-util/srcs/jetty-util-6.1.26-sources.jar"
                         }
                     ]
                 },
                 {
-                    "organization" : "org.mortbay.jetty",
-                    "name" : "servlet-api",
-                    "version" : "2.5-20081211",
-                    "artifacts" : [
+                    "organization": "org.mortbay.jetty",
+                    "name": "servlet-api",
+                    "version": "2.5-20081211",
+                    "artifacts": [
                         {
-                            "name" : "servlet-api",
-                            "path" : "/home/stelios/.ivy2/cache/org.mortbay.jetty/servlet-api/jars/servlet-api-2.5-20081211.jar"
+                            "name": "servlet-api",
+                            "path": "/home/stkat/.ivy2/cache/org.mortbay.jetty/servlet-api/jars/servlet-api-2.5-20081211.jar"
                         },
                         {
-                            "name" : "servlet-api",
-                            "classifier" : "sources",
-                            "path" : "/home/stelios/.ivy2/cache/org.mortbay.jetty/servlet-api/srcs/servlet-api-2.5-20081211-sources.jar"
+                            "name": "servlet-api",
+                            "classifier": "sources",
+                            "path": "/home/stkat/.ivy2/cache/org.mortbay.jetty/servlet-api/srcs/servlet-api-2.5-20081211-sources.jar"
                         }
                     ]
                 },
                 {
-                    "organization" : "net.ruippeixotog",
-                    "name" : "scala-scraper_2.13",
-                    "version" : "2.2.0",
-                    "artifacts" : [
+                    "organization": "net.ruippeixotog",
+                    "name": "scala-scraper_2.13",
+                    "version": "2.2.0",
+                    "artifacts": [
                         {
-                            "name" : "scala-scraper_2.13",
-                            "path" : "/home/stelios/.ivy2/cache/net.ruippeixotog/scala-scraper_2.13/jars/scala-scraper_2.13-2.2.0.jar"
+                            "name": "scala-scraper_2.13",
+                            "path": "/home/stkat/.ivy2/cache/net.ruippeixotog/scala-scraper_2.13/jars/scala-scraper_2.13-2.2.0.jar"
                         },
                         {
-                            "name" : "scala-scraper_2.13",
-                            "classifier" : "sources",
-                            "path" : "/home/stelios/.ivy2/cache/net.ruippeixotog/scala-scraper_2.13/srcs/scala-scraper_2.13-2.2.0-sources.jar"
+                            "name": "scala-scraper_2.13",
+                            "classifier": "sources",
+                            "path": "/home/stkat/.ivy2/cache/net.ruippeixotog/scala-scraper_2.13/srcs/scala-scraper_2.13-2.2.0-sources.jar"
                         }
                     ]
                 },
                 {
-                    "organization" : "com.github.nscala-time",
-                    "name" : "nscala-time_2.13",
-                    "version" : "2.22.0",
-                    "artifacts" : [
+                    "organization": "com.github.nscala-time",
+                    "name": "nscala-time_2.13",
+                    "version": "2.22.0",
+                    "artifacts": [
                         {
-                            "name" : "nscala-time_2.13",
-                            "path" : "/home/stelios/.ivy2/cache/com.github.nscala-time/nscala-time_2.13/jars/nscala-time_2.13-2.22.0.jar"
+                            "name": "nscala-time_2.13",
+                            "path": "/home/stkat/.ivy2/cache/com.github.nscala-time/nscala-time_2.13/jars/nscala-time_2.13-2.22.0.jar"
                         },
                         {
-                            "name" : "nscala-time_2.13",
-                            "classifier" : "sources",
-                            "path" : "/home/stelios/.ivy2/cache/com.github.nscala-time/nscala-time_2.13/srcs/nscala-time_2.13-2.22.0-sources.jar"
+                            "name": "nscala-time_2.13",
+                            "classifier": "sources",
+                            "path": "/home/stkat/.ivy2/cache/com.github.nscala-time/nscala-time_2.13/srcs/nscala-time_2.13-2.22.0-sources.jar"
                         }
                     ]
                 },
                 {
-                    "organization" : "joda-time",
-                    "name" : "joda-time",
-                    "version" : "2.10.1",
-                    "artifacts" : [
+                    "organization": "joda-time",
+                    "name": "joda-time",
+                    "version": "2.10.1",
+                    "artifacts": [
                         {
-                            "name" : "joda-time",
-                            "path" : "/home/stelios/.ivy2/cache/joda-time/joda-time/jars/joda-time-2.10.1.jar"
+                            "name": "joda-time",
+                            "path": "/home/stkat/.ivy2/cache/joda-time/joda-time/jars/joda-time-2.10.1.jar"
                         },
                         {
-                            "name" : "joda-time",
-                            "classifier" : "sources",
-                            "path" : "/home/stelios/.ivy2/cache/joda-time/joda-time/srcs/joda-time-2.10.1-sources.jar"
+                            "name": "joda-time",
+                            "classifier": "sources",
+                            "path": "/home/stkat/.ivy2/cache/joda-time/joda-time/srcs/joda-time-2.10.1-sources.jar"
                         }
                     ]
                 },
                 {
-                    "organization" : "org.joda",
-                    "name" : "joda-convert",
-                    "version" : "2.2.0",
-                    "artifacts" : [
+                    "organization": "org.joda",
+                    "name": "joda-convert",
+                    "version": "2.2.0",
+                    "artifacts": [
                         {
-                            "name" : "joda-convert",
-                            "path" : "/home/stelios/.ivy2/cache/org.joda/joda-convert/jars/joda-convert-2.2.0.jar"
+                            "name": "joda-convert",
+                            "path": "/home/stkat/.ivy2/cache/org.joda/joda-convert/jars/joda-convert-2.2.0.jar"
                         },
                         {
-                            "name" : "joda-convert",
-                            "classifier" : "sources",
-                            "path" : "/home/stelios/.ivy2/cache/org.joda/joda-convert/srcs/joda-convert-2.2.0-sources.jar"
+                            "name": "joda-convert",
+                            "classifier": "sources",
+                            "path": "/home/stkat/.ivy2/cache/org.joda/joda-convert/srcs/joda-convert-2.2.0-sources.jar"
                         }
                     ]
                 },
                 {
-                    "organization" : "net.sourceforge.htmlunit",
-                    "name" : "htmlunit",
-                    "version" : "2.34.1",
-                    "artifacts" : [
+                    "organization": "net.sourceforge.htmlunit",
+                    "name": "htmlunit",
+                    "version": "2.34.1",
+                    "artifacts": [
                         {
-                            "name" : "htmlunit",
-                            "path" : "/home/stelios/.ivy2/cache/net.sourceforge.htmlunit/htmlunit/jars/htmlunit-2.34.1.jar"
+                            "name": "htmlunit",
+                            "path": "/home/stkat/.ivy2/cache/net.sourceforge.htmlunit/htmlunit/jars/htmlunit-2.34.1.jar"
                         },
                         {
-                            "name" : "htmlunit",
-                            "classifier" : "sources",
-                            "path" : "/home/stelios/.ivy2/cache/net.sourceforge.htmlunit/htmlunit/srcs/htmlunit-2.34.1-sources.jar"
+                            "name": "htmlunit",
+                            "classifier": "sources",
+                            "path": "/home/stkat/.ivy2/cache/net.sourceforge.htmlunit/htmlunit/srcs/htmlunit-2.34.1-sources.jar"
                         }
                     ]
                 },
                 {
-                    "organization" : "xalan",
-                    "name" : "xalan",
-                    "version" : "2.7.2",
-                    "artifacts" : [
+                    "organization": "xalan",
+                    "name": "xalan",
+                    "version": "2.7.2",
+                    "artifacts": [
                         {
-                            "name" : "xalan",
-                            "path" : "/home/stelios/.ivy2/cache/xalan/xalan/jars/xalan-2.7.2.jar"
+                            "name": "xalan",
+                            "path": "/home/stkat/.ivy2/cache/xalan/xalan/jars/xalan-2.7.2.jar"
                         },
                         {
-                            "name" : "xalan",
-                            "classifier" : "sources",
-                            "path" : "/home/stelios/.ivy2/cache/xalan/xalan/srcs/xalan-2.7.2-sources.jar"
+                            "name": "xalan",
+                            "classifier": "sources",
+                            "path": "/home/stkat/.ivy2/cache/xalan/xalan/srcs/xalan-2.7.2-sources.jar"
                         }
                     ]
                 },
                 {
-                    "organization" : "xalan",
-                    "name" : "serializer",
-                    "version" : "2.7.2",
-                    "artifacts" : [
+                    "organization": "xalan",
+                    "name": "serializer",
+                    "version": "2.7.2",
+                    "artifacts": [
                         {
-                            "name" : "serializer",
-                            "path" : "/home/stelios/.ivy2/cache/xalan/serializer/jars/serializer-2.7.2.jar"
+                            "name": "serializer",
+                            "path": "/home/stkat/.ivy2/cache/xalan/serializer/jars/serializer-2.7.2.jar"
                         },
                         {
-                            "name" : "serializer",
-                            "classifier" : "sources",
-                            "path" : "/home/stelios/.ivy2/cache/xalan/serializer/srcs/serializer-2.7.2-sources.jar"
+                            "name": "serializer",
+                            "classifier": "sources",
+                            "path": "/home/stkat/.ivy2/cache/xalan/serializer/srcs/serializer-2.7.2-sources.jar"
                         }
                     ]
                 },
                 {
-                    "organization" : "org.apache.commons",
-                    "name" : "commons-lang3",
-                    "version" : "3.8.1",
-                    "artifacts" : [
+                    "organization": "org.apache.commons",
+                    "name": "commons-lang3",
+                    "version": "3.8.1",
+                    "artifacts": [
                         {
-                            "name" : "commons-lang3",
-                            "path" : "/home/stelios/.ivy2/cache/org.apache.commons/commons-lang3/jars/commons-lang3-3.8.1.jar"
+                            "name": "commons-lang3",
+                            "path": "/home/stkat/.ivy2/cache/org.apache.commons/commons-lang3/jars/commons-lang3-3.8.1.jar"
                         },
                         {
-                            "name" : "commons-lang3",
-                            "classifier" : "sources",
-                            "path" : "/home/stelios/.ivy2/cache/org.apache.commons/commons-lang3/srcs/commons-lang3-3.8.1-sources.jar"
+                            "name": "commons-lang3",
+                            "classifier": "sources",
+                            "path": "/home/stkat/.ivy2/cache/org.apache.commons/commons-lang3/srcs/commons-lang3-3.8.1-sources.jar"
                         }
                     ]
                 },
                 {
-                    "organization" : "org.apache.commons",
-                    "name" : "commons-text",
-                    "version" : "1.6",
-                    "artifacts" : [
+                    "organization": "org.apache.commons",
+                    "name": "commons-text",
+                    "version": "1.6",
+                    "artifacts": [
                         {
-                            "name" : "commons-text",
-                            "path" : "/home/stelios/.ivy2/cache/org.apache.commons/commons-text/jars/commons-text-1.6.jar"
+                            "name": "commons-text",
+                            "path": "/home/stkat/.ivy2/cache/org.apache.commons/commons-text/jars/commons-text-1.6.jar"
                         },
                         {
-                            "name" : "commons-text",
-                            "classifier" : "sources",
-                            "path" : "/home/stelios/.ivy2/cache/org.apache.commons/commons-text/srcs/commons-text-1.6-sources.jar"
+                            "name": "commons-text",
+                            "classifier": "sources",
+                            "path": "/home/stkat/.ivy2/cache/org.apache.commons/commons-text/srcs/commons-text-1.6-sources.jar"
                         }
                     ]
                 },
                 {
-                    "organization" : "org.apache.httpcomponents",
-                    "name" : "httpmime",
-                    "version" : "4.5.7",
-                    "artifacts" : [
+                    "organization": "org.apache.httpcomponents",
+                    "name": "httpmime",
+                    "version": "4.5.7",
+                    "artifacts": [
                         {
-                            "name" : "httpmime",
-                            "path" : "/home/stelios/.ivy2/cache/org.apache.httpcomponents/httpmime/jars/httpmime-4.5.7.jar"
+                            "name": "httpmime",
+                            "path": "/home/stkat/.ivy2/cache/org.apache.httpcomponents/httpmime/jars/httpmime-4.5.7.jar"
                         },
                         {
-                            "name" : "httpmime",
-                            "classifier" : "sources",
-                            "path" : "/home/stelios/.ivy2/cache/org.apache.httpcomponents/httpmime/srcs/httpmime-4.5.7-sources.jar"
+                            "name": "httpmime",
+                            "classifier": "sources",
+                            "path": "/home/stkat/.ivy2/cache/org.apache.httpcomponents/httpmime/srcs/httpmime-4.5.7-sources.jar"
                         }
                     ]
                 },
                 {
-                    "organization" : "org.apache.httpcomponents",
-                    "name" : "httpclient",
-                    "version" : "4.5.7",
-                    "artifacts" : [
+                    "organization": "org.apache.httpcomponents",
+                    "name": "httpclient",
+                    "version": "4.5.7",
+                    "artifacts": [
                         {
-                            "name" : "httpclient",
-                            "path" : "/home/stelios/.ivy2/cache/org.apache.httpcomponents/httpclient/jars/httpclient-4.5.7.jar"
+                            "name": "httpclient",
+                            "path": "/home/stkat/.ivy2/cache/org.apache.httpcomponents/httpclient/jars/httpclient-4.5.7.jar"
                         },
                         {
-                            "name" : "httpclient",
-                            "classifier" : "sources",
-                            "path" : "/home/stelios/.ivy2/cache/org.apache.httpcomponents/httpclient/srcs/httpclient-4.5.7-sources.jar"
+                            "name": "httpclient",
+                            "classifier": "sources",
+                            "path": "/home/stkat/.ivy2/cache/org.apache.httpcomponents/httpclient/srcs/httpclient-4.5.7-sources.jar"
                         }
                     ]
                 },
                 {
-                    "organization" : "org.apache.httpcomponents",
-                    "name" : "httpcore",
-                    "version" : "4.4.11",
-                    "artifacts" : [
+                    "organization": "org.apache.httpcomponents",
+                    "name": "httpcore",
+                    "version": "4.4.11",
+                    "artifacts": [
                         {
-                            "name" : "httpcore",
-                            "path" : "/home/stelios/.ivy2/cache/org.apache.httpcomponents/httpcore/jars/httpcore-4.4.11.jar"
+                            "name": "httpcore",
+                            "path": "/home/stkat/.ivy2/cache/org.apache.httpcomponents/httpcore/jars/httpcore-4.4.11.jar"
                         },
                         {
-                            "name" : "httpcore",
-                            "classifier" : "sources",
-                            "path" : "/home/stelios/.ivy2/cache/org.apache.httpcomponents/httpcore/srcs/httpcore-4.4.11-sources.jar"
+                            "name": "httpcore",
+                            "classifier": "sources",
+                            "path": "/home/stkat/.ivy2/cache/org.apache.httpcomponents/httpcore/srcs/httpcore-4.4.11-sources.jar"
                         }
                     ]
                 },
                 {
-                    "organization" : "commons-logging",
-                    "name" : "commons-logging",
-                    "version" : "1.2",
-                    "artifacts" : [
+                    "organization": "commons-logging",
+                    "name": "commons-logging",
+                    "version": "1.2",
+                    "artifacts": [
                         {
-                            "name" : "commons-logging",
-                            "path" : "/home/stelios/.ivy2/cache/commons-logging/commons-logging/jars/commons-logging-1.2.jar"
+                            "name": "commons-logging",
+                            "path": "/home/stkat/.ivy2/cache/commons-logging/commons-logging/jars/commons-logging-1.2.jar"
                         },
                         {
-                            "name" : "commons-logging",
-                            "classifier" : "sources",
-                            "path" : "/home/stelios/.ivy2/cache/commons-logging/commons-logging/srcs/commons-logging-1.2-sources.jar"
+                            "name": "commons-logging",
+                            "classifier": "sources",
+                            "path": "/home/stkat/.ivy2/cache/commons-logging/commons-logging/srcs/commons-logging-1.2-sources.jar"
                         }
                     ]
                 },
                 {
-                    "organization" : "commons-codec",
-                    "name" : "commons-codec",
-                    "version" : "1.11",
-                    "artifacts" : [
+                    "organization": "commons-codec",
+                    "name": "commons-codec",
+                    "version": "1.11",
+                    "artifacts": [
                         {
-                            "name" : "commons-codec",
-                            "path" : "/home/stelios/.ivy2/cache/commons-codec/commons-codec/jars/commons-codec-1.11.jar"
+                            "name": "commons-codec",
+                            "path": "/home/stkat/.ivy2/cache/commons-codec/commons-codec/jars/commons-codec-1.11.jar"
                         },
                         {
-                            "name" : "commons-codec",
-                            "classifier" : "sources",
-                            "path" : "/home/stelios/.ivy2/cache/commons-codec/commons-codec/srcs/commons-codec-1.11-sources.jar"
+                            "name": "commons-codec",
+                            "classifier": "sources",
+                            "path": "/home/stkat/.ivy2/cache/commons-codec/commons-codec/srcs/commons-codec-1.11-sources.jar"
                         }
                     ]
                 },
                 {
-                    "organization" : "net.sourceforge.htmlunit",
-                    "name" : "htmlunit-core-js",
-                    "version" : "2.34.0",
-                    "artifacts" : [
+                    "organization": "net.sourceforge.htmlunit",
+                    "name": "htmlunit-core-js",
+                    "version": "2.34.0",
+                    "artifacts": [
                         {
-                            "name" : "htmlunit-core-js",
-                            "path" : "/home/stelios/.ivy2/cache/net.sourceforge.htmlunit/htmlunit-core-js/jars/htmlunit-core-js-2.34.0.jar"
+                            "name": "htmlunit-core-js",
+                            "path": "/home/stkat/.ivy2/cache/net.sourceforge.htmlunit/htmlunit-core-js/jars/htmlunit-core-js-2.34.0.jar"
                         },
                         {
-                            "name" : "htmlunit-core-js",
-                            "classifier" : "sources",
-                            "path" : "/home/stelios/.ivy2/cache/net.sourceforge.htmlunit/htmlunit-core-js/srcs/htmlunit-core-js-2.34.0-sources.jar"
+                            "name": "htmlunit-core-js",
+                            "classifier": "sources",
+                            "path": "/home/stkat/.ivy2/cache/net.sourceforge.htmlunit/htmlunit-core-js/srcs/htmlunit-core-js-2.34.0-sources.jar"
                         }
                     ]
                 },
                 {
-                    "organization" : "net.sourceforge.htmlunit",
-                    "name" : "neko-htmlunit",
-                    "version" : "2.34.0",
-                    "artifacts" : [
+                    "organization": "net.sourceforge.htmlunit",
+                    "name": "neko-htmlunit",
+                    "version": "2.34.0",
+                    "artifacts": [
                         {
-                            "name" : "neko-htmlunit",
-                            "path" : "/home/stelios/.ivy2/cache/net.sourceforge.htmlunit/neko-htmlunit/jars/neko-htmlunit-2.34.0.jar"
+                            "name": "neko-htmlunit",
+                            "path": "/home/stkat/.ivy2/cache/net.sourceforge.htmlunit/neko-htmlunit/jars/neko-htmlunit-2.34.0.jar"
                         },
                         {
-                            "name" : "neko-htmlunit",
-                            "classifier" : "sources",
-                            "path" : "/home/stelios/.ivy2/cache/net.sourceforge.htmlunit/neko-htmlunit/srcs/neko-htmlunit-2.34.0-sources.jar"
+                            "name": "neko-htmlunit",
+                            "classifier": "sources",
+                            "path": "/home/stkat/.ivy2/cache/net.sourceforge.htmlunit/neko-htmlunit/srcs/neko-htmlunit-2.34.0-sources.jar"
                         }
                     ]
                 },
                 {
-                    "organization" : "xerces",
-                    "name" : "xercesImpl",
-                    "version" : "2.12.0",
-                    "artifacts" : [
+                    "organization": "xerces",
+                    "name": "xercesImpl",
+                    "version": "2.12.0",
+                    "artifacts": [
                         {
-                            "name" : "xercesImpl",
-                            "path" : "/home/stelios/.ivy2/cache/xerces/xercesImpl/jars/xercesImpl-2.12.0.jar"
+                            "name": "xercesImpl",
+                            "path": "/home/stkat/.ivy2/cache/xerces/xercesImpl/jars/xercesImpl-2.12.0.jar"
                         },
                         {
-                            "name" : "xercesImpl",
-                            "classifier" : "sources",
-                            "path" : "/home/stelios/.ivy2/cache/xerces/xercesImpl/srcs/xercesImpl-2.12.0-sources.jar"
+                            "name": "xercesImpl",
+                            "classifier": "sources",
+                            "path": "/home/stkat/.ivy2/cache/xerces/xercesImpl/srcs/xercesImpl-2.12.0-sources.jar"
                         }
                     ]
                 },
                 {
-                    "organization" : "xml-apis",
-                    "name" : "xml-apis",
-                    "version" : "1.4.01",
-                    "artifacts" : [
+                    "organization": "xml-apis",
+                    "name": "xml-apis",
+                    "version": "1.4.01",
+                    "artifacts": [
                         {
-                            "name" : "xml-apis",
-                            "path" : "/home/stelios/.ivy2/cache/xml-apis/xml-apis/jars/xml-apis-1.4.01.jar"
+                            "name": "xml-apis",
+                            "path": "/home/stkat/.ivy2/cache/xml-apis/xml-apis/jars/xml-apis-1.4.01.jar"
                         },
                         {
-                            "name" : "xml-apis",
-                            "classifier" : "sources",
-                            "path" : "/home/stelios/.ivy2/cache/xml-apis/xml-apis/srcs/xml-apis-1.4.01-sources.jar"
+                            "name": "xml-apis",
+                            "classifier": "sources",
+                            "path": "/home/stkat/.ivy2/cache/xml-apis/xml-apis/srcs/xml-apis-1.4.01-sources.jar"
                         }
                     ]
                 },
                 {
-                    "organization" : "net.sourceforge.htmlunit",
-                    "name" : "htmlunit-cssparser",
-                    "version" : "1.3.0",
-                    "artifacts" : [
+                    "organization": "net.sourceforge.htmlunit",
+                    "name": "htmlunit-cssparser",
+                    "version": "1.3.0",
+                    "artifacts": [
                         {
-                            "name" : "htmlunit-cssparser",
-                            "path" : "/home/stelios/.ivy2/cache/net.sourceforge.htmlunit/htmlunit-cssparser/jars/htmlunit-cssparser-1.3.0.jar"
+                            "name": "htmlunit-cssparser",
+                            "path": "/home/stkat/.ivy2/cache/net.sourceforge.htmlunit/htmlunit-cssparser/jars/htmlunit-cssparser-1.3.0.jar"
                         },
                         {
-                            "name" : "htmlunit-cssparser",
-                            "classifier" : "sources",
-                            "path" : "/home/stelios/.ivy2/cache/net.sourceforge.htmlunit/htmlunit-cssparser/srcs/htmlunit-cssparser-1.3.0-sources.jar"
+                            "name": "htmlunit-cssparser",
+                            "classifier": "sources",
+                            "path": "/home/stkat/.ivy2/cache/net.sourceforge.htmlunit/htmlunit-cssparser/srcs/htmlunit-cssparser-1.3.0-sources.jar"
                         }
                     ]
                 },
                 {
-                    "organization" : "commons-io",
-                    "name" : "commons-io",
-                    "version" : "2.6",
-                    "artifacts" : [
+                    "organization": "commons-io",
+                    "name": "commons-io",
+                    "version": "2.6",
+                    "artifacts": [
                         {
-                            "name" : "commons-io",
-                            "path" : "/home/stelios/.ivy2/cache/commons-io/commons-io/jars/commons-io-2.6.jar"
+                            "name": "commons-io",
+                            "path": "/home/stkat/.ivy2/cache/commons-io/commons-io/jars/commons-io-2.6.jar"
                         },
                         {
-                            "name" : "commons-io",
-                            "classifier" : "sources",
-                            "path" : "/home/stelios/.ivy2/cache/commons-io/commons-io/srcs/commons-io-2.6-sources.jar"
+                            "name": "commons-io",
+                            "classifier": "sources",
+                            "path": "/home/stkat/.ivy2/cache/commons-io/commons-io/srcs/commons-io-2.6-sources.jar"
                         }
                     ]
                 },
                 {
-                    "organization" : "commons-net",
-                    "name" : "commons-net",
-                    "version" : "3.6",
-                    "artifacts" : [
+                    "organization": "commons-net",
+                    "name": "commons-net",
+                    "version": "3.6",
+                    "artifacts": [
                         {
-                            "name" : "commons-net",
-                            "path" : "/home/stelios/.ivy2/cache/commons-net/commons-net/jars/commons-net-3.6.jar"
+                            "name": "commons-net",
+                            "path": "/home/stkat/.ivy2/cache/commons-net/commons-net/jars/commons-net-3.6.jar"
                         },
                         {
-                            "name" : "commons-net",
-                            "classifier" : "sources",
-                            "path" : "/home/stelios/.ivy2/cache/commons-net/commons-net/srcs/commons-net-3.6-sources.jar"
+                            "name": "commons-net",
+                            "classifier": "sources",
+                            "path": "/home/stkat/.ivy2/cache/commons-net/commons-net/srcs/commons-net-3.6-sources.jar"
                         }
                     ]
                 },
                 {
-                    "organization" : "org.eclipse.jetty.websocket",
-                    "name" : "websocket-client",
-                    "version" : "9.4.15.v20190215",
-                    "artifacts" : [
+                    "organization": "org.eclipse.jetty.websocket",
+                    "name": "websocket-client",
+                    "version": "9.4.15.v20190215",
+                    "artifacts": [
                         {
-                            "name" : "websocket-client",
-                            "path" : "/home/stelios/.ivy2/cache/org.eclipse.jetty.websocket/websocket-client/jars/websocket-client-9.4.15.v20190215.jar"
+                            "name": "websocket-client",
+                            "path": "/home/stkat/.ivy2/cache/org.eclipse.jetty.websocket/websocket-client/jars/websocket-client-9.4.15.v20190215.jar"
                         },
                         {
-                            "name" : "websocket-client",
-                            "classifier" : "sources",
-                            "path" : "/home/stelios/.ivy2/cache/org.eclipse.jetty.websocket/websocket-client/srcs/websocket-client-9.4.15.v20190215-sources.jar"
+                            "name": "websocket-client",
+                            "classifier": "sources",
+                            "path": "/home/stkat/.ivy2/cache/org.eclipse.jetty.websocket/websocket-client/srcs/websocket-client-9.4.15.v20190215-sources.jar"
                         }
                     ]
                 },
                 {
-                    "organization" : "org.eclipse.jetty",
-                    "name" : "jetty-client",
-                    "version" : "9.4.15.v20190215",
-                    "artifacts" : [
+                    "organization": "org.eclipse.jetty",
+                    "name": "jetty-client",
+                    "version": "9.4.15.v20190215",
+                    "artifacts": [
                         {
-                            "name" : "jetty-client",
-                            "path" : "/home/stelios/.ivy2/cache/org.eclipse.jetty/jetty-client/jars/jetty-client-9.4.15.v20190215.jar"
+                            "name": "jetty-client",
+                            "path": "/home/stkat/.ivy2/cache/org.eclipse.jetty/jetty-client/jars/jetty-client-9.4.15.v20190215.jar"
                         },
                         {
-                            "name" : "jetty-client",
-                            "classifier" : "sources",
-                            "path" : "/home/stelios/.ivy2/cache/org.eclipse.jetty/jetty-client/srcs/jetty-client-9.4.15.v20190215-sources.jar"
+                            "name": "jetty-client",
+                            "classifier": "sources",
+                            "path": "/home/stkat/.ivy2/cache/org.eclipse.jetty/jetty-client/srcs/jetty-client-9.4.15.v20190215-sources.jar"
                         }
                     ]
                 },
                 {
-                    "organization" : "org.eclipse.jetty",
-                    "name" : "jetty-http",
-                    "version" : "9.4.15.v20190215",
-                    "artifacts" : [
+                    "organization": "org.eclipse.jetty",
+                    "name": "jetty-http",
+                    "version": "9.4.15.v20190215",
+                    "artifacts": [
                         {
-                            "name" : "jetty-http",
-                            "path" : "/home/stelios/.ivy2/cache/org.eclipse.jetty/jetty-http/jars/jetty-http-9.4.15.v20190215.jar"
+                            "name": "jetty-http",
+                            "path": "/home/stkat/.ivy2/cache/org.eclipse.jetty/jetty-http/jars/jetty-http-9.4.15.v20190215.jar"
                         },
                         {
-                            "name" : "jetty-http",
-                            "classifier" : "sources",
-                            "path" : "/home/stelios/.ivy2/cache/org.eclipse.jetty/jetty-http/srcs/jetty-http-9.4.15.v20190215-sources.jar"
+                            "name": "jetty-http",
+                            "classifier": "sources",
+                            "path": "/home/stkat/.ivy2/cache/org.eclipse.jetty/jetty-http/srcs/jetty-http-9.4.15.v20190215-sources.jar"
                         }
                     ]
                 },
                 {
-                    "organization" : "org.eclipse.jetty",
-                    "name" : "jetty-util",
-                    "version" : "9.4.15.v20190215",
-                    "artifacts" : [
+                    "organization": "org.eclipse.jetty",
+                    "name": "jetty-util",
+                    "version": "9.4.15.v20190215",
+                    "artifacts": [
                         {
-                            "name" : "jetty-util",
-                            "path" : "/home/stelios/.ivy2/cache/org.eclipse.jetty/jetty-util/jars/jetty-util-9.4.15.v20190215.jar"
+                            "name": "jetty-util",
+                            "path": "/home/stkat/.ivy2/cache/org.eclipse.jetty/jetty-util/jars/jetty-util-9.4.15.v20190215.jar"
                         },
                         {
-                            "name" : "jetty-util",
-                            "classifier" : "sources",
-                            "path" : "/home/stelios/.ivy2/cache/org.eclipse.jetty/jetty-util/srcs/jetty-util-9.4.15.v20190215-sources.jar"
+                            "name": "jetty-util",
+                            "classifier": "sources",
+                            "path": "/home/stkat/.ivy2/cache/org.eclipse.jetty/jetty-util/srcs/jetty-util-9.4.15.v20190215-sources.jar"
                         }
                     ]
                 },
                 {
-                    "organization" : "org.eclipse.jetty",
-                    "name" : "jetty-io",
-                    "version" : "9.4.15.v20190215",
-                    "artifacts" : [
+                    "organization": "org.eclipse.jetty",
+                    "name": "jetty-io",
+                    "version": "9.4.15.v20190215",
+                    "artifacts": [
                         {
-                            "name" : "jetty-io",
-                            "path" : "/home/stelios/.ivy2/cache/org.eclipse.jetty/jetty-io/jars/jetty-io-9.4.15.v20190215.jar"
+                            "name": "jetty-io",
+                            "path": "/home/stkat/.ivy2/cache/org.eclipse.jetty/jetty-io/jars/jetty-io-9.4.15.v20190215.jar"
                         },
                         {
-                            "name" : "jetty-io",
-                            "classifier" : "sources",
-                            "path" : "/home/stelios/.ivy2/cache/org.eclipse.jetty/jetty-io/srcs/jetty-io-9.4.15.v20190215-sources.jar"
+                            "name": "jetty-io",
+                            "classifier": "sources",
+                            "path": "/home/stkat/.ivy2/cache/org.eclipse.jetty/jetty-io/srcs/jetty-io-9.4.15.v20190215-sources.jar"
                         }
                     ]
                 },
                 {
-                    "organization" : "org.eclipse.jetty",
-                    "name" : "jetty-xml",
-                    "version" : "9.4.15.v20190215",
-                    "artifacts" : [
+                    "organization": "org.eclipse.jetty",
+                    "name": "jetty-xml",
+                    "version": "9.4.15.v20190215",
+                    "artifacts": [
                         {
-                            "name" : "jetty-xml",
-                            "path" : "/home/stelios/.ivy2/cache/org.eclipse.jetty/jetty-xml/jars/jetty-xml-9.4.15.v20190215.jar"
+                            "name": "jetty-xml",
+                            "path": "/home/stkat/.ivy2/cache/org.eclipse.jetty/jetty-xml/jars/jetty-xml-9.4.15.v20190215.jar"
                         },
                         {
-                            "name" : "jetty-xml",
-                            "classifier" : "sources",
-                            "path" : "/home/stelios/.ivy2/cache/org.eclipse.jetty/jetty-xml/srcs/jetty-xml-9.4.15.v20190215-sources.jar"
+                            "name": "jetty-xml",
+                            "classifier": "sources",
+                            "path": "/home/stkat/.ivy2/cache/org.eclipse.jetty/jetty-xml/srcs/jetty-xml-9.4.15.v20190215-sources.jar"
                         }
                     ]
                 },
                 {
-                    "organization" : "org.eclipse.jetty.websocket",
-                    "name" : "websocket-common",
-                    "version" : "9.4.15.v20190215",
-                    "artifacts" : [
+                    "organization": "org.eclipse.jetty.websocket",
+                    "name": "websocket-common",
+                    "version": "9.4.15.v20190215",
+                    "artifacts": [
                         {
-                            "name" : "websocket-common",
-                            "path" : "/home/stelios/.ivy2/cache/org.eclipse.jetty.websocket/websocket-common/jars/websocket-common-9.4.15.v20190215.jar"
+                            "name": "websocket-common",
+                            "path": "/home/stkat/.ivy2/cache/org.eclipse.jetty.websocket/websocket-common/jars/websocket-common-9.4.15.v20190215.jar"
                         },
                         {
-                            "name" : "websocket-common",
-                            "classifier" : "sources",
-                            "path" : "/home/stelios/.ivy2/cache/org.eclipse.jetty.websocket/websocket-common/srcs/websocket-common-9.4.15.v20190215-sources.jar"
+                            "name": "websocket-common",
+                            "classifier": "sources",
+                            "path": "/home/stkat/.ivy2/cache/org.eclipse.jetty.websocket/websocket-common/srcs/websocket-common-9.4.15.v20190215-sources.jar"
                         }
                     ]
                 },
                 {
-                    "organization" : "org.eclipse.jetty.websocket",
-                    "name" : "websocket-api",
-                    "version" : "9.4.15.v20190215",
-                    "artifacts" : [
+                    "organization": "org.eclipse.jetty.websocket",
+                    "name": "websocket-api",
+                    "version": "9.4.15.v20190215",
+                    "artifacts": [
                         {
-                            "name" : "websocket-api",
-                            "path" : "/home/stelios/.ivy2/cache/org.eclipse.jetty.websocket/websocket-api/jars/websocket-api-9.4.15.v20190215.jar"
+                            "name": "websocket-api",
+                            "path": "/home/stkat/.ivy2/cache/org.eclipse.jetty.websocket/websocket-api/jars/websocket-api-9.4.15.v20190215.jar"
                         },
                         {
-                            "name" : "websocket-api",
-                            "classifier" : "sources",
-                            "path" : "/home/stelios/.ivy2/cache/org.eclipse.jetty.websocket/websocket-api/srcs/websocket-api-9.4.15.v20190215-sources.jar"
+                            "name": "websocket-api",
+                            "classifier": "sources",
+                            "path": "/home/stkat/.ivy2/cache/org.eclipse.jetty.websocket/websocket-api/srcs/websocket-api-9.4.15.v20190215-sources.jar"
                         }
                     ]
                 },
                 {
-                    "organization" : "org.jsoup",
-                    "name" : "jsoup",
-                    "version" : "1.11.3",
-                    "artifacts" : [
+                    "organization": "org.jsoup",
+                    "name": "jsoup",
+                    "version": "1.11.3",
+                    "artifacts": [
                         {
-                            "name" : "jsoup",
-                            "path" : "/home/stelios/.ivy2/cache/org.jsoup/jsoup/jars/jsoup-1.11.3.jar"
+                            "name": "jsoup",
+                            "path": "/home/stkat/.ivy2/cache/org.jsoup/jsoup/jars/jsoup-1.11.3.jar"
                         },
                         {
-                            "name" : "jsoup",
-                            "classifier" : "sources",
-                            "path" : "/home/stelios/.ivy2/cache/org.jsoup/jsoup/srcs/jsoup-1.11.3-sources.jar"
+                            "name": "jsoup",
+                            "classifier": "sources",
+                            "path": "/home/stkat/.ivy2/cache/org.jsoup/jsoup/srcs/jsoup-1.11.3-sources.jar"
                         }
                     ]
                 },
                 {
-                    "organization" : "org.scalaz",
-                    "name" : "scalaz-core_2.13",
-                    "version" : "7.2.28",
-                    "artifacts" : [
+                    "organization": "org.scalaz",
+                    "name": "scalaz-core_2.13",
+                    "version": "7.2.28",
+                    "artifacts": [
                         {
-                            "name" : "scalaz-core_2.13",
-                            "path" : "/home/stelios/.ivy2/cache/org.scalaz/scalaz-core_2.13/bundles/scalaz-core_2.13-7.2.28.jar"
+                            "name": "scalaz-core_2.13",
+                            "path": "/home/stkat/.ivy2/cache/org.scalaz/scalaz-core_2.13/bundles/scalaz-core_2.13-7.2.28.jar"
                         },
                         {
-                            "name" : "scalaz-core_2.13",
-                            "classifier" : "sources",
-                            "path" : "/home/stelios/.ivy2/cache/org.scalaz/scalaz-core_2.13/srcs/scalaz-core_2.13-7.2.28-sources.jar"
+                            "name": "scalaz-core_2.13",
+                            "classifier": "sources",
+                            "path": "/home/stkat/.ivy2/cache/org.scalaz/scalaz-core_2.13/srcs/scalaz-core_2.13-7.2.28-sources.jar"
                         }
                     ]
                 },
                 {
-                    "organization" : "com.google.apis",
-                    "name" : "google-api-services-gmail",
-                    "version" : "v1-rev72-1.23.0",
-                    "artifacts" : [
+                    "organization": "com.google.apis",
+                    "name": "google-api-services-gmail",
+                    "version": "v1-rev72-1.23.0",
+                    "artifacts": [
                         {
-                            "name" : "google-api-services-gmail",
-                            "path" : "/home/stelios/.ivy2/cache/com.google.apis/google-api-services-gmail/jars/google-api-services-gmail-v1-rev72-1.23.0.jar"
+                            "name": "google-api-services-gmail",
+                            "path": "/home/stkat/.ivy2/cache/com.google.apis/google-api-services-gmail/jars/google-api-services-gmail-v1-rev72-1.23.0.jar"
                         },
                         {
-                            "name" : "google-api-services-gmail",
-                            "classifier" : "sources",
-                            "path" : "/home/stelios/.ivy2/cache/com.google.apis/google-api-services-gmail/srcs/google-api-services-gmail-v1-rev72-1.23.0-sources.jar"
+                            "name": "google-api-services-gmail",
+                            "classifier": "sources",
+                            "path": "/home/stkat/.ivy2/cache/com.google.apis/google-api-services-gmail/srcs/google-api-services-gmail-v1-rev72-1.23.0-sources.jar"
                         }
                     ]
                 },
                 {
-                    "organization" : "com.google.api-client",
-                    "name" : "google-api-client",
-                    "version" : "1.23.0",
-                    "artifacts" : [
+                    "organization": "com.google.api-client",
+                    "name": "google-api-client",
+                    "version": "1.23.0",
+                    "artifacts": [
                         {
-                            "name" : "google-api-client",
-                            "path" : "/home/stelios/.ivy2/cache/com.google.api-client/google-api-client/jars/google-api-client-1.23.0.jar"
+                            "name": "google-api-client",
+                            "path": "/home/stkat/.ivy2/cache/com.google.api-client/google-api-client/jars/google-api-client-1.23.0.jar"
                         },
                         {
-                            "name" : "google-api-client",
-                            "classifier" : "sources",
-                            "path" : "/home/stelios/.ivy2/cache/com.google.api-client/google-api-client/srcs/google-api-client-1.23.0-sources.jar"
+                            "name": "google-api-client",
+                            "classifier": "sources",
+                            "path": "/home/stkat/.ivy2/cache/com.google.api-client/google-api-client/srcs/google-api-client-1.23.0-sources.jar"
                         }
                     ]
                 },
                 {
-                    "organization" : "com.google.oauth-client",
-                    "name" : "google-oauth-client",
-                    "version" : "1.23.0",
-                    "artifacts" : [
+                    "organization": "com.google.oauth-client",
+                    "name": "google-oauth-client",
+                    "version": "1.23.0",
+                    "artifacts": [
                         {
-                            "name" : "google-oauth-client",
-                            "path" : "/home/stelios/.ivy2/cache/com.google.oauth-client/google-oauth-client/jars/google-oauth-client-1.23.0.jar"
+                            "name": "google-oauth-client",
+                            "path": "/home/stkat/.ivy2/cache/com.google.oauth-client/google-oauth-client/jars/google-oauth-client-1.23.0.jar"
                         },
                         {
-                            "name" : "google-oauth-client",
-                            "classifier" : "sources",
-                            "path" : "/home/stelios/.ivy2/cache/com.google.oauth-client/google-oauth-client/srcs/google-oauth-client-1.23.0-sources.jar"
+                            "name": "google-oauth-client",
+                            "classifier": "sources",
+                            "path": "/home/stkat/.ivy2/cache/com.google.oauth-client/google-oauth-client/srcs/google-oauth-client-1.23.0-sources.jar"
                         }
                     ]
                 },
                 {
-                    "organization" : "com.google.http-client",
-                    "name" : "google-http-client",
-                    "version" : "1.23.0",
-                    "artifacts" : [
+                    "organization": "com.google.http-client",
+                    "name": "google-http-client",
+                    "version": "1.23.0",
+                    "artifacts": [
                         {
-                            "name" : "google-http-client",
-                            "path" : "/home/stelios/.ivy2/cache/com.google.http-client/google-http-client/jars/google-http-client-1.23.0.jar"
+                            "name": "google-http-client",
+                            "path": "/home/stkat/.ivy2/cache/com.google.http-client/google-http-client/jars/google-http-client-1.23.0.jar"
                         },
                         {
-                            "name" : "google-http-client",
-                            "classifier" : "sources",
-                            "path" : "/home/stelios/.ivy2/cache/com.google.http-client/google-http-client/srcs/google-http-client-1.23.0-sources.jar"
+                            "name": "google-http-client",
+                            "classifier": "sources",
+                            "path": "/home/stkat/.ivy2/cache/com.google.http-client/google-http-client/srcs/google-http-client-1.23.0-sources.jar"
                         }
                     ]
                 },
                 {
-                    "organization" : "com.google.http-client",
-                    "name" : "google-http-client-jackson2",
-                    "version" : "1.23.0",
-                    "artifacts" : [
+                    "organization": "com.google.http-client",
+                    "name": "google-http-client-jackson2",
+                    "version": "1.23.0",
+                    "artifacts": [
                         {
-                            "name" : "google-http-client-jackson2",
-                            "path" : "/home/stelios/.ivy2/cache/com.google.http-client/google-http-client-jackson2/jars/google-http-client-jackson2-1.23.0.jar"
+                            "name": "google-http-client-jackson2",
+                            "path": "/home/stkat/.ivy2/cache/com.google.http-client/google-http-client-jackson2/jars/google-http-client-jackson2-1.23.0.jar"
                         },
                         {
-                            "name" : "google-http-client-jackson2",
-                            "classifier" : "sources",
-                            "path" : "/home/stelios/.ivy2/cache/com.google.http-client/google-http-client-jackson2/srcs/google-http-client-jackson2-1.23.0-sources.jar"
+                            "name": "google-http-client-jackson2",
+                            "classifier": "sources",
+                            "path": "/home/stkat/.ivy2/cache/com.google.http-client/google-http-client-jackson2/srcs/google-http-client-jackson2-1.23.0-sources.jar"
                         }
                     ]
                 },
                 {
-                    "organization" : "com.google.guava",
-                    "name" : "guava-jdk5",
-                    "version" : "17.0",
-                    "artifacts" : [
+                    "organization": "com.google.guava",
+                    "name": "guava-jdk5",
+                    "version": "17.0",
+                    "artifacts": [
                         {
-                            "name" : "guava-jdk5",
-                            "path" : "/home/stelios/.ivy2/cache/com.google.guava/guava-jdk5/bundles/guava-jdk5-17.0.jar"
+                            "name": "guava-jdk5",
+                            "path": "/home/stkat/.ivy2/cache/com.google.guava/guava-jdk5/bundles/guava-jdk5-17.0.jar"
                         },
                         {
-                            "name" : "guava-jdk5",
-                            "classifier" : "sources",
-                            "path" : "/home/stelios/.ivy2/cache/com.google.guava/guava-jdk5/srcs/guava-jdk5-17.0-sources.jar"
+                            "name": "guava-jdk5",
+                            "classifier": "sources",
+                            "path": "/home/stkat/.ivy2/cache/com.google.guava/guava-jdk5/srcs/guava-jdk5-17.0-sources.jar"
                         }
                     ]
                 },
                 {
-                    "organization" : "com.google.apis",
-                    "name" : "google-api-services-plus",
-                    "version" : "v1-rev210-1.19.1",
-                    "artifacts" : [
+                    "organization": "com.google.apis",
+                    "name": "google-api-services-plus",
+                    "version": "v1-rev210-1.19.1",
+                    "artifacts": [
                         {
-                            "name" : "google-api-services-plus",
-                            "path" : "/home/stelios/.ivy2/cache/com.google.apis/google-api-services-plus/jars/google-api-services-plus-v1-rev210-1.19.1.jar"
+                            "name": "google-api-services-plus",
+                            "path": "/home/stkat/.ivy2/cache/com.google.apis/google-api-services-plus/jars/google-api-services-plus-v1-rev210-1.19.1.jar"
                         },
                         {
-                            "name" : "google-api-services-plus",
-                            "classifier" : "sources",
-                            "path" : "/home/stelios/.ivy2/cache/com.google.apis/google-api-services-plus/srcs/google-api-services-plus-v1-rev210-1.19.1-sources.jar"
+                            "name": "google-api-services-plus",
+                            "classifier": "sources",
+                            "path": "/home/stkat/.ivy2/cache/com.google.apis/google-api-services-plus/srcs/google-api-services-plus-v1-rev210-1.19.1-sources.jar"
                         }
                     ]
                 },
                 {
-                    "organization" : "com.github.tototoshi",
-                    "name" : "scala-csv_2.13",
-                    "version" : "1.3.6",
-                    "artifacts" : [
+                    "organization": "com.github.tototoshi",
+                    "name": "scala-csv_2.13",
+                    "version": "1.3.6",
+                    "artifacts": [
                         {
-                            "name" : "scala-csv_2.13",
-                            "path" : "/home/stelios/.ivy2/cache/com.github.tototoshi/scala-csv_2.13/jars/scala-csv_2.13-1.3.6.jar"
+                            "name": "scala-csv_2.13",
+                            "path": "/home/stkat/.ivy2/cache/com.github.tototoshi/scala-csv_2.13/jars/scala-csv_2.13-1.3.6.jar"
                         },
                         {
-                            "name" : "scala-csv_2.13",
-                            "classifier" : "sources",
-                            "path" : "/home/stelios/.ivy2/cache/com.github.tototoshi/scala-csv_2.13/srcs/scala-csv_2.13-1.3.6-sources.jar"
+                            "name": "scala-csv_2.13",
+                            "classifier": "sources",
+                            "path": "/home/stkat/.ivy2/cache/com.github.tototoshi/scala-csv_2.13/srcs/scala-csv_2.13-1.3.6-sources.jar"
                         }
                     ]
                 },
                 {
-                    "organization" : "com.google.gdata",
-                    "name" : "core",
-                    "version" : "1.47.1",
-                    "artifacts" : [
+                    "organization": "com.google.gdata",
+                    "name": "core",
+                    "version": "1.47.1",
+                    "artifacts": [
                         {
-                            "name" : "core",
-                            "path" : "/home/stelios/.ivy2/cache/com.google.gdata/core/jars/core-1.47.1.jar"
+                            "name": "core",
+                            "path": "/home/stkat/.ivy2/cache/com.google.gdata/core/jars/core-1.47.1.jar"
                         },
                         {
-                            "name" : "core",
-                            "classifier" : "sources",
-                            "path" : "/home/stelios/.ivy2/cache/com.google.gdata/core/srcs/core-1.47.1-sources.jar"
+                            "name": "core",
+                            "classifier": "sources",
+                            "path": "/home/stkat/.ivy2/cache/com.google.gdata/core/srcs/core-1.47.1-sources.jar"
                         }
                     ]
                 },
                 {
-                    "organization" : "com.google.guava",
-                    "name" : "guava",
-                    "version" : "13.0.1",
-                    "artifacts" : [
+                    "organization": "com.google.guava",
+                    "name": "guava",
+                    "version": "13.0.1",
+                    "artifacts": [
                         {
-                            "name" : "guava",
-                            "path" : "/home/stelios/.ivy2/cache/com.google.guava/guava/jars/guava-13.0.1.jar"
+                            "name": "guava",
+                            "path": "/home/stkat/.ivy2/cache/com.google.guava/guava/jars/guava-13.0.1.jar"
                         },
                         {
-                            "name" : "guava",
-                            "classifier" : "sources",
-                            "path" : "/home/stelios/.ivy2/cache/com.google.guava/guava/srcs/guava-13.0.1-sources.jar"
+                            "name": "guava",
+                            "classifier": "sources",
+                            "path": "/home/stkat/.ivy2/cache/com.google.guava/guava/srcs/guava-13.0.1-sources.jar"
                         }
                     ]
                 },
                 {
-                    "organization" : "javax.mail",
-                    "name" : "mail",
-                    "version" : "1.4",
-                    "artifacts" : [
+                    "organization": "javax.mail",
+                    "name": "mail",
+                    "version": "1.4",
+                    "artifacts": [
                         {
-                            "name" : "mail",
-                            "path" : "/home/stelios/.ivy2/cache/javax.mail/mail/jars/mail-1.4.jar"
+                            "name": "mail",
+                            "path": "/home/stkat/.ivy2/cache/javax.mail/mail/jars/mail-1.4.jar"
                         },
                         {
-                            "name" : "mail",
-                            "classifier" : "sources",
-                            "path" : "/home/stelios/.ivy2/cache/javax.mail/mail/srcs/mail-1.4-sources.jar"
+                            "name": "mail",
+                            "classifier": "sources",
+                            "path": "/home/stkat/.ivy2/cache/javax.mail/mail/srcs/mail-1.4-sources.jar"
                         }
                     ]
                 },
                 {
-                    "organization" : "javax.activation",
-                    "name" : "activation",
-                    "version" : "1.1",
-                    "artifacts" : [
+                    "organization": "javax.activation",
+                    "name": "activation",
+                    "version": "1.1",
+                    "artifacts": [
                         {
-                            "name" : "activation",
-                            "path" : "/home/stelios/.ivy2/cache/javax.activation/activation/jars/activation-1.1.jar"
+                            "name": "activation",
+                            "path": "/home/stkat/.ivy2/cache/javax.activation/activation/jars/activation-1.1.jar"
                         },
                         {
-                            "name" : "activation",
-                            "classifier" : "sources",
-                            "path" : "/home/stelios/.ivy2/cache/javax.activation/activation/srcs/activation-1.1-sources.jar"
+                            "name": "activation",
+                            "classifier": "sources",
+                            "path": "/home/stkat/.ivy2/cache/javax.activation/activation/srcs/activation-1.1-sources.jar"
                         }
                     ]
                 },
                 {
-                    "organization" : "com.github.scopt",
-                    "name" : "scopt_2.13",
-                    "version" : "4.0.0-RC2",
-                    "artifacts" : [
+                    "organization": "com.github.scopt",
+                    "name": "scopt_2.13",
+                    "version": "4.0.0-RC2",
+                    "artifacts": [
                         {
-                            "name" : "scopt_2.13",
-                            "path" : "/home/stelios/.ivy2/cache/com.github.scopt/scopt_2.13/jars/scopt_2.13-4.0.0-RC2.jar"
+                            "name": "scopt_2.13",
+                            "path": "/home/stkat/.ivy2/cache/com.github.scopt/scopt_2.13/jars/scopt_2.13-4.0.0-RC2.jar"
                         },
                         {
-                            "name" : "scopt_2.13",
-                            "classifier" : "sources",
-                            "path" : "/home/stelios/.ivy2/cache/com.github.scopt/scopt_2.13/srcs/scopt_2.13-4.0.0-RC2-sources.jar"
+                            "name": "scopt_2.13",
+                            "classifier": "sources",
+                            "path": "/home/stkat/.ivy2/cache/com.github.scopt/scopt_2.13/srcs/scopt_2.13-4.0.0-RC2-sources.jar"
                         }
                     ]
                 },
                 {
-                    "organization" : "org.scalafx",
-                    "name" : "scalafx_2.13",
-                    "version" : "12.0.2-R18",
-                    "artifacts" : [
+                    "organization": "org.scalafx",
+                    "name": "scalafx_2.13",
+                    "version": "12.0.2-R18",
+                    "artifacts": [
                         {
-                            "name" : "scalafx_2.13",
-                            "path" : "/home/stelios/.ivy2/cache/org.scalafx/scalafx_2.13/jars/scalafx_2.13-12.0.2-R18.jar"
+                            "name": "scalafx_2.13",
+                            "path": "/home/stkat/.ivy2/cache/org.scalafx/scalafx_2.13/jars/scalafx_2.13-12.0.2-R18.jar"
                         },
                         {
-                            "name" : "scalafx_2.13",
-                            "classifier" : "sources",
-                            "path" : "/home/stelios/.ivy2/cache/org.scalafx/scalafx_2.13/srcs/scalafx_2.13-12.0.2-R18-sources.jar"
+                            "name": "scalafx_2.13",
+                            "classifier": "sources",
+                            "path": "/home/stkat/.ivy2/cache/org.scalafx/scalafx_2.13/srcs/scalafx_2.13-12.0.2-R18-sources.jar"
                         }
                     ]
                 },
                 {
-                    "organization" : "org.scala-lang",
-                    "name" : "scala-reflect",
-                    "version" : "2.13.1",
-                    "artifacts" : [
+                    "organization": "org.scala-lang",
+                    "name": "scala-reflect",
+                    "version": "2.13.1",
+                    "artifacts": [
                         {
-                            "name" : "scala-reflect",
-                            "path" : "/home/stelios/.ivy2/cache/org.scala-lang/scala-reflect/jars/scala-reflect-2.13.1.jar"
+                            "name": "scala-reflect",
+                            "path": "/home/stkat/.ivy2/cache/org.scala-lang/scala-reflect/jars/scala-reflect-2.13.1.jar"
                         },
                         {
-                            "name" : "scala-reflect",
-                            "classifier" : "sources",
-                            "path" : "/home/stelios/.ivy2/cache/org.scala-lang/scala-reflect/srcs/scala-reflect-2.13.1-sources.jar"
+                            "name": "scala-reflect",
+                            "classifier": "sources",
+                            "path": "/home/stkat/.ivy2/cache/org.scala-lang/scala-reflect/srcs/scala-reflect-2.13.1-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "org.scala-sbt",
+                    "name": "util-control_2.13",
+                    "version": "1.3.2",
+                    "artifacts": [
+                        {
+                            "name": "util-control_2.13",
+                            "path": "/home/stkat/.ivy2/cache/org.scala-sbt/util-control_2.13/jars/util-control_2.13-1.3.2.jar"
+                        },
+                        {
+                            "name": "util-control_2.13",
+                            "classifier": "sources",
+                            "path": "/home/stkat/.ivy2/cache/org.scala-sbt/util-control_2.13/srcs/util-control_2.13-1.3.2-sources.jar"
                         }
                     ]
                 }
             ]
-        }
+        },
+        "tags": [
+            "library"
+        ]
     }
 }

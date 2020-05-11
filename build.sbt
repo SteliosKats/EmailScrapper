@@ -13,33 +13,42 @@ libraryDependencies ++= Seq(
   "com.github.tototoshi" %% "scala-csv" % "1.3.6",
   "com.google.gdata" % "core" % "1.47.1",
   "com.github.scopt" %% "scopt" % "4.0.0-RC2",
-  "org.scalafx" %% "scalafx" % "12.0.2-R18"
+  "org.scalafx" %% "scalafx" % "12.0.2-R18",
+  "org.scala-sbt" %% "util-control" % "1.3.2"
 )
 
 resolvers += Resolver.sonatypeRepo("snapshots")
 
-scalacOptions ++= Seq("-unchecked", "-deprecation", "-Xcheckinit", "-encoding", "utf8", "-feature")
+scalacOptions ++= Seq(
+  "-unchecked",
+  "-deprecation",
+  "-Xcheckinit",
+  "-encoding",
+  "utf8",
+  "-feature"
+)
 
 // Fork a new JVM for 'run' and 'test:run', to avoid JavaFX double initialization problems
 fork := true
 
 // Determine OS version of JavaFX binaries
 lazy val osName = System.getProperty("os.name") match {
-  case n if n.startsWith("Linux") => "linux"
-  case n if n.startsWith("Mac") => "mac"
+  case n if n.startsWith("Linux")   => "linux"
+  case n if n.startsWith("Mac")     => "mac"
   case n if n.startsWith("Windows") => "win"
-  case _ => throw new Exception("Unknown platform!")
+  case _                            => throw new Exception("Unknown platform!")
 }
 
 // Add JavaFX dependencies
-lazy val javaFXModules = Seq("base", "controls", "fxml", "graphics", "media", "swing", "web")
-libraryDependencies ++= javaFXModules.map( m=>
-  "org.openjfx" % s"javafx-$m" % "12.0.2" classifier osName
+lazy val javaFXModules =
+  Seq("base", "controls", "fxml", "graphics", "media", "swing", "web")
+libraryDependencies ++= javaFXModules.map(
+  m => "org.openjfx" % s"javafx-$m" % "12.0.2" classifier osName
 )
 
 assemblyMergeStrategy in assembly := {
   case PathList("META-INF", xs @ _*) => MergeStrategy.discard
-  case x => MergeStrategy.first
+  case x                             => MergeStrategy.first
 }
 
 lazy val commonSettings = Seq(
@@ -49,10 +58,11 @@ lazy val commonSettings = Seq(
   test in assembly := {}
 )
 
-lazy val app = (project in file("app")).
-  settings(commonSettings: _*).
-  settings(
-    mainClass in assembly := Some("com.ScalaScraper.ScalaImapSsl"),  //mainClass in assembly := Some("scalamail.ScalaImapSsl"),
-    assemblyJarName in assembly := "GmailScrapper.jar",
+lazy val app = (project in file("app"))
+  .settings(commonSettings: _*)
+  .settings(
+    //mainClass in (Compile, packageBin) := Some("ScalaImapSsl"),
+    mainClass in assembly := Some("com.ScalaScraper.ScalaImapSsl"), //mainClass in assembly := Some("scalamail.ScalaImapSsl"),
+    assemblyJarName in assembly := "GmailScrapper.jar"
     // more settings here ...
   )

@@ -1,125 +1,130 @@
 {
-    "version" : "1.1.2",
-    "project" : {
-        "name" : "app-test",
-        "directory" : "/home/stelios/workspace/EmailScrapper/app",
-        "sources" : [
-            "/home/stelios/workspace/EmailScrapper/app/src/test/scala-2.13",
-            "/home/stelios/workspace/EmailScrapper/app/src/test/scala",
-            "/home/stelios/workspace/EmailScrapper/app/src/test/java",
-            "/home/stelios/workspace/EmailScrapper/app/target/scala-2.13/src_managed/test"
+    "version": "1.4.0",
+    "project": {
+        "name": "app-test",
+        "directory": "/home/stkat/development/EmailScrapper/app",
+        "workspaceDir": "/home/stkat/development/EmailScrapper",
+        "sources": [
+            "/home/stkat/development/EmailScrapper/app/src/test/scala-2.13",
+            "/home/stkat/development/EmailScrapper/app/src/test/scala",
+            "/home/stkat/development/EmailScrapper/app/src/test/java",
+            "/home/stkat/development/EmailScrapper/app/target/scala-2.13/src_managed/test"
         ],
-        "dependencies" : [
+        "dependencies": [
             "app"
         ],
-        "classpath" : [
-            "/home/stelios/workspace/EmailScrapper/.bloop/app/scala-2.13/classes",
-            "/home/stelios/.ivy2/cache/org.scala-lang/scala-library/jars/scala-library-2.13.1.jar"
+        "classpath": [
+            "/home/stkat/development/EmailScrapper/.bloop/app/scala-2.13/classes",
+            "/home/stkat/.ivy2/cache/org.scala-lang/scala-library/jars/scala-library-2.13.1.jar"
         ],
-        "out" : "/home/stelios/workspace/EmailScrapper/.bloop/app",
-        "classesDir" : "/home/stelios/workspace/EmailScrapper/.bloop/app/scala-2.13/test-classes",
-        "resources" : [
-            "/home/stelios/workspace/EmailScrapper/app/src/test/resources",
-            "/home/stelios/workspace/EmailScrapper/app/target/scala-2.13/resource_managed/test"
+        "out": "/home/stkat/development/EmailScrapper/.bloop/app",
+        "classesDir": "/home/stkat/development/EmailScrapper/.bloop/app/scala-2.13/test-classes",
+        "resources": [
+            "/home/stkat/development/EmailScrapper/app/src/test/resources",
+            "/home/stkat/development/EmailScrapper/app/target/scala-2.13/resource_managed/test"
         ],
-        "scala" : {
-            "organization" : "org.scala-lang",
-            "name" : "scala-compiler",
-            "version" : "2.13.1",
-            "options" : [
-                "-P:semanticdb:synthetics:on",
-                "-P:semanticdb:failures:warning",
-                "-P:semanticdb:sourceroot:/home/stelios/workspace/EmailScrapper",
-                "-Yrangepos",
-                "-Xplugin-require:semanticdb",
-                "-Xplugin:/home/stelios/.ivy2/cache/org.scalameta/semanticdb-scalac_2.13.1/jars/semanticdb-scalac_2.13.1-4.2.3.jar"
+        "scala": {
+            "organization": "org.scala-lang",
+            "name": "scala-compiler",
+            "version": "2.13.1",
+            "options": [
+                
             ],
-            "jars" : [
-                "/home/stelios/.ivy2/cache/org.scala-lang/scala-compiler/jars/scala-compiler-2.13.1.jar",
-                "/home/stelios/.ivy2/cache/org.scala-lang/scala-library/jars/scala-library-2.13.1.jar",
-                "/home/stelios/.ivy2/cache/org.scala-lang/scala-reflect/jars/scala-reflect-2.13.1.jar",
-                "/home/stelios/.ivy2/cache/jline/jline/jars/jline-2.14.6.jar",
-                "/home/stelios/.ivy2/cache/org.fusesource.jansi/jansi/jars/jansi-1.12.jar"
+            "jars": [
+                "/home/stkat/.ivy2/cache/org.scala-lang/scala-compiler/jars/scala-compiler-2.13.1.jar",
+                "/home/stkat/.ivy2/cache/org.scala-lang/scala-library/jars/scala-library-2.13.1.jar",
+                "/home/stkat/.ivy2/cache/org.scala-lang/scala-reflect/jars/scala-reflect-2.13.1.jar",
+                "/home/stkat/.ivy2/cache/jline/jline/jars/jline-2.14.6.jar",
+                "/home/stkat/.ivy2/cache/org.fusesource.jansi/jansi/jars/jansi-1.12.jar"
             ],
-            "setup" : {
-                "order" : "mixed",
-                "addLibraryToBootClasspath" : true,
-                "addCompilerToClasspath" : false,
-                "addExtraJarsToClasspath" : false,
-                "manageBootClasspath" : true,
-                "filterLibraryFromClasspath" : true
+            "analysis": "/home/stkat/development/EmailScrapper/app/target/streams/test/bloopAnalysisOut/$global/streams/inc_compile_2.13.zip",
+            "setup": {
+                "order": "mixed",
+                "addLibraryToBootClasspath": true,
+                "addCompilerToClasspath": false,
+                "addExtraJarsToClasspath": false,
+                "manageBootClasspath": true,
+                "filterLibraryFromClasspath": true
             }
         },
-        "java" : {
-            "options" : [
+        "java": {
+            "options": [
+                
             ]
         },
-        "test" : {
-            "frameworks" : [
+        "test": {
+            "frameworks": [
                 {
-                    "names" : [
+                    "names": [
                         "org.scalacheck.ScalaCheckFramework"
                     ]
                 },
                 {
-                    "names" : [
+                    "names": [
                         "org.specs2.runner.Specs2Framework",
                         "org.specs2.runner.SpecsFramework"
                     ]
                 },
                 {
-                    "names" : [
+                    "names": [
                         "org.specs.runner.SpecsFramework"
                     ]
                 },
                 {
-                    "names" : [
+                    "names": [
                         "org.scalatest.tools.Framework",
                         "org.scalatest.tools.ScalaTestFramework"
                     ]
                 },
                 {
-                    "names" : [
+                    "names": [
                         "com.novocode.junit.JUnitFramework"
                     ]
                 }
             ],
-            "options" : {
-                "excludes" : [
+            "options": {
+                "excludes": [
+                    
                 ],
-                "arguments" : [
+                "arguments": [
+                    
                 ]
             }
         },
-        "platform" : {
-            "name" : "jvm",
-            "config" : {
-                "home" : "/usr/lib/jvm/java-11-oracle",
-                "options" : [
+        "platform": {
+            "name": "jvm",
+            "config": {
+                "home": "/home/stkat/opt/jdk/jdk1.8.0_241/jre",
+                "options": [
+                    "-Duser.dir=/home/stkat/development/EmailScrapper"
                 ]
             },
-            "mainClass" : [
+            "mainClass": [
+                
             ]
         },
-        "resolution" : {
-            "modules" : [
+        "resolution": {
+            "modules": [
                 {
-                    "organization" : "org.scala-lang",
-                    "name" : "scala-library",
-                    "version" : "2.13.1",
-                    "artifacts" : [
+                    "organization": "org.scala-lang",
+                    "name": "scala-library",
+                    "version": "2.13.1",
+                    "artifacts": [
                         {
-                            "name" : "scala-library",
-                            "path" : "/home/stelios/.ivy2/cache/org.scala-lang/scala-library/jars/scala-library-2.13.1.jar"
+                            "name": "scala-library",
+                            "path": "/home/stkat/.ivy2/cache/org.scala-lang/scala-library/jars/scala-library-2.13.1.jar"
                         },
                         {
-                            "name" : "scala-library",
-                            "classifier" : "sources",
-                            "path" : "/home/stelios/.ivy2/cache/org.scala-lang/scala-library/srcs/scala-library-2.13.1-sources.jar"
+                            "name": "scala-library",
+                            "classifier": "sources",
+                            "path": "/home/stkat/.ivy2/cache/org.scala-lang/scala-library/srcs/scala-library-2.13.1-sources.jar"
                         }
                     ]
                 }
             ]
-        }
+        },
+        "tags": [
+            "test"
+        ]
     }
 }
